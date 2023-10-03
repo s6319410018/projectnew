@@ -4,6 +4,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:pretty_gauge/pretty_gauge.dart';
 import 'package:water_drop_nav_bar/water_drop_nav_bar.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:http/http.dart' as http;
@@ -81,8 +82,9 @@ class _homeUIState extends State<homeUI> {
   }
 
   ///////////////////////////////////////////ส่วนการทำงานของแท็บบาร์
-  bool ai_icon = false;
+
   bool water_icon = false;
+  bool ai_icon = false;
   //////////////////////////////////////////datatestตัวแปรเก็บค่าON-OFF
 
   @override
@@ -93,6 +95,7 @@ class _homeUIState extends State<homeUI> {
         systemNavigationBarIconBrightness: Brightness.dark,
       ),
       child: Scaffold(
+        backgroundColor: Color(0xFF7BD5E5),
         appBar: AppBar(
             toolbarHeight: MediaQuery.of(context).size.width * 0.2,
             backgroundColor: Color(0xFF7BD5E5),
@@ -111,7 +114,7 @@ class _homeUIState extends State<homeUI> {
           children: <Widget>[
             Container(
               //หน้าที่ 1
-              color: Color(0xF5E3F7FD),
+              color: Color(0xFF7BD5E5),
               child: Padding(
                 padding: EdgeInsets.only(
                   top: MediaQuery.of(context).size.height * 0.045,
@@ -134,164 +137,255 @@ class _homeUIState extends State<homeUI> {
                                   MediaQuery.of(context).size.height * 0.314,
                               width: MediaQuery.of(context).size.width * 0.45,
                               decoration: BoxDecoration(
-                                color: Color(0xFF7BD5E5),
                                 border: Border.all(
                                     width: MediaQuery.of(context).size.width *
                                         0.005,
-                                    color: Colors.black),
+                                    color: Colors.white),
 
                                 borderRadius:
-                                    BorderRadius.circular(10), //<-- SEE HERE
+                                    BorderRadius.circular(5), //<-- SEE HERE
                               ),
                               child: SingleChildScrollView(
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   children: [
-                                    SizedBox(
-                                      height:
-                                          MediaQuery.of(context).size.height *
-                                              0.005,
-                                    ),
-                                    Text('AI MODE',
-                                        style: GoogleFonts.kanit(
-                                            fontSize: MediaQuery.of(context)
-                                                    .size
-                                                    .width *
-                                                0.06)),
-                                    SizedBox(
-                                      height:
-                                          MediaQuery.of(context).size.height *
-                                              0.005,
-                                    ),
-                                    ElevatedButton.icon(
-                                      onPressed: () {
-                                        if (true) {
-                                          ai_icon = true;
-                                          print(ai_icon);
-                                        }
-                                      },
-                                      icon: Icon(FontAwesomeIcons.powerOff),
-                                      label: Text(
-                                        "On Ai",
-                                        style: GoogleFonts.kanit(
+                                    Card(
+                                      color: Color(0xFF7BD5E5),
+                                      shape: RoundedRectangleBorder(
+                                        side: BorderSide(
+                                            color: Colors.white,
+                                            style: BorderStyle.solid),
+                                        borderRadius: BorderRadius.all(
+                                          Radius.circular(5),
+                                        ),
+                                      ),
+                                      child: Padding(
+                                        padding: EdgeInsets.only(
+                                          top: MediaQuery.of(context)
+                                                  .size
+                                                  .height *
+                                              0.01,
+                                          bottom: MediaQuery.of(context)
+                                                  .size
+                                                  .height *
+                                              0.01,
+                                          left: MediaQuery.of(context)
+                                                  .size
+                                                  .width *
+                                              0.127,
+                                          right: MediaQuery.of(context)
+                                                  .size
+                                                  .width *
+                                              0.127,
+                                        ),
+                                        child: Text(
+                                          'โหมดเอไอ',
+                                          style: GoogleFonts.kanit(
+                                            color: Colors.white,
+                                            fontWeight: FontWeight.bold,
                                             fontSize: MediaQuery.of(context)
                                                     .size
                                                     .width *
                                                 0.04,
-                                            fontWeight: FontWeight.bold),
+                                          ),
+                                        ),
                                       ),
-                                      style: ElevatedButton.styleFrom(
+                                    ),
+                                    Card(
+                                      color: Color(0xFF7BD5E5),
+                                      shape: RoundedRectangleBorder(
                                         side: BorderSide(
-                                          color: Colors.black,
+                                          color: Colors.white,
+                                          style: BorderStyle.solid,
                                           width: MediaQuery.of(context)
                                                   .size
                                                   .width *
                                               0.002,
                                         ),
-                                        backgroundColor:
-                                            Color.fromARGB(255, 122, 230, 133),
-                                        fixedSize: Size(
-                                            MediaQuery.of(context).size.width *
-                                                0.4,
-                                            MediaQuery.of(context).size.width *
-                                                0.125),
-                                        shape: RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.only(
-                                            topLeft: Radius.circular(30),
-                                            topRight: Radius.circular(30),
-                                            bottomLeft: Radius.circular(30),
-                                            bottomRight: Radius.circular(30),
-                                          ),
+                                        borderRadius: BorderRadius.all(
+                                          Radius.circular(5),
                                         ),
                                       ),
-                                    ),
-                                    SizedBox(
-                                      height:
-                                          MediaQuery.of(context).size.height *
-                                              0.01,
-                                    ),
-                                    ElevatedButton.icon(
-                                      onPressed: () {
-                                        if (true) {
-                                          ai_icon = false;
-                                          print(ai_icon);
-                                        }
-                                      },
-                                      icon: Icon(FontAwesomeIcons.close),
-                                      label: Text(
-                                        "Off AI",
-                                        style: GoogleFonts.kanit(
-                                            fontSize: MediaQuery.of(context)
+                                      child: Column(
+                                        children: [
+                                          SizedBox(
+                                            height: MediaQuery.of(context)
                                                     .size
-                                                    .width *
-                                                0.04,
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                      style: ElevatedButton.styleFrom(
-                                        side: BorderSide(
-                                          color: Colors.black,
-                                          width: MediaQuery.of(context)
-                                                  .size
-                                                  .width *
-                                              0.002,
-                                        ),
-                                        backgroundColor:
-                                            Color.fromARGB(255, 200, 127, 127),
-                                        fixedSize: Size(
-                                            MediaQuery.of(context).size.width *
-                                                0.4,
-                                            MediaQuery.of(context).size.width *
-                                                0.125),
-                                        shape: RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.only(
-                                            topLeft: Radius.circular(30),
-                                            topRight: Radius.circular(30),
-                                            bottomLeft: Radius.circular(30),
-                                            bottomRight: Radius.circular(30),
+                                                    .height *
+                                                0.01,
                                           ),
-                                        ),
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      height:
-                                          MediaQuery.of(context).size.height *
-                                              0.01,
-                                    ),
-                                    Container(
-                                      width: MediaQuery.of(context).size.width *
-                                          0.9,
-                                      height:
-                                          MediaQuery.of(context).size.width *
-                                              0.14,
-                                      child: Card(
-                                        color: Colors.grey[500],
-                                        shape: RoundedRectangleBorder(
-                                          side: BorderSide(
-                                            color: Colors.black,
+                                          ElevatedButton.icon(
+                                            onPressed: () {
+                                              if (true) {
+                                                water_icon = true;
+                                                print(water_icon);
+                                              }
+                                            },
+                                            icon:
+                                                Icon(FontAwesomeIcons.powerOff),
+                                            label: Text(
+                                              "On Ai",
+                                              style: GoogleFonts.kanit(
+                                                  fontSize:
+                                                      MediaQuery.of(context)
+                                                              .size
+                                                              .width *
+                                                          0.04,
+                                                  fontWeight: FontWeight.bold),
+                                            ),
+                                            style: ElevatedButton.styleFrom(
+                                              side: BorderSide(
+                                                color: Colors.black,
+                                                width: MediaQuery.of(context)
+                                                        .size
+                                                        .width *
+                                                    0.002,
+                                              ),
+                                              backgroundColor: Color.fromARGB(
+                                                  255, 122, 230, 133),
+                                              fixedSize: Size(
+                                                  MediaQuery.of(context)
+                                                          .size
+                                                          .width *
+                                                      0.4,
+                                                  MediaQuery.of(context)
+                                                          .size
+                                                          .width *
+                                                      0.1),
+                                              shape: RoundedRectangleBorder(
+                                                borderRadius: BorderRadius.only(
+                                                  topLeft: Radius.circular(5),
+                                                  topRight: Radius.circular(5),
+                                                  bottomLeft:
+                                                      Radius.circular(5),
+                                                  bottomRight:
+                                                      Radius.circular(5),
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                          SizedBox(
+                                            height: MediaQuery.of(context)
+                                                    .size
+                                                    .height *
+                                                0.002,
+                                          ),
+                                          ElevatedButton.icon(
+                                            onPressed: () {
+                                              if (true) {}
+                                            },
+                                            icon: Icon(FontAwesomeIcons.close),
+                                            label: Text(
+                                              "Off Ai",
+                                              style: GoogleFonts.kanit(
+                                                  fontSize:
+                                                      MediaQuery.of(context)
+                                                              .size
+                                                              .width *
+                                                          0.04,
+                                                  fontWeight: FontWeight.bold),
+                                            ),
+                                            style: ElevatedButton.styleFrom(
+                                              side: BorderSide(
+                                                color: Colors.black,
+                                                width: MediaQuery.of(context)
+                                                        .size
+                                                        .width *
+                                                    0.002,
+                                              ),
+                                              backgroundColor: Color.fromARGB(
+                                                  255, 200, 127, 127),
+                                              fixedSize: Size(
+                                                  MediaQuery.of(context)
+                                                          .size
+                                                          .width *
+                                                      0.4,
+                                                  MediaQuery.of(context)
+                                                          .size
+                                                          .width *
+                                                      0.1),
+                                              shape: RoundedRectangleBorder(
+                                                borderRadius: BorderRadius.only(
+                                                  topLeft: Radius.circular(5),
+                                                  topRight: Radius.circular(5),
+                                                  bottomLeft:
+                                                      Radius.circular(5),
+                                                  bottomRight:
+                                                      Radius.circular(5),
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                          Container(
                                             width: MediaQuery.of(context)
                                                     .size
                                                     .width *
-                                                0.002,
+                                                0.9,
+                                            height: MediaQuery.of(context)
+                                                    .size
+                                                    .width *
+                                                0.139,
+                                            child: Card(
+                                              color: Color.fromARGB(
+                                                  0, 123, 213, 229),
+                                              shape: RoundedRectangleBorder(
+                                                  side: BorderSide(
+                                                    style: BorderStyle.none,
+                                                    color: Color.fromARGB(
+                                                        0, 123, 213, 229),
+                                                    width:
+                                                        MediaQuery.of(context)
+                                                                .size
+                                                                .width *
+                                                            0.002,
+                                                  ),
+                                                  borderRadius:
+                                                      BorderRadius.all(
+                                                          Radius.circular(5))),
+                                              child: ListView.builder(
+                                                itemCount:
+                                                    _realtimeDataList.length,
+                                                itemBuilder: (context, index) {
+                                                  RealtimeData realtimeData =
+                                                      _realtimeDataList[index];
+
+                                                  if (realtimeData.realtimeAI ==
+                                                      1) {
+                                                    water_icon =
+                                                        true; // Use assignment operator to set the value
+                                                  } else {
+                                                    water_icon = false;
+                                                  }
+
+                                                  return Center(
+                                                    child: Icon(
+                                                      water_icon
+                                                          ? FontAwesomeIcons
+                                                              .toggleOn
+                                                          : FontAwesomeIcons
+                                                              .toggleOff,
+                                                      color: Color.fromARGB(
+                                                          255, 255, 255, 255),
+                                                      size:
+                                                          MediaQuery.of(context)
+                                                                  .size
+                                                                  .width *
+                                                              0.12,
+                                                    ),
+                                                  );
+                                                },
+                                              ),
+                                            ),
                                           ),
-                                          borderRadius: BorderRadius.only(
-                                            bottomLeft: Radius.circular(5),
-                                            bottomRight: Radius.circular(5),
-                                            topLeft: Radius.circular(5),
-                                            topRight: Radius.circular(5),
+                                          SizedBox(
+                                            height: MediaQuery.of(context)
+                                                    .size
+                                                    .height *
+                                                0.003,
                                           ),
-                                        ),
-                                        child: Icon(
-                                          ai_icon == true
-                                              ? FontAwesomeIcons.toggleOn
-                                              : FontAwesomeIcons.toggleOff,
-                                          color: Color(0xFF7BD5E5),
-                                          size: MediaQuery.of(context)
-                                                  .size
-                                                  .width *
-                                              0.1,
-                                        ),
+                                        ],
                                       ),
-                                    )
+                                    ),
                                   ],
                                 ),
                               ),
@@ -299,171 +393,263 @@ class _homeUIState extends State<homeUI> {
                           ),
                           Padding(
                             padding: EdgeInsets.only(
-                              left: MediaQuery.of(context).size.height * 0.01,
+                              right: MediaQuery.of(context).size.height * 0.008,
+                              left: MediaQuery.of(context).size.height * 0.0146,
                             ),
                             child: Container(
                               height:
                                   MediaQuery.of(context).size.height * 0.314,
                               width: MediaQuery.of(context).size.width * 0.45,
                               decoration: BoxDecoration(
-                                color: Color(0xFF7BD5E5),
                                 border: Border.all(
                                     width: MediaQuery.of(context).size.width *
                                         0.005,
-                                    color: Colors.black),
+                                    color: Colors.white),
 
                                 borderRadius:
-                                    BorderRadius.circular(10), //<-- SEE HERE
+                                    BorderRadius.circular(5), //<-- SEE HERE
                               ),
                               child: SingleChildScrollView(
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   children: [
-                                    SizedBox(
-                                      height:
-                                          MediaQuery.of(context).size.height *
-                                              0.005,
-                                    ),
-                                    Text('Manul MODE',
-                                        style: GoogleFonts.kanit(
-                                            fontSize: MediaQuery.of(context)
-                                                    .size
-                                                    .width *
-                                                0.06)),
-                                    SizedBox(
-                                      height:
-                                          MediaQuery.of(context).size.height *
-                                              0.005,
-                                    ),
-                                    ElevatedButton.icon(
-                                      onPressed: () {
-                                        if (true) {
-                                          water_icon = true;
-                                          print(water_icon);
-                                        }
-                                      },
-                                      icon: Icon(FontAwesomeIcons.powerOff),
-                                      label: Text(
-                                        "On Water",
-                                        style: GoogleFonts.kanit(
+                                    Card(
+                                      color: Color(0xFF7BD5E5),
+                                      shape: RoundedRectangleBorder(
+                                        side: BorderSide(
+                                            color: Colors.white,
+                                            style: BorderStyle.solid),
+                                        borderRadius: BorderRadius.all(
+                                          Radius.circular(5),
+                                        ),
+                                      ),
+                                      child: Padding(
+                                        padding: EdgeInsets.only(
+                                          top: MediaQuery.of(context)
+                                                  .size
+                                                  .height *
+                                              0.01,
+                                          bottom: MediaQuery.of(context)
+                                                  .size
+                                                  .height *
+                                              0.01,
+                                          left: MediaQuery.of(context)
+                                                  .size
+                                                  .width *
+                                              0.12,
+                                          right: MediaQuery.of(context)
+                                                  .size
+                                                  .width *
+                                              0.127,
+                                        ),
+                                        child: Text(
+                                          'โหมดปกติ',
+                                          style: GoogleFonts.kanit(
+                                            color: Colors.white,
+                                            fontWeight: FontWeight.bold,
                                             fontSize: MediaQuery.of(context)
                                                     .size
                                                     .width *
                                                 0.04,
-                                            fontWeight: FontWeight.bold),
+                                          ),
+                                        ),
                                       ),
-                                      style: ElevatedButton.styleFrom(
+                                    ),
+                                    Card(
+                                      color: Color(0xFF7BD5E5),
+                                      shape: RoundedRectangleBorder(
                                         side: BorderSide(
-                                          color: Colors.black,
+                                          color: Colors.white,
+                                          style: BorderStyle.solid,
                                           width: MediaQuery.of(context)
                                                   .size
                                                   .width *
                                               0.002,
                                         ),
-                                        backgroundColor:
-                                            Color.fromARGB(255, 122, 230, 133),
-                                        fixedSize: Size(
-                                            MediaQuery.of(context).size.width *
-                                                0.4,
-                                            MediaQuery.of(context).size.width *
-                                                0.125),
-                                        shape: RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.only(
-                                            topLeft: Radius.circular(30),
-                                            topRight: Radius.circular(30),
-                                            bottomLeft: Radius.circular(30),
-                                            bottomRight: Radius.circular(30),
-                                          ),
+                                        borderRadius: BorderRadius.all(
+                                          Radius.circular(5),
                                         ),
                                       ),
-                                    ),
-                                    SizedBox(
-                                      height:
-                                          MediaQuery.of(context).size.height *
-                                              0.01,
-                                    ),
-                                    ElevatedButton.icon(
-                                      onPressed: () {
-                                        if (true) {
-                                          water_icon = false;
-                                          print(water_icon);
-                                        }
-                                      },
-                                      icon: Icon(FontAwesomeIcons.close),
-                                      label: Text(
-                                        "Off Water",
-                                        style: GoogleFonts.kanit(
-                                            fontSize: MediaQuery.of(context)
+                                      child: Column(
+                                        children: [
+                                          SizedBox(
+                                            height: MediaQuery.of(context)
                                                     .size
-                                                    .width *
-                                                0.04,
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                      style: ElevatedButton.styleFrom(
-                                        side: BorderSide(
-                                          color: Colors.black,
-                                          width: MediaQuery.of(context)
-                                                  .size
-                                                  .width *
-                                              0.002,
-                                        ),
-                                        backgroundColor:
-                                            Color.fromARGB(255, 200, 127, 127),
-                                        fixedSize: Size(
-                                            MediaQuery.of(context).size.width *
-                                                0.4,
-                                            MediaQuery.of(context).size.width *
-                                                0.125),
-                                        shape: RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.only(
-                                            topLeft: Radius.circular(30),
-                                            topRight: Radius.circular(30),
-                                            bottomLeft: Radius.circular(30),
-                                            bottomRight: Radius.circular(30),
+                                                    .height *
+                                                0.01,
                                           ),
-                                        ),
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      height:
-                                          MediaQuery.of(context).size.height *
-                                              0.01,
-                                    ),
-                                    Container(
-                                      width: MediaQuery.of(context).size.width *
-                                          0.9,
-                                      height:
-                                          MediaQuery.of(context).size.width *
-                                              0.14,
-                                      child: Card(
-                                        color: Colors.grey[500],
-                                        shape: RoundedRectangleBorder(
-                                          side: BorderSide(
-                                            color: Colors.black,
+                                          ElevatedButton.icon(
+                                            onPressed: () {
+                                              if (true) {
+                                                water_icon = true;
+                                                print(water_icon);
+                                              }
+                                            },
+                                            icon:
+                                                Icon(FontAwesomeIcons.powerOff),
+                                            label: Text(
+                                              "On",
+                                              style: GoogleFonts.kanit(
+                                                  fontSize:
+                                                      MediaQuery.of(context)
+                                                              .size
+                                                              .width *
+                                                          0.04,
+                                                  fontWeight: FontWeight.bold),
+                                            ),
+                                            style: ElevatedButton.styleFrom(
+                                              side: BorderSide(
+                                                color: Colors.black,
+                                                width: MediaQuery.of(context)
+                                                        .size
+                                                        .width *
+                                                    0.002,
+                                              ),
+                                              backgroundColor: Color.fromARGB(
+                                                  255, 122, 230, 133),
+                                              fixedSize: Size(
+                                                  MediaQuery.of(context)
+                                                          .size
+                                                          .width *
+                                                      0.4,
+                                                  MediaQuery.of(context)
+                                                          .size
+                                                          .width *
+                                                      0.1),
+                                              shape: RoundedRectangleBorder(
+                                                borderRadius: BorderRadius.only(
+                                                  topLeft: Radius.circular(5),
+                                                  topRight: Radius.circular(5),
+                                                  bottomLeft:
+                                                      Radius.circular(5),
+                                                  bottomRight:
+                                                      Radius.circular(5),
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                          SizedBox(
+                                            height: MediaQuery.of(context)
+                                                    .size
+                                                    .height *
+                                                0.002,
+                                          ),
+                                          ElevatedButton.icon(
+                                            onPressed: () {
+                                              if (true) {}
+                                            },
+                                            icon: Icon(FontAwesomeIcons.close),
+                                            label: Text(
+                                              "Off",
+                                              style: GoogleFonts.kanit(
+                                                  fontSize:
+                                                      MediaQuery.of(context)
+                                                              .size
+                                                              .width *
+                                                          0.04,
+                                                  fontWeight: FontWeight.bold),
+                                            ),
+                                            style: ElevatedButton.styleFrom(
+                                              side: BorderSide(
+                                                color: Colors.black,
+                                                width: MediaQuery.of(context)
+                                                        .size
+                                                        .width *
+                                                    0.002,
+                                              ),
+                                              backgroundColor: Color.fromARGB(
+                                                  255, 200, 127, 127),
+                                              fixedSize: Size(
+                                                  MediaQuery.of(context)
+                                                          .size
+                                                          .width *
+                                                      0.4,
+                                                  MediaQuery.of(context)
+                                                          .size
+                                                          .width *
+                                                      0.1),
+                                              shape: RoundedRectangleBorder(
+                                                borderRadius: BorderRadius.only(
+                                                  topLeft: Radius.circular(5),
+                                                  topRight: Radius.circular(5),
+                                                  bottomLeft:
+                                                      Radius.circular(5),
+                                                  bottomRight:
+                                                      Radius.circular(5),
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                          Container(
                                             width: MediaQuery.of(context)
                                                     .size
                                                     .width *
-                                                0.002,
+                                                0.9,
+                                            height: MediaQuery.of(context)
+                                                    .size
+                                                    .width *
+                                                0.139,
+                                            child: Card(
+                                              color: Color.fromARGB(
+                                                  0, 123, 213, 229),
+                                              shape: RoundedRectangleBorder(
+                                                  side: BorderSide(
+                                                    style: BorderStyle.none,
+                                                    color: Color.fromARGB(
+                                                        0, 123, 213, 229),
+                                                    width:
+                                                        MediaQuery.of(context)
+                                                                .size
+                                                                .width *
+                                                            0.002,
+                                                  ),
+                                                  borderRadius:
+                                                      BorderRadius.all(
+                                                          Radius.circular(5))),
+                                              child: ListView.builder(
+                                                itemCount:
+                                                    _realtimeDataList.length,
+                                                itemBuilder: (context, index) {
+                                                  RealtimeData realtimeData =
+                                                      _realtimeDataList[index];
+
+                                                  if (realtimeData.realtimeAI ==
+                                                      1) {
+                                                    water_icon =
+                                                        true; // Use assignment operator to set the value
+                                                  } else {
+                                                    water_icon = false;
+                                                  }
+
+                                                  return Center(
+                                                    child: Icon(
+                                                      water_icon
+                                                          ? FontAwesomeIcons
+                                                              .toggleOn
+                                                          : FontAwesomeIcons
+                                                              .toggleOff,
+                                                      color: Color.fromARGB(
+                                                          255, 255, 255, 255),
+                                                      size:
+                                                          MediaQuery.of(context)
+                                                                  .size
+                                                                  .width *
+                                                              0.12,
+                                                    ),
+                                                  );
+                                                },
+                                              ),
+                                            ),
                                           ),
-                                          borderRadius: BorderRadius.only(
-                                            bottomLeft: Radius.circular(5),
-                                            bottomRight: Radius.circular(5),
-                                            topLeft: Radius.circular(5),
-                                            topRight: Radius.circular(5),
+                                          SizedBox(
+                                            height: MediaQuery.of(context)
+                                                    .size
+                                                    .height *
+                                                0.003,
                                           ),
-                                        ),
-                                        child: Icon(
-                                          water_icon == true
-                                              ? FontAwesomeIcons.toggleOn
-                                              : FontAwesomeIcons.toggleOff,
-                                          color: Color(0xFF7BD5E5),
-                                          size: MediaQuery.of(context)
-                                                  .size
-                                                  .width *
-                                              0.1,
-                                        ),
+                                        ],
                                       ),
-                                    )
+                                    ),
                                   ],
                                 ),
                               ),
@@ -486,56 +672,79 @@ class _homeUIState extends State<homeUI> {
                                   MediaQuery.of(context).size.height * 0.314,
                               width: MediaQuery.of(context).size.width * 0.45,
                               decoration: BoxDecoration(
-                                color: Color(0xFF7BD5E5),
                                 border: Border.all(
                                     width: MediaQuery.of(context).size.width *
                                         0.005,
-                                    color: Colors.black),
+                                    color: Colors.white),
 
                                 borderRadius:
-                                    BorderRadius.circular(10), //<-- SEE HERE
+                                    BorderRadius.circular(5), //<-- SEE HERE
                               ),
                               child: SingleChildScrollView(
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   children: [
-                                    SizedBox(
-                                      height:
-                                          MediaQuery.of(context).size.height *
-                                              0.005,
-                                    ),
-                                    Text('Flowrate',
-                                        style: GoogleFonts.kanit(
+                                    Card(
+                                      color: Color(0xFF7BD5E5),
+                                      shape: RoundedRectangleBorder(
+                                        side: BorderSide(
+                                            color: Colors.white,
+                                            style: BorderStyle.solid),
+                                        borderRadius: BorderRadius.all(
+                                          Radius.circular(5),
+                                        ),
+                                      ),
+                                      child: Padding(
+                                        padding: EdgeInsets.only(
+                                          top: MediaQuery.of(context)
+                                                  .size
+                                                  .height *
+                                              0.01,
+                                          bottom: MediaQuery.of(context)
+                                                  .size
+                                                  .height *
+                                              0.01,
+                                          left: MediaQuery.of(context)
+                                                  .size
+                                                  .width *
+                                              0.1,
+                                          right: MediaQuery.of(context)
+                                                  .size
+                                                  .width *
+                                              0.1,
+                                        ),
+                                        child: Text(
+                                          'อัตราการไหล',
+                                          style: GoogleFonts.kanit(
+                                            color: Colors.white,
+                                            fontWeight: FontWeight.bold,
                                             fontSize: MediaQuery.of(context)
                                                     .size
                                                     .width *
-                                                0.06)),
-                                    SizedBox(
-                                      height:
-                                          MediaQuery.of(context).size.height *
-                                              0.005,
+                                                0.04,
+                                          ),
+                                        ),
+                                      ),
                                     ),
                                     Container(
                                       width: MediaQuery.of(context).size.width *
                                           0.9,
                                       height:
                                           MediaQuery.of(context).size.width *
-                                              0.423,
+                                              0.417,
                                       child: Card(
-                                        color: Colors.grey[500],
+                                        color: Color(0xFF7BD5E5),
                                         shape: RoundedRectangleBorder(
                                           side: BorderSide(
-                                            color: Colors.black,
+                                            color: Colors.white,
+                                            style: BorderStyle.solid,
                                             width: MediaQuery.of(context)
                                                     .size
                                                     .width *
                                                 0.002,
                                           ),
-                                          borderRadius: BorderRadius.only(
-                                            bottomLeft: Radius.circular(5),
-                                            bottomRight: Radius.circular(5),
-                                            topLeft: Radius.circular(5),
-                                            topRight: Radius.circular(5),
+                                          borderRadius: BorderRadius.all(
+                                            Radius.circular(5),
                                           ),
                                         ),
                                         child: Center(
@@ -544,11 +753,102 @@ class _homeUIState extends State<homeUI> {
                                             itemBuilder: (context, index) {
                                               RealtimeData realtimeData =
                                                   _realtimeDataList[index];
-                                              return ListTile(
-                                                title: Text(
-                                                    'Solenoid: ${realtimeData.realtimeSolenoid}'),
-                                                subtitle: Text(
-                                                    'AI: ${realtimeData.realtimeAI}'),
+                                              return Center(
+                                                child: Padding(
+                                                  padding: EdgeInsets.only(
+                                                    top: MediaQuery.of(context)
+                                                            .size
+                                                            .height *
+                                                        0.01,
+                                                  ),
+                                                  child: Column(
+                                                    children: [
+                                                      ListTile(
+                                                        title: Center(
+                                                          child: PrettyGauge(
+                                                            gaugeSize:
+                                                                MediaQuery.of(
+                                                                            context)
+                                                                        .size
+                                                                        .width *
+                                                                    0.3,
+                                                            segments: [
+                                                              GaugeSegment(
+                                                                  'Critically Low',
+                                                                  10,
+                                                                  Color
+                                                                      .fromARGB(
+                                                                          255,
+                                                                          249,
+                                                                          133,
+                                                                          129)),
+                                                              GaugeSegment(
+                                                                  'Low',
+                                                                  20,
+                                                                  Color
+                                                                      .fromARGB(
+                                                                          255,
+                                                                          255,
+                                                                          180,
+                                                                          133)),
+                                                              GaugeSegment(
+                                                                  'Medium',
+                                                                  20,
+                                                                  Color(
+                                                                      0xFFFDD871)),
+                                                              GaugeSegment(
+                                                                  'High',
+                                                                  50,
+                                                                  Color
+                                                                      .fromARGB(
+                                                                          255,
+                                                                          146,
+                                                                          202,
+                                                                          104)),
+                                                            ],
+                                                            valueWidget: Text(
+                                                              '${realtimeData.realtimeFlowrate}\n' +
+                                                                  "L/M",
+                                                              style: GoogleFonts.kanit(
+                                                                  fontSize: MediaQuery.of(
+                                                                              context)
+                                                                          .size
+                                                                          .width *
+                                                                      0.03,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .bold,
+                                                                  color: Colors
+                                                                      .white),
+                                                            ),
+                                                            currentValue:
+                                                                realtimeData
+                                                                    .realtimeFlowrate, //ใสค่าตรงนี้
+                                                            needleColor:
+                                                                Colors.white,
+                                                            showMarkers: false,
+                                                          ),
+                                                        ),
+                                                        subtitle: Center(
+                                                          child: Text(
+                                                            '${realtimeData.realtimeFlowrate} L/M',
+                                                            style: GoogleFonts.kanit(
+                                                                fontSize: MediaQuery.of(
+                                                                            context)
+                                                                        .size
+                                                                        .width *
+                                                                    0.04,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .bold,
+                                                                color: Colors
+                                                                    .white),
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ),
                                               );
                                             },
                                           ),
@@ -562,63 +862,183 @@ class _homeUIState extends State<homeUI> {
                           ),
                           Padding(
                             padding: EdgeInsets.only(
-                              left: MediaQuery.of(context).size.height * 0.01,
+                              right: MediaQuery.of(context).size.height * 0.008,
+                              left: MediaQuery.of(context).size.height * 0.0146,
                             ),
                             child: Container(
                               height:
                                   MediaQuery.of(context).size.height * 0.314,
                               width: MediaQuery.of(context).size.width * 0.45,
                               decoration: BoxDecoration(
-                                color: Color(0xFF7BD5E5),
                                 border: Border.all(
                                     width: MediaQuery.of(context).size.width *
                                         0.005,
-                                    color: Colors.black),
+                                    color: Colors.white),
 
                                 borderRadius:
-                                    BorderRadius.circular(10), //<-- SEE HERE
+                                    BorderRadius.circular(5), //<-- SEE HERE
                               ),
                               child: SingleChildScrollView(
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   children: [
-                                    SizedBox(
-                                      height:
-                                          MediaQuery.of(context).size.height *
-                                              0.005,
-                                    ),
-                                    Text('Pressure',
-                                        style: GoogleFonts.kanit(
+                                    Card(
+                                      color: Color(0xFF7BD5E5),
+                                      shape: RoundedRectangleBorder(
+                                        side: BorderSide(
+                                            color: Colors.white,
+                                            style: BorderStyle.solid),
+                                        borderRadius: BorderRadius.all(
+                                          Radius.circular(5),
+                                        ),
+                                      ),
+                                      child: Padding(
+                                        padding: EdgeInsets.only(
+                                          top: MediaQuery.of(context)
+                                                  .size
+                                                  .height *
+                                              0.01,
+                                          bottom: MediaQuery.of(context)
+                                                  .size
+                                                  .height *
+                                              0.01,
+                                          left: MediaQuery.of(context)
+                                                  .size
+                                                  .width *
+                                              0.137,
+                                          right: MediaQuery.of(context)
+                                                  .size
+                                                  .width *
+                                              0.137,
+                                        ),
+                                        child: Text(
+                                          'ความดัน',
+                                          style: GoogleFonts.kanit(
+                                            color: Colors.white,
+                                            fontWeight: FontWeight.bold,
                                             fontSize: MediaQuery.of(context)
                                                     .size
                                                     .width *
-                                                0.06)),
-                                    SizedBox(
-                                      height:
-                                          MediaQuery.of(context).size.height *
-                                              0.005,
+                                                0.04,
+                                          ),
+                                        ),
+                                      ),
                                     ),
                                     Container(
                                       width: MediaQuery.of(context).size.width *
                                           0.9,
                                       height:
                                           MediaQuery.of(context).size.width *
-                                              0.424,
+                                              0.417,
                                       child: Card(
-                                        color: Colors.grey[500],
+                                        color: Color(0xFF7BD5E5),
                                         shape: RoundedRectangleBorder(
                                           side: BorderSide(
-                                            color: Colors.black,
+                                            color: Colors.white,
+                                            style: BorderStyle.solid,
                                             width: MediaQuery.of(context)
                                                     .size
                                                     .width *
                                                 0.002,
                                           ),
-                                          borderRadius: BorderRadius.only(
-                                            bottomLeft: Radius.circular(5),
-                                            bottomRight: Radius.circular(5),
-                                            topLeft: Radius.circular(5),
-                                            topRight: Radius.circular(5),
+                                          borderRadius: BorderRadius.all(
+                                            Radius.circular(5),
+                                          ),
+                                        ),
+                                        child: Center(
+                                          child: ListView.builder(
+                                            itemCount: _realtimeDataList.length,
+                                            itemBuilder: (context, index) {
+                                              RealtimeData realtimeData =
+                                                  _realtimeDataList[index];
+                                              return Center(
+                                                child: Padding(
+                                                  padding: EdgeInsets.only(
+                                                    top: MediaQuery.of(context)
+                                                            .size
+                                                            .height *
+                                                        0.01,
+                                                  ),
+                                                  child: Column(
+                                                    children: [
+                                                      ListTile(
+                                                        title: Center(
+                                                          child: PrettyGauge(
+                                                            minValue: 0,
+                                                            maxValue: 520,
+                                                            gaugeSize:
+                                                                MediaQuery.of(
+                                                                            context)
+                                                                        .size
+                                                                        .width *
+                                                                    0.3,
+                                                            segments: [
+                                                              GaugeSegment(
+                                                                  'Critically Low',
+                                                                  60,
+                                                                  Color(
+                                                                      0xFFFDD871)),
+                                                              GaugeSegment(
+                                                                  'Low',
+                                                                  200,
+                                                                  Color(
+                                                                      0xFF92CA68)),
+                                                              GaugeSegment(
+                                                                  'Medium',
+                                                                  200,
+                                                                  Color(
+                                                                      0xFF92CA68)),
+                                                              GaugeSegment(
+                                                                  'High',
+                                                                  60,
+                                                                  Color(
+                                                                      0xFFF98581)),
+                                                            ],
+                                                            valueWidget: Text(
+                                                              '${realtimeData.realtimePressure}\n' +
+                                                                  "PSI",
+                                                              style: GoogleFonts.kanit(
+                                                                  fontSize: MediaQuery.of(
+                                                                              context)
+                                                                          .size
+                                                                          .width *
+                                                                      0.03,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .bold,
+                                                                  color: Colors
+                                                                      .white),
+                                                            ),
+                                                            currentValue:
+                                                                realtimeData
+                                                                    .realtimePressure, //ใสค่าตรงนี้
+                                                            needleColor:
+                                                                Colors.white,
+                                                            showMarkers: false,
+                                                          ),
+                                                        ),
+                                                        subtitle: Center(
+                                                          child: Text(
+                                                            '${realtimeData.realtimePressure} PSI',
+                                                            style: GoogleFonts.kanit(
+                                                                fontSize: MediaQuery.of(
+                                                                            context)
+                                                                        .size
+                                                                        .width *
+                                                                    0.04,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .bold,
+                                                                color: Colors
+                                                                    .white),
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ),
+                                              );
+                                            },
                                           ),
                                         ),
                                       ),

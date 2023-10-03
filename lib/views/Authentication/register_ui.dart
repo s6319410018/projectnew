@@ -182,7 +182,6 @@ class _registerUIState extends State<registerUI> {
 
   Future<void> sign_up() async {
     final String url = "http://192.168.32.1/project/api/registerApi.php";
-
     Map<String, dynamic> postData = {
       "userName": name.text,
       "userAddress": address.text,
