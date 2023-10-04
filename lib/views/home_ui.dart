@@ -3,11 +3,16 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_animated_button/flutter_animated_button.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pretty_gauge/pretty_gauge.dart';
 import 'package:water_drop_nav_bar/water_drop_nav_bar.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:http/http.dart' as http;
+
+//////////////////////////////////////////////////
+import 'package:omni_datetime_picker/omni_datetime_picker.dart';
 
 class homeUI extends StatefulWidget {
   String? email;
@@ -86,6 +91,145 @@ class _homeUIState extends State<homeUI> {
   bool water_icon = false;
   bool ai_icon = false;
   //////////////////////////////////////////datatestตัวแปรเก็บค่าON-OFF
+  List<DateTime>? dateTimeList;
+  int Year_ON = 0, Month_ON = 0, DayON = 0;
+  int Year_OFF = 0, Month_OFF = 0, DayOFF = 0;
+  int HourON = 0, MiniteON = 0, MillisecON = 0;
+  int HourOFF = 0, MiniteOFF = 0, MillisecOFF = 0;
+
+  //////////////////
+
+  showWarningDialogtimeronoffwater(BuildContext context) async {
+    return showDialog(
+      context: context,
+      builder: (ContextAction) {
+        return AlertDialog(
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(50.0),
+              side: BorderSide(
+                  strokeAlign: MediaQuery.of(context).size.width * 0.009,
+                  color: Colors.white)),
+          backgroundColor: Colors.black,
+          title: Center(
+            child: Text(
+              'ยืนยันการทำรายการ',
+              style: GoogleFonts.kanit(
+                  color: Colors.white,
+                  fontSize: MediaQuery.of(context).size.width * 0.08),
+            ),
+          ),
+          content: Column(
+            children: [
+              Container(
+                  decoration: BoxDecoration(
+                    border: Border.all(
+                      width: 5,
+                      color: Color.fromARGB(255, 71, 233, 87),
+                    ),
+                    borderRadius: BorderRadius.circular(100),
+                    color: Color.fromARGB(255, 71, 233, 87),
+                  ),
+                  child: Row(
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.only(
+                            left: MediaQuery.of(context).size.width * 0.06),
+                        child: Text(
+                            "วันที่ $day_start  เวลา $on_minit_start นาฬิกา $on_minit_start นาที "),
+                      ),
+                    ],
+                  )),
+              SizedBox(height: MediaQuery.of(context).size.height * 0.06),
+              Container(
+                  decoration: BoxDecoration(
+                    border: Border.all(
+                      width: 5,
+                      color: Color.fromARGB(255, 233, 71, 71),
+                    ),
+                    borderRadius: BorderRadius.circular(100),
+                    color: Color.fromARGB(255, 233, 71, 71),
+                  ),
+                  child: Row(
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.only(
+                            left: MediaQuery.of(context).size.width * 0.06),
+                        child: Text(
+                            "วันที่ $day_stop  เวลา $off_minit_stop นาฟิกา $off_minit_stop นาที "),
+                      ),
+                    ],
+                  )),
+            ],
+          ),
+          icon: Icon(FontAwesomeIcons.clock,
+              color: Colors.white,
+              size: MediaQuery.of(context).size.width * 0.1),
+          actions: [
+            Center(
+              child: Padding(
+                padding: EdgeInsets.only(
+                    left: MediaQuery.of(context).size.width * 0.08,
+                    right: MediaQuery.of(context).size.width * 0.00,
+                    bottom: MediaQuery.of(context).size.width * 0.05),
+                child: Row(
+                  children: [
+                    ElevatedButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.white,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(100),
+                        ),
+                      ),
+                      child: Text(
+                        '    OK    ',
+                        style: GoogleFonts.kanit(
+                            color: Color.fromARGB(255, 71, 233, 87),
+                            fontSize: MediaQuery.of(context).size.width * 0.06),
+                      ),
+                    ),
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width * 0.05,
+                    ),
+                    ElevatedButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.white,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(100),
+                        ),
+                      ),
+                      child: Text(
+                        'CLOSE',
+                        style: GoogleFonts.kanit(
+                            color: Color.fromARGB(221, 51, 44, 44),
+                            fontSize: MediaQuery.of(context).size.width * 0.06),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            )
+          ],
+        );
+      },
+    );
+  }
+
+  int on_hour_start = 0;
+  int on_minit_start = 0;
+  int off_hour_stop = 0;
+  int off_minit_stop = 0;
+  int day_start = 0;
+  int day_stop = 0;
+  int month_start = 0;
+  int month_stop = 0;
+  int year_start = 0;
+  int year_stop = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -593,19 +737,19 @@ class _homeUIState extends State<homeUI> {
                                               color: Color.fromARGB(
                                                   0, 123, 213, 229),
                                               shape: RoundedRectangleBorder(
-                                                  side: BorderSide(
-                                                    style: BorderStyle.none,
-                                                    color: Color.fromARGB(
-                                                        0, 123, 213, 229),
-                                                    width:
-                                                        MediaQuery.of(context)
-                                                                .size
-                                                                .width *
-                                                            0.002,
-                                                  ),
-                                                  borderRadius:
-                                                      BorderRadius.all(
-                                                          Radius.circular(5))),
+                                                side: BorderSide(
+                                                  style: BorderStyle.none,
+                                                  color: Color.fromARGB(
+                                                      0, 123, 213, 229),
+                                                  width: MediaQuery.of(context)
+                                                          .size
+                                                          .width *
+                                                      0.002,
+                                                ),
+                                                borderRadius: BorderRadius.all(
+                                                  Radius.circular(5),
+                                                ),
+                                              ),
                                               child: ListView.builder(
                                                 itemCount:
                                                     _realtimeDataList.length,
@@ -613,7 +757,8 @@ class _homeUIState extends State<homeUI> {
                                                   RealtimeData realtimeData =
                                                       _realtimeDataList[index];
 
-                                                  if (realtimeData.realtimeAI ==
+                                                  if (realtimeData
+                                                          .realtimeSolenoid ==
                                                       1) {
                                                     water_icon =
                                                         true; // Use assignment operator to set the value
@@ -1057,140 +1202,864 @@ class _homeUIState extends State<homeUI> {
             ),
             Container(
                 //หน้าที่ 2
-                color: Color(0xF5E3F7FD),
+                color: Color(0xFF7BD5E5),
                 child: Stack(
                   children: [
                     Padding(
                       padding: EdgeInsets.only(
-                        left: MediaQuery.of(context).size.width * 0.034,
+                        left: MediaQuery.of(context).size.width * 0.038,
                       ),
                       child: SingleChildScrollView(
                         child: Column(
                           children: [
                             SizedBox(
-                              height: MediaQuery.of(context).size.width * 0.035,
+                              height: MediaQuery.of(context).size.width * 0.03,
                             ),
                             SingleChildScrollView(
-                              child: Container(
-                                height:
-                                    MediaQuery.of(context).size.height * 0.72,
-                                width: MediaQuery.of(context).size.width * 0.93,
-                                decoration: BoxDecoration(
-                                  border: Border.all(
-                                      width: 10, color: Colors.white54),
-
-                                  borderRadius:
-                                      BorderRadius.circular(10), //<-- SEE HERE
-                                ),
-                                child: SingleChildScrollView(
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    children: [
-                                      SizedBox(
-                                        width:
-                                            MediaQuery.of(context).size.width *
-                                                0.034,
-                                      ),
-                                      Card(
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  SizedBox(
+                                    width: MediaQuery.of(context).size.height *
+                                        0.034,
+                                  ),
+                                  Card(
+                                    color: Color(0xFF7BD5E5),
+                                    shape: RoundedRectangleBorder(
+                                      side: BorderSide(
+                                        style: BorderStyle.solid,
                                         color:
                                             Color.fromARGB(255, 255, 255, 255),
-                                        shape: RoundedRectangleBorder(
-                                          side: BorderSide(
-                                            color: Color.fromARGB(
-                                                255, 255, 255, 255),
-                                            width: 6, //<-- SEE HERE
-                                          ),
-                                          borderRadius:
-                                              BorderRadius.circular(3),
-                                        ),
-                                        child: SingleChildScrollView(
-                                          child: Container(
-                                            height: MediaQuery.of(context)
-                                                    .size
-                                                    .height *
-                                                0.75,
-                                            width: MediaQuery.of(context)
-                                                    .size
-                                                    .width *
+                                        width:
+                                            MediaQuery.of(context).size.width *
+                                                0.005, //<-- SEE HERE
+                                      ),
+                                      borderRadius: BorderRadius.circular(3),
+                                    ),
+                                    child: SingleChildScrollView(
+                                      child: Container(
+                                        height:
+                                            MediaQuery.of(context).size.height *
+                                                0.735,
+                                        width:
+                                            MediaQuery.of(context).size.width *
                                                 0.9,
-                                            child: Center(
-                                              child: Column(
-                                                children: [
-                                                  Container(
-                                                    padding: EdgeInsets.only(
-                                                        left: MediaQuery.of(
-                                                                    context)
+                                        child: Center(
+                                          child: Column(
+                                            children: [
+                                              Container(
+                                                padding: EdgeInsets.only(
+                                                    left: MediaQuery.of(context)
+                                                            .size
+                                                            .width *
+                                                        0.01,
+                                                    right:
+                                                        MediaQuery.of(context)
                                                                 .size
                                                                 .width *
                                                             0.01,
-                                                        right:
-                                                            MediaQuery.of(
-                                                                        context)
-                                                                    .size
-                                                                    .width *
-                                                                0.01,
-                                                        top: MediaQuery.of(
-                                                                    context)
-                                                                .size
-                                                                .width *
-                                                            0.01,
-                                                        bottom: MediaQuery.of(
-                                                                    context)
+                                                    top: MediaQuery.of(context)
+                                                            .size
+                                                            .width *
+                                                        0.01,
+                                                    bottom:
+                                                        MediaQuery.of(context)
                                                                 .size
                                                                 .width *
                                                             0.005),
+                                              ),
+                                              Card(
+                                                color: Color(0xFF7BD5E5),
+                                                shape: RoundedRectangleBorder(
+                                                  side: BorderSide(
+                                                      color: Colors.white,
+                                                      style: BorderStyle.solid),
+                                                  borderRadius:
+                                                      BorderRadius.all(
+                                                    Radius.circular(5),
                                                   ),
-                                                  Card(
-                                                    child: Padding(
+                                                ),
+                                                child: Padding(
+                                                  padding: EdgeInsets.only(
+                                                    top: MediaQuery.of(context)
+                                                            .size
+                                                            .height *
+                                                        0.01,
+                                                    bottom:
+                                                        MediaQuery.of(context)
+                                                                .size
+                                                                .height *
+                                                            0.01,
+                                                    left: MediaQuery.of(context)
+                                                            .size
+                                                            .width *
+                                                        0.25,
+                                                    right:
+                                                        MediaQuery.of(context)
+                                                                .size
+                                                                .width *
+                                                            0.25,
+                                                  ),
+                                                  child: Text(
+                                                    'การควบคุมด้วยเวลา',
+                                                    style: GoogleFonts.kanit(
+                                                      color: Colors.white,
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                      fontSize:
+                                                          MediaQuery.of(context)
+                                                                  .size
+                                                                  .width *
+                                                              0.04,
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                              Padding(
+                                                padding: EdgeInsets.only(
+                                                    top: MediaQuery.of(context)
+                                                            .size
+                                                            .height *
+                                                        0.015,
+                                                    left: MediaQuery.of(context)
+                                                            .size
+                                                            .width *
+                                                        0.015),
+                                                child: Column(
+                                                  children: [
+                                                    Row(
+                                                      children: [
+                                                        Card(
+                                                          color:
+                                                              Color(0xFF7BD5E5),
+                                                          shape:
+                                                              RoundedRectangleBorder(
+                                                            side: BorderSide(
+                                                                color: Colors
+                                                                    .white),
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .all(
+                                                              Radius.circular(
+                                                                  5),
+                                                            ),
+                                                          ),
+                                                          child: Column(
+                                                            children: [
+                                                              Padding(
+                                                                padding:
+                                                                    const EdgeInsets
+                                                                        .all(
+                                                                        8.0),
+                                                                child:
+                                                                    IconButton(
+                                                                  color: Colors
+                                                                      .white,
+                                                                  focusColor:
+                                                                      Colors
+                                                                          .black,
+                                                                  hoverColor:
+                                                                      Colors
+                                                                          .red,
+                                                                  iconSize: MediaQuery.of(
+                                                                              context)
+                                                                          .size
+                                                                          .width *
+                                                                      0.25,
+                                                                  onPressed:
+                                                                      () async {
+                                                                    dateTimeList =
+                                                                        await showOmniDateTimeRangePicker(
+                                                                      context:
+                                                                          context,
+                                                                      startInitialDate:
+                                                                          DateTime
+                                                                              .now(),
+                                                                      startFirstDate: DateTime(
+                                                                              1600)
+                                                                          .subtract(
+                                                                              const Duration(days: 3652)),
+                                                                      startLastDate:
+                                                                          DateTime.now()
+                                                                              .add(
+                                                                        const Duration(
+                                                                            days:
+                                                                                3652),
+                                                                      ),
+                                                                      endInitialDate:
+                                                                          DateTime
+                                                                              .now(),
+                                                                      endFirstDate: DateTime(
+                                                                              1600)
+                                                                          .subtract(
+                                                                              const Duration(days: 3652)),
+                                                                      endLastDate:
+                                                                          DateTime.now()
+                                                                              .add(
+                                                                        const Duration(
+                                                                            days:
+                                                                                3652),
+                                                                      ),
+                                                                      is24HourMode:
+                                                                          true,
+                                                                      isShowSeconds:
+                                                                          false,
+                                                                      minutesInterval:
+                                                                          1,
+                                                                      secondsInterval:
+                                                                          1,
+                                                                      isForce2Digits:
+                                                                          true,
+                                                                      borderRadius: const BorderRadius
+                                                                          .all(
+                                                                          Radius.circular(
+                                                                              16)),
+                                                                      constraints:
+                                                                          const BoxConstraints(
+                                                                        maxWidth:
+                                                                            350,
+                                                                        maxHeight:
+                                                                            650,
+                                                                      ),
+                                                                      transitionBuilder: (context,
+                                                                          anim1,
+                                                                          anim2,
+                                                                          child) {
+                                                                        return FadeTransition(
+                                                                          opacity:
+                                                                              anim1.drive(
+                                                                            Tween(
+                                                                              begin: 0,
+                                                                              end: 1,
+                                                                            ),
+                                                                          ),
+                                                                          child:
+                                                                              child,
+                                                                        );
+                                                                      },
+                                                                      transitionDuration:
+                                                                          const Duration(
+                                                                              milliseconds: 200),
+                                                                      barrierDismissible:
+                                                                          true,
+                                                                    );
+                                                                  },
+                                                                  icon: Padding(
+                                                                    padding: EdgeInsets.only(
+                                                                        top: MediaQuery.of(context).size.height *
+                                                                            0.015),
+                                                                    child: Icon(
+                                                                        color: Color.fromARGB(
+                                                                            255,
+                                                                            255,
+                                                                            255,
+                                                                            255),
+                                                                        FontAwesomeIcons
+                                                                            .clock),
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                              Padding(
+                                                                padding: EdgeInsets.only(
+                                                                    top: MediaQuery.of(context)
+                                                                            .size
+                                                                            .height *
+                                                                        0.018),
+                                                                child: Card(
+                                                                  shape:
+                                                                      RoundedRectangleBorder(
+                                                                    side: BorderSide(
+                                                                        color: Colors
+                                                                            .white),
+                                                                    borderRadius:
+                                                                        BorderRadius
+                                                                            .all(
+                                                                      Radius
+                                                                          .circular(
+                                                                              5),
+                                                                    ),
+                                                                  ),
+                                                                  color: Color(
+                                                                      0xFF7BD5E5),
+                                                                  child:
+                                                                      Padding(
+                                                                    padding:
+                                                                        EdgeInsets
+                                                                            .only(
+                                                                      top: MediaQuery.of(context)
+                                                                              .size
+                                                                              .height *
+                                                                          0.005,
+                                                                      bottom: MediaQuery.of(context)
+                                                                              .size
+                                                                              .height *
+                                                                          0.005,
+                                                                      left: MediaQuery.of(context)
+                                                                              .size
+                                                                              .width *
+                                                                          0.03,
+                                                                      right: MediaQuery.of(context)
+                                                                              .size
+                                                                              .width *
+                                                                          0.03,
+                                                                    ),
+                                                                    child: Text(
+                                                                      'คลิกรูปตั้งเวลา',
+                                                                      style: GoogleFonts.kanit(
+                                                                          color: Colors
+                                                                              .white,
+                                                                          fontSize:
+                                                                              MediaQuery.of(context).size.width * 0.04),
+                                                                    ),
+                                                                  ),
+                                                                ),
+                                                              )
+                                                            ],
+                                                          ),
+                                                        ),
+                                                        Card(
+                                                          color:
+                                                              Color(0xFF7BD5E5),
+                                                          shape:
+                                                              RoundedRectangleBorder(
+                                                            side: BorderSide(
+                                                                color: Colors
+                                                                    .white),
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .all(
+                                                              Radius.circular(
+                                                                  5),
+                                                            ),
+                                                          ),
+                                                          child: Column(
+                                                            children: [
+                                                              Padding(
+                                                                padding: EdgeInsets.only(
+                                                                    top: MediaQuery.of(context)
+                                                                            .size
+                                                                            .width *
+                                                                        0.005),
+                                                                child: Card(
+                                                                  shape:
+                                                                      RoundedRectangleBorder(
+                                                                    side: BorderSide(
+                                                                        color: Colors
+                                                                            .white),
+                                                                    borderRadius:
+                                                                        BorderRadius
+                                                                            .all(
+                                                                      Radius
+                                                                          .circular(
+                                                                              5),
+                                                                    ),
+                                                                  ),
+                                                                  color: Color(
+                                                                      0xFF7BD5E5),
+                                                                  child:
+                                                                      Padding(
+                                                                    padding:
+                                                                        EdgeInsets
+                                                                            .only(
+                                                                      left: MediaQuery.of(context)
+                                                                              .size
+                                                                              .width *
+                                                                          0.1,
+                                                                      right: MediaQuery.of(context)
+                                                                              .size
+                                                                              .width *
+                                                                          0.1,
+                                                                      top: MediaQuery.of(context)
+                                                                              .size
+                                                                              .height *
+                                                                          0.005,
+                                                                      bottom: MediaQuery.of(context)
+                                                                              .size
+                                                                              .height *
+                                                                          0.005,
+                                                                    ),
+                                                                    child: Text(
+                                                                      'สถาณะปัจจุบัน',
+                                                                      style: GoogleFonts.kanit(
+                                                                          color: Colors
+                                                                              .white,
+                                                                          fontSize:
+                                                                              MediaQuery.of(context).size.width * 0.045),
+                                                                    ),
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                              Container(
+                                                                width: MediaQuery.of(
+                                                                            context)
+                                                                        .size
+                                                                        .width *
+                                                                    0.5,
+                                                                height: MediaQuery.of(
+                                                                            context)
+                                                                        .size
+                                                                        .width *
+                                                                    0.35,
+                                                                child: Card(
+                                                                  color: Color
+                                                                      .fromARGB(
+                                                                          0,
+                                                                          123,
+                                                                          213,
+                                                                          229),
+                                                                  shape:
+                                                                      RoundedRectangleBorder(
+                                                                    side:
+                                                                        BorderSide(
+                                                                      style: BorderStyle
+                                                                          .none,
+                                                                      color: Color.fromARGB(
+                                                                          0,
+                                                                          123,
+                                                                          213,
+                                                                          229),
+                                                                      width: MediaQuery.of(context)
+                                                                              .size
+                                                                              .width *
+                                                                          0.002,
+                                                                    ),
+                                                                    borderRadius:
+                                                                        BorderRadius
+                                                                            .all(
+                                                                      Radius
+                                                                          .circular(
+                                                                              5),
+                                                                    ),
+                                                                  ),
+                                                                  child: ListView
+                                                                      .builder(
+                                                                    itemCount:
+                                                                        _realtimeDataList
+                                                                            .length,
+                                                                    itemBuilder:
+                                                                        (context,
+                                                                            index) {
+                                                                      RealtimeData
+                                                                          realtimeData =
+                                                                          _realtimeDataList[
+                                                                              index];
+
+                                                                      if (realtimeData
+                                                                              .realtimeTime ==
+                                                                          1) {
+                                                                        water_icon =
+                                                                            true; // Use assignment operator to set the value
+                                                                      } else {
+                                                                        water_icon =
+                                                                            false;
+                                                                      }
+
+                                                                      return Center(
+                                                                        child:
+                                                                            Padding(
+                                                                          padding:
+                                                                              EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.04),
+                                                                          child:
+                                                                              Icon(
+                                                                            water_icon
+                                                                                ? FontAwesomeIcons.toggleOn
+                                                                                : FontAwesomeIcons.toggleOff,
+                                                                            color: Color.fromARGB(
+                                                                                255,
+                                                                                255,
+                                                                                255,
+                                                                                255),
+                                                                            size:
+                                                                                MediaQuery.of(context).size.width * 0.2,
+                                                                          ),
+                                                                        ),
+                                                                      );
+                                                                    },
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            ],
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                    SizedBox(
+                                                      height:
+                                                          MediaQuery.of(context)
+                                                                  .size
+                                                                  .height *
+                                                              0.005,
+                                                    ),
+                                                    Padding(
                                                       padding: EdgeInsets.only(
                                                         right: MediaQuery.of(
                                                                     context)
                                                                 .size
                                                                 .width *
-                                                            0.26,
-                                                        left: MediaQuery.of(
+                                                            0.01,
+                                                      ),
+                                                      child: Card(
+                                                          shape:
+                                                              RoundedRectangleBorder(
+                                                            side: BorderSide(
+                                                              color:
+                                                                  Colors.white,
+                                                            ),
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .all(
+                                                              Radius.circular(
+                                                                  5),
+                                                            ),
+                                                          ),
+                                                          color:
+                                                              Color(0xFF7BD5E5),
+                                                          child: Column(
+                                                            children: [
+                                                              Card(
+                                                                shape:
+                                                                    RoundedRectangleBorder(
+                                                                  side: BorderSide(
+                                                                      color: Color.fromARGB(
+                                                                          255,
+                                                                          255,
+                                                                          255,
+                                                                          255)),
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .all(
+                                                                    Radius
+                                                                        .circular(
+                                                                            5),
+                                                                  ),
+                                                                ),
+                                                                color: Color(
+                                                                    0xFF7BD5E5),
+                                                                child: Padding(
+                                                                  padding:
+                                                                      EdgeInsets
+                                                                          .only(
+                                                                    top: MediaQuery.of(context)
+                                                                            .size
+                                                                            .height *
+                                                                        0.005,
+                                                                    bottom: MediaQuery.of(context)
+                                                                            .size
+                                                                            .height *
+                                                                        0.005,
+                                                                    left: MediaQuery.of(context)
+                                                                            .size
+                                                                            .width *
+                                                                        0.333,
+                                                                    right: MediaQuery.of(context)
+                                                                            .size
+                                                                            .width *
+                                                                        0.333,
+                                                                  ),
+                                                                  child: Text(
+                                                                    'เวลาที่ตั้ง',
+                                                                    style: GoogleFonts.kanit(
+                                                                        color: Colors
+                                                                            .white,
+                                                                        fontSize:
+                                                                            MediaQuery.of(context).size.width *
+                                                                                0.045),
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                              Column(children: [
+                                                                Padding(
+                                                                  padding:
+                                                                      EdgeInsets
+                                                                          .only(
+                                                                    top: MediaQuery.of(context)
+                                                                            .size
+                                                                            .height *
+                                                                        0.01,
+                                                                    right: MediaQuery.of(context)
+                                                                            .size
+                                                                            .width *
+                                                                        0.019,
+                                                                    left: MediaQuery.of(context)
+                                                                            .size
+                                                                            .width *
+                                                                        0.019,
+                                                                  ),
+                                                                  child: Card(
+                                                                    color: Color
+                                                                        .fromARGB(
+                                                                            194,
+                                                                            134,
+                                                                            229,
+                                                                            123),
+                                                                    shape:
+                                                                        RoundedRectangleBorder(
+                                                                      side: BorderSide(
+                                                                          color: Colors
+                                                                              .white,
+                                                                          style:
+                                                                              BorderStyle.solid),
+                                                                      borderRadius:
+                                                                          BorderRadius
+                                                                              .all(
+                                                                        Radius.circular(
+                                                                            5),
+                                                                      ),
+                                                                    ),
+                                                                    child:
+                                                                        Padding(
+                                                                      padding:
+                                                                          EdgeInsets
+                                                                              .only(
+                                                                        top: MediaQuery.of(context).size.height *
+                                                                            0.01,
+                                                                        bottom: MediaQuery.of(context).size.height *
+                                                                            0.01,
+                                                                        left: MediaQuery.of(context).size.width *
+                                                                            0.1,
+                                                                        right: MediaQuery.of(context).size.width *
+                                                                            0.1,
+                                                                      ),
+                                                                      child:
+                                                                          Text(
+                                                                        ' วันที่ ${dateTimeList?[0].day}  เวลา ${dateTimeList?[0].hour} นาฬิกา ${dateTimeList?[0].minute} นาที ปี ${dateTimeList?[0].year} ',
+                                                                        style: GoogleFonts
+                                                                            .kanit(
+                                                                          color: Color.fromARGB(
+                                                                              255,
+                                                                              255,
+                                                                              255,
+                                                                              255),
+                                                                          fontWeight:
+                                                                              FontWeight.bold,
+                                                                          fontSize:
+                                                                              MediaQuery.of(context).size.width * 0.03,
+                                                                        ),
+                                                                      ),
+                                                                    ),
+                                                                  ),
+                                                                ),
+                                                                Padding(
+                                                                  padding:
+                                                                      EdgeInsets
+                                                                          .only(
+                                                                    bottom: MediaQuery.of(context)
+                                                                            .size
+                                                                            .height *
+                                                                        0.01,
+                                                                  ),
+                                                                  child: Card(
+                                                                    color: Color
+                                                                        .fromARGB(
+                                                                            194,
+                                                                            229,
+                                                                            153,
+                                                                            123),
+                                                                    shape:
+                                                                        RoundedRectangleBorder(
+                                                                      side: BorderSide(
+                                                                          color: Colors
+                                                                              .white,
+                                                                          style:
+                                                                              BorderStyle.solid),
+                                                                      borderRadius:
+                                                                          BorderRadius
+                                                                              .all(
+                                                                        Radius.circular(
+                                                                            5),
+                                                                      ),
+                                                                    ),
+                                                                    child:
+                                                                        Padding(
+                                                                      padding:
+                                                                          EdgeInsets
+                                                                              .only(
+                                                                        top: MediaQuery.of(context).size.height *
+                                                                            0.01,
+                                                                        bottom: MediaQuery.of(context).size.height *
+                                                                            0.01,
+                                                                        left: MediaQuery.of(context).size.width *
+                                                                            0.1,
+                                                                        right: MediaQuery.of(context).size.width *
+                                                                            0.1,
+                                                                      ),
+                                                                      child:
+                                                                          Text(
+                                                                        ' วันที่ ${dateTimeList?[1].day}  เวลา ${dateTimeList?[1].hour} นาฬิกา ${dateTimeList?[1].minute} นาที ปี ${dateTimeList?[1].year} ',
+                                                                        style: GoogleFonts
+                                                                            .kanit(
+                                                                          color: Color.fromARGB(
+                                                                              255,
+                                                                              255,
+                                                                              255,
+                                                                              255),
+                                                                          fontWeight:
+                                                                              FontWeight.bold,
+                                                                          fontSize:
+                                                                              MediaQuery.of(context).size.width * 0.03,
+                                                                        ),
+                                                                      ),
+                                                                    ),
+                                                                  ),
+                                                                ),
+                                                              ])
+                                                            ],
+                                                          )),
+                                                    ),
+                                                    SizedBox(
+                                                        height: MediaQuery.of(
                                                                     context)
                                                                 .size
-                                                                .width *
-                                                            0.26,
-                                                      ),
-                                                      child: Text(
-                                                        'ควบคุมการไหล',
-                                                        style: GoogleFonts.kanit(
-                                                            fontSize: MediaQuery.of(
-                                                                        context)
-                                                                    .size
-                                                                    .width *
-                                                                0.05,
-                                                            fontWeight:
-                                                                FontWeight
-                                                                    .bold),
+                                                                .height *
+                                                            0.01),
+                                                    Padding(
+                                                      padding: EdgeInsets.only(
+                                                          right: MediaQuery.of(
+                                                                      context)
+                                                                  .size
+                                                                  .width *
+                                                              0.01),
+                                                      child: ElevatedButton(
+                                                        onPressed: () {},
+                                                        style: ElevatedButton
+                                                            .styleFrom(
+                                                          side: BorderSide(
+                                                              color:
+                                                                  Colors.white,
+                                                              width: MediaQuery.of(
+                                                                          context)
+                                                                      .size
+                                                                      .width *
+                                                                  0.002),
+                                                          backgroundColor:
+                                                              Color.fromARGB(0,
+                                                                  226, 206, 27),
+                                                          fixedSize: Size(
+                                                              MediaQuery.of(
+                                                                          context)
+                                                                      .size
+                                                                      .width *
+                                                                  0.85,
+                                                              MediaQuery.of(
+                                                                          context)
+                                                                      .size
+                                                                      .width *
+                                                                  0.1),
+                                                          shape:
+                                                              RoundedRectangleBorder(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .only(
+                                                              topLeft: Radius
+                                                                  .circular(5),
+                                                              bottomLeft: Radius
+                                                                  .circular(5),
+                                                              bottomRight:
+                                                                  Radius
+                                                                      .circular(
+                                                                          5),
+                                                              topRight: Radius
+                                                                  .circular(5),
+                                                            ),
+                                                          ),
+                                                        ),
+                                                        child: Text(
+                                                          "ยืนยันการตั้งเวลา",
+                                                          style: GoogleFonts.kanit(
+                                                              fontSize: MediaQuery.of(
+                                                                          context)
+                                                                      .size
+                                                                      .height *
+                                                                  0.02,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .bold,
+                                                              color:
+                                                                  Colors.white),
+                                                        ),
                                                       ),
                                                     ),
-                                                    shape:
-                                                        RoundedRectangleBorder(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              5),
-                                                      side: BorderSide(
-                                                          color: Colors.black),
+                                                    Padding(
+                                                      padding: EdgeInsets.only(
+                                                          right: MediaQuery.of(
+                                                                      context)
+                                                                  .size
+                                                                  .width *
+                                                              0.01),
+                                                      child: ElevatedButton(
+                                                        onPressed: () {},
+                                                        style: ElevatedButton
+                                                            .styleFrom(
+                                                          side: BorderSide(
+                                                              color:
+                                                                  Colors.white,
+                                                              width: MediaQuery.of(
+                                                                          context)
+                                                                      .size
+                                                                      .width *
+                                                                  0.002),
+                                                          backgroundColor:
+                                                              Color.fromARGB(0,
+                                                                  226, 206, 27),
+                                                          fixedSize: Size(
+                                                              MediaQuery.of(
+                                                                          context)
+                                                                      .size
+                                                                      .width *
+                                                                  0.85,
+                                                              MediaQuery.of(
+                                                                          context)
+                                                                      .size
+                                                                      .width *
+                                                                  0.1),
+                                                          shape:
+                                                              RoundedRectangleBorder(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .only(
+                                                              topLeft: Radius
+                                                                  .circular(5),
+                                                              bottomLeft: Radius
+                                                                  .circular(5),
+                                                              bottomRight:
+                                                                  Radius
+                                                                      .circular(
+                                                                          5),
+                                                              topRight: Radius
+                                                                  .circular(5),
+                                                            ),
+                                                          ),
+                                                        ),
+                                                        child: Text(
+                                                          "ยกเลิกการตั้งเวลา",
+                                                          style: GoogleFonts.kanit(
+                                                              fontSize: MediaQuery.of(
+                                                                          context)
+                                                                      .size
+                                                                      .height *
+                                                                  0.02,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .bold,
+                                                              color:
+                                                                  Colors.white),
+                                                        ),
+                                                      ),
                                                     ),
-                                                    color: Colors.amber,
-                                                  )
-                                                ],
+                                                  ],
+                                                ),
                                               ),
-                                            ), ///////////////
+                                            ],
                                           ),
-                                        ),
+                                        ), ///////////////
                                       ),
-                                      SizedBox(
-                                        width:
-                                            MediaQuery.of(context).size.width *
-                                                0.034,
-                                      ),
-                                    ],
+                                    ),
                                   ),
-                                ),
+                                  SizedBox(
+                                    width: MediaQuery.of(context).size.width *
+                                        0.034,
+                                  ),
+                                ],
                               ),
                             ),
                           ],

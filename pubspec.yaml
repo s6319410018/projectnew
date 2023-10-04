@@ -44,6 +44,9 @@ dependencies:
   pretty_gauge: ^1.0.1
   syncfusion_flutter_datagrid: ^22.2.8
   dropdown_button2: ^1.9.1
+  omni_datetime_picker: ^1.0.0
+  flutter_animated_button: ^2.0.3
+
 
 dev_dependencies:
   flutter_test:
