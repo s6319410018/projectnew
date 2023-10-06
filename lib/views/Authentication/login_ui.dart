@@ -172,7 +172,7 @@ class _login_UIState extends State<login_UI> {
           constraints: BoxConstraints.expand(),
           decoration: BoxDecoration(
             image: DecorationImage(
-              image: AssetImage("assets/images/login_register_bg.jpg"), /////
+              image: AssetImage("assets/images/water.png"), /////
               fit: BoxFit.cover,
 
               colorFilter: ColorFilter.linearToSrgbGamma(),
