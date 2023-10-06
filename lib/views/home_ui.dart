@@ -7,6 +7,7 @@ import 'package:flutter_animated_button/flutter_animated_button.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pretty_gauge/pretty_gauge.dart';
+import 'package:syncfusion_flutter_datagrid/datagrid.dart';
 import 'package:water_drop_nav_bar/water_drop_nav_bar.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:http/http.dart' as http;
@@ -25,7 +26,7 @@ class homeUI extends StatefulWidget {
 }
 
 class _homeUIState extends State<homeUI> {
-  /////////////////////////////////////////////Function POST เพื่อดึงค่าเรียลไทม์ต่างๆ
+  /////////////////////////////////////////////Function POST เพื่อดึงค่าเรียลไทม์ต่างๆ CALL API
   Future<List<RealtimeData>> fetchRealtimeDataList() async {
     final String url = "http://192.168.32.1/project/api/getRealtime.php";
 
@@ -104,7 +105,43 @@ class _homeUIState extends State<homeUI> {
     return [];
   }
 
-  /////////////////////////////////////////////Function POST ค่าอับเดตไปยังฐานข้อมูลหน้าที่สอง
+  Future<List<Datadetails>> fetchRealtimeALLDataList() async {
+    final String url = "http://192.168.32.1//project/api/getdataALL.php";
+
+    Map<String, dynamic> postData = {
+      "userEmail": widget.email,
+    };
+
+    try {
+      final response = await http.post(
+        Uri.parse(url),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: jsonEncode(postData),
+      );
+
+      if (response.statusCode == 200) {
+        var data = json.decode(response.body);
+
+        if (data.isNotEmpty && data[0].isNotEmpty) {
+          List<Datadetails> realtimeALLDataList =
+              List.from(data[0].map((json) => Datadetails.fromJson(json)));
+          return realtimeALLDataList;
+        } else {
+          print('Empty data received');
+        }
+      } else {
+        print('HTTP Error: ${response.statusCode}');
+      }
+    } catch (e) {
+      print('An error occurred: $e');
+    }
+
+    return [];
+  }
+
+  /////////////////////////////////////////////Function POST ค่าอับเดตไปยังฐานข้อมูลหน้าที่สอง CALL API
   Future<List<RealtimeData>> Control_time_ON() async {
     final String url = "http://192.168.32.1/project/api/updateControlTime.php";
 
@@ -200,7 +237,7 @@ class _homeUIState extends State<homeUI> {
     return [];
   }
 
-  /////////////////////////////////////////////Function POST  อัปเดตค่าการทำง่านของเอไอ
+  /////////////////////////////////////////////Function POST  อัปเดตค่าการทำง่านของเอไอ CALL API
   Future<List<RealtimeData>> Control_ai() async {
     final String url = "http://192.168.32.1/project/api/updateControlAi.php";
 
@@ -418,19 +455,51 @@ class _homeUIState extends State<homeUI> {
   /////////////////////////////////////////////
   late List<RealtimeData> _realtimeDataList;
   late List<RealtimeData> _realtimeWaterUseList;
+  late DatadetailsDataSource _datadetailsDataSource;
 
+  ////////////////////////////////////////////////////ส่วนของการตกแต่งคอลัมตารางเก็บข้อมูล
+  List<GridColumn> _columns = [
+    GridColumn(
+        columnName: 'id',
+        label: Container(
+            color: const Color.fromARGB(255, 243, 99, 99),
+            padding: EdgeInsets.symmetric(horizontal: 20.0),
+            alignment: Alignment.centerRight,
+            child: Text('ลำดับ', style: GoogleFonts.kanit(fontSize: 10)))),
+    GridColumn(
+        columnName: 'flowrate',
+        label: Center(
+            child: Text('FLOWRATE', style: GoogleFonts.kanit(fontSize: 10)))),
+    GridColumn(
+        columnName: 'Pressure',
+        label: Center(
+            child: Text('PRESSURE', style: GoogleFonts.kanit(fontSize: 10)))),
+    GridColumn(
+        columnName: 'date',
+        label: Center(
+            child: Text('DATE', style: GoogleFonts.kanit(fontSize: 10)))),
+    GridColumn(
+        columnName: 'time',
+        label: Center(
+            child: Text('TIME', style: GoogleFonts.kanit(fontSize: 10)))),
+  ];
+
+  /////////////////////////////////////////////////////////////////////
   @override
   void initState() {
     super.initState();
     pageController = PageController(initialPage: selectedIndex);
     _realtimeDataList = [];
     _fetchDataPeriodically();
+    _datadetailsDataSource = DatadetailsDataSource([]);
   }
 
   // Periodically fetch data every 5 seconds (adjust as needed)
   void _fetchDataPeriodically() {
     Timer.periodic(Duration(seconds: 5), (timer) async {
       List<RealtimeData> newData = await fetchRealtimeDataList();
+      List<Datadetails> employees = await fetchRealtimeALLDataList();
+      _datadetailsDataSource.updateDataGrid(employees);
       setState(() {
         _realtimeDataList = newData;
       });
@@ -3208,6 +3277,50 @@ class _homeUIState extends State<homeUI> {
                                               ),
                                             ),
                                           ),
+                                          SingleChildScrollView(
+                                            child: Padding(
+                                              padding: EdgeInsets.only(
+                                                left: MediaQuery.of(context)
+                                                        .size
+                                                        .width *
+                                                    0.02,
+                                                right: MediaQuery.of(context)
+                                                        .size
+                                                        .width *
+                                                    0.02,
+                                              ),
+                                              child: Container(
+                                                height: MediaQuery.of(context)
+                                                        .size
+                                                        .width *
+                                                    0.6,
+                                                child: Card(
+                                                  shape: RoundedRectangleBorder(
+                                                      side: BorderSide(
+                                                          color: Colors.black,
+                                                          style:
+                                                              BorderStyle.solid,
+                                                          width: MediaQuery.of(
+                                                                      context)
+                                                                  .size
+                                                                  .width *
+                                                              0.005),
+                                                      borderRadius:
+                                                          BorderRadius.all(
+                                                              Radius.circular(
+                                                                  5))),
+                                                  color: Colors.blue,
+                                                  child: SfDataGrid(
+                                                    source:
+                                                        _datadetailsDataSource,
+                                                    columnWidthMode:
+                                                        ColumnWidthMode.fill,
+                                                    columns: _columns,
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                          ),
                                           SizedBox(
                                             height: MediaQuery.of(context)
                                                     .size
@@ -3421,5 +3534,97 @@ class RealtimeData {
       Product_Details_Day_Water_Use:
           json['Product_Details_Day_Water_Use'].toDouble(),
     );
+  }
+}
+
+class Datadetails {
+  int monthId;
+  int flowRate;
+  int pressure;
+  int waterUse;
+  int resultSolenoid;
+  int resultTime;
+  int resultAi;
+  String date;
+  String time;
+  int productKey;
+
+  Datadetails({
+    required this.monthId,
+    required this.flowRate,
+    required this.pressure,
+    required this.waterUse,
+    required this.resultSolenoid,
+    required this.resultTime,
+    required this.resultAi,
+    required this.date,
+    required this.time,
+    required this.productKey,
+  });
+
+  factory Datadetails.fromJson(Map<String, dynamic> json) {
+    return Datadetails(
+      monthId: json['Product_Details_Month_Id'],
+      flowRate: json['Product_Details_Month_Flowrate'],
+      pressure: json['Product_Details_Month_Pressure'],
+      waterUse: json['Product_Details_Month_Water_Use'],
+      resultSolenoid: json['Product_Details_Result_Solenoid'],
+      resultTime: json['Product_Details_Result_Time'],
+      resultAi: json['Product_Details_Result_Ai'],
+      date: json['date'],
+      time: json['time'],
+      productKey: json['product_key'],
+    );
+  }
+}
+
+class DatadetailsDataSource extends DataGridSource {
+  DatadetailsDataSource(this.alldata) {
+    buildDataGridRow();
+  }
+
+  void buildDataGridRow() {
+    _employeeDataGridRows = alldata
+        .map<DataGridRow>((e) => DataGridRow(cells: [
+              DataGridCell<dynamic>(columnName: 'id', value: e.monthId),
+              DataGridCell<dynamic>(columnName: 'flowrate', value: e.flowRate),
+              DataGridCell<dynamic>(columnName: 'Pressure', value: e.pressure),
+              DataGridCell<dynamic>(columnName: 'date', value: e.date),
+              DataGridCell<dynamic>(columnName: 'time', value: e.time),
+            ]))
+        .toList();
+  }
+
+  List<Datadetails> alldata = [];
+  List<DataGridRow> _employeeDataGridRows = [];
+
+  @override
+  List<DataGridRow> get rows => _employeeDataGridRows;
+
+  @override
+  DataGridRowAdapter buildRow(DataGridRow row) {
+    return DataGridRowAdapter(
+        color: const Color.fromARGB(255, 255, 255, 255),
+        cells: row.getCells().map<Widget>((e) {
+          return Container(
+            color: const Color.fromARGB(92, 255, 214, 64),
+            alignment: Alignment.center,
+            child: Text(e.value.toString(),
+                style: GoogleFonts.kanit(fontSize: 13)),
+          );
+        }).toList());
+  }
+
+  void updateDataGrid(List<Datadetails> newData) {
+    _employeeDataGridRows = newData
+        .map<DataGridRow>((e) => DataGridRow(cells: [
+              DataGridCell<dynamic>(columnName: 'id', value: e.monthId),
+              DataGridCell<dynamic>(columnName: 'flowrate', value: e.flowRate),
+              DataGridCell<dynamic>(columnName: 'Pressure', value: e.pressure),
+              DataGridCell<dynamic>(columnName: 'date', value: e.date),
+              DataGridCell<dynamic>(columnName: 'time', value: e.time),
+            ]))
+        .toList();
+    notifyListeners();
   }
 }

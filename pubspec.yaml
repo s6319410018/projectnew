@@ -42,7 +42,7 @@ dependencies:
   water_drop_nav_bar: ^2.2.0+5
   font_awesome_flutter: ^10.4.0 
   pretty_gauge: ^1.0.1
-  syncfusion_flutter_datagrid: ^22.2.8
+  syncfusion_flutter_datagrid: ^20.3.47
   dropdown_button2: ^1.9.1
   omni_datetime_picker: ^1.0.0
   flutter_animated_button: ^2.0.3

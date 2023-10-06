@@ -1,128 +1,233 @@
 import 'dart:convert';
-import 'dart:async'; // Import the async package for Timer
+
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
+import 'package:syncfusion_flutter_datagrid/datagrid.dart';
 
-class RealtimeData {
-  final int realtimeSolenoid;
-  final int realtimeAI;
-  final int realtimeTime;
-  final double realtimeFlowrate;
-  final double realtimePressure;
+class Employee {
+  int monthId;
+  int flowRate;
+  int pressure;
+  int waterUse;
+  int resultSolenoid;
+  int resultTime;
+  int resultAi;
+  String date;
+  String time;
+  int productKey;
 
-  RealtimeData({
-    required this.realtimeSolenoid,
-    required this.realtimeAI,
-    required this.realtimeTime,
-    required this.realtimeFlowrate,
-    required this.realtimePressure,
+  Employee({
+    required this.monthId,
+    required this.flowRate,
+    required this.pressure,
+    required this.waterUse,
+    required this.resultSolenoid,
+    required this.resultTime,
+    required this.resultAi,
+    required this.date,
+    required this.time,
+    required this.productKey,
   });
 
-  factory RealtimeData.fromJson(Map<String, dynamic> json) {
-    return RealtimeData(
-      realtimeSolenoid: json['realtime_Solenoid'],
-      realtimeAI: json['realtime_AI'],
-      realtimeTime: json['realtime_Time'],
-      realtimeFlowrate: json['realtime_Flowrate'].toDouble(),
-      realtimePressure: json['realtime_Pressure'].toDouble(),
+  factory Employee.fromJson(Map<String, dynamic> json) {
+    return Employee(
+      monthId: json['Product_Details_Month_Id'],
+      flowRate: json['Product_Details_Month_Flowrate'],
+      pressure: json['Product_Details_Month_Pressure'],
+      waterUse: json['Product_Details_Month_Water_Use'],
+      resultSolenoid: json['Product_Details_Result_Solenoid'],
+      resultTime: json['Product_Details_Result_Time'],
+      resultAi: json['Product_Details_Result_Ai'],
+      date: json['date'],
+      time: json['time'],
+      productKey: json['product_key'],
     );
   }
 }
 
-Future<List<RealtimeData>> fetchRealtimeDataList() async {
-  final String url = "http://192.168.32.1/project/api/getRealtime.php";
+class EmployeeDataSource extends DataGridSource {
+  EmployeeDataSource(this.employees) {
+    buildDataGridRow();
+  }
 
-  Map<String, dynamic> postData = {
-    "userEmail": "ekwongsap@gmail.com",
-  };
+  void buildDataGridRow() {
+    _employeeDataGridRows = employees
+        .map<DataGridRow>((e) => DataGridRow(cells: [
+              DataGridCell<dynamic>(columnName: 'id', value: e.monthId),
+              DataGridCell<dynamic>(columnName: 'aicontrol', value: e.resultAi),
+              DataGridCell<dynamic>(
+                  columnName: 'timecontrol', value: e.resultTime),
+              DataGridCell<dynamic>(
+                  columnName: 'solenoidcontrol', value: e.resultSolenoid),
+              DataGridCell<dynamic>(columnName: 'flowrate', value: e.flowRate),
+              DataGridCell<dynamic>(columnName: 'Pressure', value: e.pressure),
+              DataGridCell<dynamic>(columnName: 'date', value: e.date),
+              DataGridCell<dynamic>(columnName: 'time', value: e.time),
+            ]))
+        .toList();
+  }
 
-  try {
-    final response = await http.post(
-      Uri.parse(url),
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: jsonEncode(postData),
-    );
+  List<Employee> employees = [];
+  List<DataGridRow> _employeeDataGridRows = [];
 
-    if (response.statusCode == 200) {
-      var data = json.decode(response.body);
+  @override
+  List<DataGridRow> get rows => _employeeDataGridRows;
 
-      if (data.isNotEmpty && data[0].isNotEmpty) {
-        List<RealtimeData> realtimeDataList =
-            List.from(data[0].map((json) => RealtimeData.fromJson(json)));
-        return realtimeDataList;
-      } else {
-        print('Empty data received');
-      }
-    } else {
-      print('HTTP Error: ${response.statusCode}');
+  @override
+  DataGridRowAdapter buildRow(DataGridRow row) {
+    return DataGridRowAdapter(
+        color: const Color.fromARGB(255, 255, 255, 255),
+        cells: row.getCells().map<Widget>((e) {
+          return Container(
+            color: const Color.fromARGB(92, 255, 214, 64),
+            alignment: Alignment.center,
+            child: Text(e.value.toString(), style: GoogleFonts.kanit()),
+          );
+        }).toList());
+  }
+
+  void updateDataGrid(List<Employee> newData) {
+    _employeeDataGridRows = newData
+        .map<DataGridRow>((e) => DataGridRow(cells: [
+              DataGridCell<dynamic>(columnName: 'id', value: e.monthId),
+              DataGridCell<dynamic>(columnName: 'aicontrol', value: e.resultAi),
+              DataGridCell<dynamic>(
+                  columnName: 'timecontrol', value: e.resultTime),
+              DataGridCell<dynamic>(
+                  columnName: 'solenoidcontrol', value: e.resultSolenoid),
+              DataGridCell<dynamic>(columnName: 'flowrate', value: e.flowRate),
+              DataGridCell<dynamic>(columnName: 'Pressure', value: e.pressure),
+              DataGridCell<dynamic>(columnName: 'date', value: e.date),
+              DataGridCell<dynamic>(columnName: 'time', value: e.time),
+            ]))
+        .toList();
+    notifyListeners();
+  }
+}
+
+class SingleUi extends StatefulWidget {
+  const SingleUi({Key? key}) : super(key: key);
+
+  @override
+  State<SingleUi> createState() => _SingleUiState();
+}
+
+class _SingleUiState extends State<SingleUi> {
+  late EmployeeDataSource employeeDataSource; // Declare the data source
+
+  @override
+  void initState() {
+    super.initState();
+    employeeDataSource = EmployeeDataSource([]);
+    fetchData();
+  }
+
+  Future<void> fetchData() async {
+    try {
+      List<Employee> employees = await fetchRealtimeDataList();
+      employeeDataSource.updateDataGrid(employees);
+    } catch (e) {
+      print('Error fetching data: $e');
     }
-  } catch (e) {
-    print('An error occurred: $e');
   }
 
-  return [];
-}
+  Future<List<Employee>> fetchRealtimeDataList() async {
+    final String url = "http://192.168.32.1//project/api/getdataALL.php";
 
-void main() {
-  runApp(MyApp());
-}
+    Map<String, dynamic> postData = {
+      "userEmail": "ekwongsap@gmail.com",
+    };
 
-class MyApp extends StatelessWidget {
+    try {
+      final response = await http.post(
+        Uri.parse(url),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: jsonEncode(postData),
+      );
+
+      if (response.statusCode == 200) {
+        var data = json.decode(response.body);
+
+        if (data.isNotEmpty && data[0].isNotEmpty) {
+          List<Employee> realtimeDataList =
+              List.from(data[0].map((json) => Employee.fromJson(json)));
+          return realtimeDataList;
+        } else {
+          print('Empty data received');
+        }
+      } else {
+        print('HTTP Error: ${response.statusCode}');
+      }
+    } catch (e) {
+      print('An error occurred: $e');
+    }
+
+    return [];
+  }
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text('Realtime Data List'),
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Syncfusion flutter datagrid'),
+      ),
+      body: SingleChildScrollView(
+        child: Card(
+          shape: RoundedRectangleBorder(
+              side: BorderSide(
+                  color: Colors.black,
+                  style: BorderStyle.solid,
+                  width: MediaQuery.of(context).size.width * 0.005),
+              borderRadius: BorderRadius.all(Radius.circular(5))),
+          color: Colors.blue,
+          child: SfDataGrid(
+            columnSizer: ColumnSizer(),
+            source: employeeDataSource,
+            columnWidthMode: ColumnWidthMode.fill,
+            columns: _columns,
+          ),
         ),
-        body: RealtimeDataListWidget(),
       ),
     );
   }
 }
 
-class RealtimeDataListWidget extends StatefulWidget {
-  @override
-  _RealtimeDataListWidgetState createState() => _RealtimeDataListWidgetState();
-}
-
-class _RealtimeDataListWidgetState extends State<RealtimeDataListWidget> {
-  late List<RealtimeData> _realtimeDataList;
-
-  @override
-  void initState() {
-    super.initState();
-    _realtimeDataList = [];
-    _fetchDataPeriodically();
-  }
-
-  // Periodically fetch data every 5 seconds (adjust as needed)
-  void _fetchDataPeriodically() {
-    Timer.periodic(Duration(seconds: 5), (timer) async {
-      List<RealtimeData> newData = await fetchRealtimeDataList();
-      setState(() {
-        _realtimeDataList = newData;
-      });
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    if (_realtimeDataList.isEmpty) {
-      return Center(child: CircularProgressIndicator());
-    } else {
-      return ListView.builder(
-        itemCount: _realtimeDataList.length,
-        itemBuilder: (context, index) {
-          RealtimeData realtimeData = _realtimeDataList[index];
-          return ListTile(
-            title: Text('Solenoid: ${realtimeData.realtimeSolenoid}'),
-            subtitle: Text('AI: ${realtimeData.realtimeAI}'),
-          );
-        },
-      );
-    }
-  }
-}
+List<GridColumn> _columns = [
+  GridColumn(
+      columnName: 'id',
+      label: Container(
+          color: const Color.fromARGB(255, 243, 99, 99),
+          padding: EdgeInsets.symmetric(horizontal: 20.0),
+          alignment: Alignment.centerRight,
+          child: Text('ลำดับ', style: GoogleFonts.kanit(fontSize: 10)))),
+  GridColumn(
+      columnName: 'aicontrol',
+      label: Center(child: Text('AI', style: GoogleFonts.kanit(fontSize: 10)))),
+  GridColumn(
+      columnName: 'timecontrol',
+      label: Center(
+          child: Text('TIMESET', style: GoogleFonts.kanit(fontSize: 10)))),
+  GridColumn(
+      columnName: 'solenoidcontrol',
+      label: Center(
+          child: Text('STATUS', style: GoogleFonts.kanit(fontSize: 10)))),
+  GridColumn(
+      columnName: 'flowrate',
+      label: Center(
+          child: Text('FLOWRATE', style: GoogleFonts.kanit(fontSize: 10)))),
+  GridColumn(
+      columnName: 'Pressure',
+      label: Center(
+          child: Text('PRESSURE', style: GoogleFonts.kanit(fontSize: 10)))),
+  GridColumn(
+      columnName: 'date',
+      label:
+          Center(child: Text('DATE', style: GoogleFonts.kanit(fontSize: 10)))),
+  GridColumn(
+      columnName: 'time',
+      label:
+          Center(child: Text('TIME', style: GoogleFonts.kanit(fontSize: 10)))),
+];
