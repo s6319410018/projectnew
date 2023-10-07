@@ -34,7 +34,7 @@ class DatadetailsDataSourcePage1 extends DataGridSource {
   @override
   DataGridRowAdapter buildRow(DataGridRow row) {
     return DataGridRowAdapter(
-        color: Color.fromARGB(0, 255, 255, 255), //พื้นหลัง
+        color: Color(0x52FFFFFF), //พื้นหลัง
         cells: row.getCells().map<Widget>((e) {
           return Card(
               shape: RoundedRectangleBorder(
@@ -95,11 +95,11 @@ class DatadetailsDataSourcePage2 extends DataGridSource {
   @override
   DataGridRowAdapter buildRow(DataGridRow row) {
     return DataGridRowAdapter(
-        color: Color(0x53FFFFFF), //พื้นหลัง
+        color: Color(0x52FFFFFF), //พื้นหลัง
         cells: row.getCells().map<Widget>((e) {
           return Card(
               shape: RoundedRectangleBorder(
-                  side: BorderSide(color: Color(0x53FFFFFF)),
+                  side: BorderSide(color: Color(0x52000000)),
                   borderRadius: BorderRadius.all(Radius.circular(1))),
               color: Color.fromARGB(141, 255, 255, 255),
               child: Center(
@@ -152,11 +152,11 @@ class DatadetailsDataSourcePage3 extends DataGridSource {
   @override
   DataGridRowAdapter buildRow(DataGridRow row) {
     return DataGridRowAdapter(
-        color: Color.fromARGB(0, 255, 255, 255), //พื้นหลัง
+        color: Color(0x52FFFFFF), //พื้นหลัง
         cells: row.getCells().map<Widget>((e) {
           return Card(
               shape: RoundedRectangleBorder(
-                  side: BorderSide(color: Color(0x53FFFFFF)),
+                  side: BorderSide(color: Color(0x52000000)),
                   borderRadius: BorderRadius.all(Radius.circular(1))),
               color: Color.fromARGB(141, 255, 255, 255),
               child: Center(

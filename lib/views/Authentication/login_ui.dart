@@ -138,6 +138,7 @@ class _login_UIState extends State<login_UI> {
 
         if (data == "1") {
           print('Successfully posted data');
+
           Navigator.pushReplacement(
               context,
               MaterialPageRoute(
@@ -357,7 +358,7 @@ class _login_UIState extends State<login_UI> {
                                       if (value!.isEmpty) {
                                         return 'ป้อนรหัสผ่านอีกครั้ง';
                                       } else if (value.length < 6) {
-                                        return 'รหัสต้องมากกว่า 6 ตัวอักษร';
+                                        return 'รหัสต้ังแต่ 6 ตัวอักษรขึ้นไป';
                                       }
                                       return null;
                                     },
