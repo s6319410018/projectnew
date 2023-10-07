@@ -37,19 +37,18 @@ class DatadetailsDataSourcePage1 extends DataGridSource {
         color: Color.fromARGB(0, 255, 255, 255), //พื้นหลัง
         cells: row.getCells().map<Widget>((e) {
           return Card(
-            shape: RoundedRectangleBorder(
-                side: BorderSide(color: Color(0x53FFFFFF)),
-                borderRadius: BorderRadius.all(Radius.circular(5))),
-            color: Color.fromARGB(141, 246, 217, 130),
-            child: Center(
-              child: Padding(
-                padding: const EdgeInsets.all(3.5),
-                child: Text(e.value.toString(),
-                    style: GoogleFonts.kanit(
-                        fontSize: 13, fontWeight: FontWeight.bold)),
-              ),
-            ),
-          );
+              shape: RoundedRectangleBorder(
+                  side: BorderSide(color: Color(0x53FFFFFF)),
+                  borderRadius: BorderRadius.all(Radius.circular(1))),
+              color: Color.fromARGB(141, 255, 255, 255),
+              child: Center(
+                  child: Padding(
+                      padding: const EdgeInsets.all(3.5),
+                      child: Text(
+                        e.value.toString(),
+                        style: GoogleFonts.kanit(
+                            fontSize: 13, fontWeight: FontWeight.bold),
+                      ))));
         }).toList());
   }
 
@@ -96,19 +95,21 @@ class DatadetailsDataSourcePage2 extends DataGridSource {
   @override
   DataGridRowAdapter buildRow(DataGridRow row) {
     return DataGridRowAdapter(
-        color: Color.fromARGB(255, 255, 255, 255), //พื้นหลัง
+        color: Color(0x53FFFFFF), //พื้นหลัง
         cells: row.getCells().map<Widget>((e) {
           return Card(
-            shape: RoundedRectangleBorder(
-                side: BorderSide(color: Colors.black),
-                borderRadius: BorderRadius.all(Radius.circular(10))),
-            color: Colors.amber,
-            child: Center(
-              child: Text(e.value.toString(),
-                  style: GoogleFonts.kanit(
-                      fontSize: 13, fontWeight: FontWeight.bold)),
-            ),
-          );
+              shape: RoundedRectangleBorder(
+                  side: BorderSide(color: Color(0x53FFFFFF)),
+                  borderRadius: BorderRadius.all(Radius.circular(1))),
+              color: Color.fromARGB(141, 255, 255, 255),
+              child: Center(
+                  child: Padding(
+                      padding: const EdgeInsets.all(3.5),
+                      child: Text(
+                        e.value.toString(),
+                        style: GoogleFonts.kanit(
+                            fontSize: 13, fontWeight: FontWeight.bold),
+                      ))));
         }).toList());
   }
 
@@ -154,16 +155,18 @@ class DatadetailsDataSourcePage3 extends DataGridSource {
         color: Color.fromARGB(0, 255, 255, 255), //พื้นหลัง
         cells: row.getCells().map<Widget>((e) {
           return Card(
-            shape: RoundedRectangleBorder(
-                side: BorderSide(color: Color(0x53FFFFFF)),
-                borderRadius: BorderRadius.all(Radius.circular(10))),
-            color: const Color.fromARGB(120, 255, 193, 7),
-            child: Center(
-              child: Text(e.value.toString(),
-                  style: GoogleFonts.kanit(
-                      fontSize: 13, fontWeight: FontWeight.bold)),
-            ),
-          );
+              shape: RoundedRectangleBorder(
+                  side: BorderSide(color: Color(0x53FFFFFF)),
+                  borderRadius: BorderRadius.all(Radius.circular(1))),
+              color: Color.fromARGB(141, 255, 255, 255),
+              child: Center(
+                  child: Padding(
+                      padding: const EdgeInsets.all(3.5),
+                      child: Text(
+                        e.value.toString(),
+                        style: GoogleFonts.kanit(
+                            fontSize: 13, fontWeight: FontWeight.bold),
+                      ))));
         }).toList());
   }
 

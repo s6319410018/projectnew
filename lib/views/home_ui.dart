@@ -405,7 +405,7 @@ class _homeUIState extends State<homeUI> {
 
   ////////////////////////////////////////////
   final Color navigationBarColor =
-      Color.fromARGB(255, 255, 255, 255); //ตัวแปรเก็บค่าสีของแท็บบาร์
+      Color(0x3C7BD5E5); //ตัวแปรเก็บค่าสีของแท็บบาร์
   late PageController pageController;
   String? selectedValue;
   int selectedIndex = 0;
@@ -506,7 +506,7 @@ class _homeUIState extends State<homeUI> {
                 style: GoogleFonts.kanit(
                     fontSize: 11,
                     fontWeight: FontWeight.bold,
-                    color: const Color.fromARGB(255, 0, 0, 0))))),
+                    color: Color.fromARGB(255, 255, 255, 255))))),
     GridColumn(
         columnName: 'timecontrol',
         label: Container(
@@ -516,7 +516,7 @@ class _homeUIState extends State<homeUI> {
                 style: GoogleFonts.kanit(
                     fontSize: 11,
                     fontWeight: FontWeight.bold,
-                    color: const Color.fromARGB(255, 0, 0, 0))))),
+                    color: Color.fromARGB(255, 255, 255, 255))))),
     GridColumn(
         columnName: 'date',
         label: Container(
@@ -526,7 +526,7 @@ class _homeUIState extends State<homeUI> {
                 style: GoogleFonts.kanit(
                     fontSize: 12,
                     fontWeight: FontWeight.bold,
-                    color: const Color.fromARGB(255, 0, 0, 0))))),
+                    color: Color.fromARGB(255, 255, 255, 255))))),
     GridColumn(
         columnName: 'time',
         label: Container(
@@ -536,7 +536,7 @@ class _homeUIState extends State<homeUI> {
                 style: GoogleFonts.kanit(
                     fontSize: 12,
                     fontWeight: FontWeight.bold,
-                    color: const Color.fromARGB(255, 0, 0, 0))))),
+                    color: Color.fromARGB(255, 255, 255, 255))))),
   ];
   List<GridColumn> _columns3 = [
     GridColumn(
@@ -548,7 +548,7 @@ class _homeUIState extends State<homeUI> {
                 style: GoogleFonts.kanit(
                     fontSize: 11,
                     fontWeight: FontWeight.bold,
-                    color: const Color.fromARGB(255, 0, 0, 0))))),
+                    color: Color.fromARGB(255, 255, 255, 255))))),
     GridColumn(
         columnName: 'wateruse',
         label: Container(
@@ -558,7 +558,7 @@ class _homeUIState extends State<homeUI> {
                 style: GoogleFonts.kanit(
                     fontSize: 11,
                     fontWeight: FontWeight.bold,
-                    color: const Color.fromARGB(255, 0, 0, 0))))),
+                    color: Color.fromARGB(255, 255, 255, 255))))),
     GridColumn(
         columnName: 'date',
         label: Container(
@@ -578,7 +578,7 @@ class _homeUIState extends State<homeUI> {
                 style: GoogleFonts.kanit(
                     fontSize: 12,
                     fontWeight: FontWeight.bold,
-                    color: const Color.fromARGB(255, 0, 0, 0))))),
+                    color: Color.fromARGB(255, 255, 255, 255))))),
   ];
 
   /////////////////////////////////////////////////////////////////////
@@ -621,7 +621,7 @@ class _homeUIState extends State<homeUI> {
         systemNavigationBarIconBrightness: Brightness.dark,
       ),
       child: Scaffold(
-        backgroundColor: Color.fromARGB(255, 123, 213, 229),
+        backgroundColor: Color(0x3C7BD5E5),
         appBar: AppBar(
             toolbarHeight: MediaQuery.of(context).size.width * 0.2,
             backgroundColor: Color(0x3C7BD5E5),
@@ -1713,7 +1713,7 @@ class _homeUIState extends State<homeUI> {
                                       color: Color.fromARGB(0, 255, 255, 255),
                                       height:
                                           MediaQuery.of(context).size.height *
-                                              1.3,
+                                              1.1,
                                       width: MediaQuery.of(context).size.width *
                                           0.94,
                                       child: Center(
@@ -2252,12 +2252,8 @@ class _homeUIState extends State<homeUI> {
                                                                             5),
                                                                   ),
                                                                 ),
-                                                                color: Color
-                                                                    .fromARGB(
-                                                                        0,
-                                                                        123,
-                                                                        213,
-                                                                        229),
+                                                                color: Color(
+                                                                    0x007BD5E5),
                                                                 child: Padding(
                                                                   padding:
                                                                       EdgeInsets
@@ -2293,156 +2289,94 @@ class _homeUIState extends State<homeUI> {
                                                                 ),
                                                               ),
                                                             ),
-                                                            Column(children: [
-                                                              Padding(
-                                                                padding:
-                                                                    EdgeInsets
-                                                                        .only(
-                                                                  top: MediaQuery.of(
-                                                                              context)
-                                                                          .size
-                                                                          .height *
-                                                                      0.001,
-                                                                  right: MediaQuery.of(
-                                                                              context)
-                                                                          .size
-                                                                          .width *
-                                                                      0.019,
-                                                                  left: MediaQuery.of(
-                                                                              context)
-                                                                          .size
-                                                                          .width *
-                                                                      0.019,
-                                                                ),
-                                                                child: Card(
-                                                                  color: Color(
-                                                                      0x937AE685),
-                                                                  shape:
-                                                                      RoundedRectangleBorder(
-                                                                    side: BorderSide(
-                                                                        color: Color(
-                                                                            0x53FFFFFF),
-                                                                        style: BorderStyle
-                                                                            .solid),
-                                                                    borderRadius:
-                                                                        BorderRadius
-                                                                            .all(
-                                                                      Radius
-                                                                          .circular(
-                                                                              5),
-                                                                    ),
-                                                                  ),
-                                                                  child:
-                                                                      Padding(
-                                                                    padding:
-                                                                        EdgeInsets
-                                                                            .only(
-                                                                      top: MediaQuery.of(context)
-                                                                              .size
-                                                                              .height *
-                                                                          0.01,
-                                                                      bottom: MediaQuery.of(context)
-                                                                              .size
-                                                                              .height *
-                                                                          0.01,
-                                                                      left: MediaQuery.of(context)
-                                                                              .size
-                                                                              .width *
-                                                                          0.1,
-                                                                      right: MediaQuery.of(context)
-                                                                              .size
-                                                                              .width *
-                                                                          0.1,
-                                                                    ),
-                                                                    child: Text(
-                                                                      ' วันที่ ${dateTimeList?[0].day}  เวลา ${dateTimeList?[0].hour} นาฬิกา ${dateTimeList?[0].minute} นาที ปี ${dateTimeList?[0].year} ',
-                                                                      style: GoogleFonts
-                                                                          .kanit(
-                                                                        color: Color.fromARGB(
-                                                                            255,
-                                                                            255,
-                                                                            255,
-                                                                            255),
-                                                                        fontWeight:
-                                                                            FontWeight.bold,
-                                                                        fontSize:
-                                                                            MediaQuery.of(context).size.width *
-                                                                                0.03,
+                                                            Container(
+                                                              child: Column(
+                                                                  mainAxisSize:
+                                                                      MainAxisSize
+                                                                          .max,
+                                                                  children: [
+                                                                    Padding(
+                                                                      padding:
+                                                                          EdgeInsets
+                                                                              .only(
+                                                                        top: MediaQuery.of(context).size.height *
+                                                                            0.001,
+                                                                        right: MediaQuery.of(context).size.width *
+                                                                            0.019,
+                                                                        left: MediaQuery.of(context).size.width *
+                                                                            0.019,
+                                                                      ),
+                                                                      child:
+                                                                          Padding(
+                                                                        padding:
+                                                                            EdgeInsets.only(
+                                                                          top: MediaQuery.of(context).size.height *
+                                                                              0.01,
+                                                                          bottom:
+                                                                              MediaQuery.of(context).size.height * 0.01,
+                                                                          left: MediaQuery.of(context).size.width *
+                                                                              0.05,
+                                                                          right:
+                                                                              MediaQuery.of(context).size.width * 0.05,
+                                                                        ),
+                                                                        child:
+                                                                            Text(
+                                                                          'เริ่มต้น : วันที่ ${dateTimeList?[0].day}  เวลา ${dateTimeList?[0].hour} นาฬิกา ${dateTimeList?[0].minute} นาที ปี ${dateTimeList?[0].year} ',
+                                                                          style:
+                                                                              GoogleFonts.kanit(
+                                                                            color: Color.fromARGB(
+                                                                                255,
+                                                                                255,
+                                                                                255,
+                                                                                255),
+                                                                            fontWeight:
+                                                                                FontWeight.bold,
+                                                                            fontSize:
+                                                                                MediaQuery.of(context).size.width * 0.035,
+                                                                          ),
+                                                                        ),
                                                                       ),
                                                                     ),
-                                                                  ),
-                                                                ),
-                                                              ),
-                                                              Padding(
-                                                                padding:
-                                                                    EdgeInsets
-                                                                        .only(
-                                                                  bottom: MediaQuery.of(
-                                                                              context)
-                                                                          .size
-                                                                          .height *
-                                                                      0.01,
-                                                                ),
-                                                                child: Card(
-                                                                  color: Color(
-                                                                      0xC7C87F7F),
-                                                                  shape:
-                                                                      RoundedRectangleBorder(
-                                                                    side: BorderSide(
-                                                                        color: Color(
-                                                                            0x53FFFFFF),
-                                                                        style: BorderStyle
-                                                                            .solid),
-                                                                    borderRadius:
-                                                                        BorderRadius
-                                                                            .all(
-                                                                      Radius
-                                                                          .circular(
-                                                                              5),
-                                                                    ),
-                                                                  ),
-                                                                  child:
-                                                                      Padding(
-                                                                    padding:
-                                                                        EdgeInsets
-                                                                            .only(
-                                                                      top: MediaQuery.of(context)
-                                                                              .size
-                                                                              .height *
-                                                                          0.01,
-                                                                      bottom: MediaQuery.of(context)
-                                                                              .size
-                                                                              .height *
-                                                                          0.01,
-                                                                      left: MediaQuery.of(context)
-                                                                              .size
-                                                                              .width *
-                                                                          0.1,
-                                                                      right: MediaQuery.of(context)
-                                                                              .size
-                                                                              .width *
-                                                                          0.1,
-                                                                    ),
-                                                                    child: Text(
-                                                                      ' วันที่ ${dateTimeList?[1].day}  เวลา ${dateTimeList?[1].hour} นาฬิกา ${dateTimeList?[1].minute} นาที ปี ${dateTimeList?[1].year} ',
-                                                                      style: GoogleFonts
-                                                                          .kanit(
-                                                                        color: Color.fromARGB(
-                                                                            255,
-                                                                            255,
-                                                                            255,
-                                                                            255),
-                                                                        fontWeight:
-                                                                            FontWeight.bold,
-                                                                        fontSize:
-                                                                            MediaQuery.of(context).size.width *
-                                                                                0.03,
+                                                                    Padding(
+                                                                      padding:
+                                                                          EdgeInsets
+                                                                              .only(
+                                                                        bottom: MediaQuery.of(context).size.height *
+                                                                            0.01,
+                                                                      ),
+                                                                      child:
+                                                                          Padding(
+                                                                        padding:
+                                                                            EdgeInsets.only(
+                                                                          top: MediaQuery.of(context).size.height *
+                                                                              0.01,
+                                                                          bottom:
+                                                                              MediaQuery.of(context).size.height * 0.01,
+                                                                          left: MediaQuery.of(context).size.width *
+                                                                              0.05,
+                                                                          right:
+                                                                              MediaQuery.of(context).size.width * 0.05,
+                                                                        ),
+                                                                        child:
+                                                                            Text(
+                                                                          'สิ้นสุด :  วันที่ ${dateTimeList?[1].day}  เวลา ${dateTimeList?[1].hour} นาฬิกา ${dateTimeList?[1].minute} นาที ปี ${dateTimeList?[1].year} ',
+                                                                          style:
+                                                                              GoogleFonts.kanit(
+                                                                            color: Color.fromARGB(
+                                                                                255,
+                                                                                255,
+                                                                                255,
+                                                                                255),
+                                                                            fontWeight:
+                                                                                FontWeight.bold,
+                                                                            fontSize:
+                                                                                MediaQuery.of(context).size.width * 0.035,
+                                                                          ),
+                                                                        ),
                                                                       ),
                                                                     ),
-                                                                  ),
-                                                                ),
-                                                              ),
-                                                            ])
+                                                                  ]),
+                                                            )
                                                           ],
                                                         )),
                                                   ),
@@ -2451,7 +2385,7 @@ class _homeUIState extends State<homeUI> {
                                                           MediaQuery.of(context)
                                                                   .size
                                                                   .height *
-                                                              0.0),
+                                                              0.005),
                                                   Padding(
                                                     padding: EdgeInsets.only(
                                                         right: MediaQuery.of(
@@ -2466,15 +2400,15 @@ class _homeUIState extends State<homeUI> {
                                                       style: ElevatedButton
                                                           .styleFrom(
                                                         side: BorderSide(
-                                                            color: Colors.white,
+                                                            color: Color(
+                                                                0x53FFFFFF),
                                                             width: MediaQuery.of(
                                                                         context)
                                                                     .size
                                                                     .width *
                                                                 0.002),
                                                         backgroundColor:
-                                                            Color.fromARGB(0,
-                                                                226, 206, 27),
+                                                            Color(0x3C7BD5E5),
                                                         fixedSize: Size(
                                                             MediaQuery.of(
                                                                         context)
@@ -2534,15 +2468,15 @@ class _homeUIState extends State<homeUI> {
                                                       style: ElevatedButton
                                                           .styleFrom(
                                                         side: BorderSide(
-                                                            color: Colors.white,
+                                                            color: Color(
+                                                                0x53FFFFFF),
                                                             width: MediaQuery.of(
                                                                         context)
                                                                     .size
                                                                     .width *
                                                                 0.002),
                                                         backgroundColor:
-                                                            Color.fromARGB(0,
-                                                                226, 206, 27),
+                                                            Color(0x3C7BD5E5),
                                                         fixedSize: Size(
                                                             MediaQuery.of(
                                                                         context)
@@ -2591,6 +2525,12 @@ class _homeUIState extends State<homeUI> {
                                                 ],
                                               ),
                                             ),
+                                            SizedBox(
+                                              height: MediaQuery.of(context)
+                                                      .size
+                                                      .height *
+                                                  0.005,
+                                            ),
                                             SingleChildScrollView(
                                               child: Padding(
                                                 padding: EdgeInsets.only(
@@ -2611,9 +2551,8 @@ class _homeUIState extends State<homeUI> {
                                                   child: Card(
                                                     shape: RoundedRectangleBorder(
                                                         side: BorderSide(
-                                                            color: const Color
-                                                                .fromARGB(
-                                                                255, 255, 255, 255),
+                                                            color: Color(
+                                                                0x53FFFFFF),
                                                             style: BorderStyle
                                                                 .solid,
                                                             width: MediaQuery.of(
@@ -2625,8 +2564,7 @@ class _homeUIState extends State<homeUI> {
                                                             BorderRadius.all(
                                                                 Radius.circular(
                                                                     5))),
-                                                    color: Color.fromARGB(
-                                                        255, 255, 255, 255),
+                                                    color: Color(0x3C7BD5E5),
                                                     child: SfDataGrid(
                                                       source:
                                                           _datadetailsDataSourcePage2,
@@ -2646,7 +2584,7 @@ class _homeUIState extends State<homeUI> {
                                 ),
                                 SizedBox(
                                   width:
-                                      MediaQuery.of(context).size.width * 0.034,
+                                      MediaQuery.of(context).size.width * 0.005,
                                 ),
                               ],
                             ),
@@ -2670,7 +2608,6 @@ class _homeUIState extends State<homeUI> {
                         image: AssetImage("assets/images/water.png"), /////
                         fit: BoxFit.cover,
 
-                        colorFilter: ColorFilter.linearToSrgbGamma(),
                         filterQuality: FilterQuality.high,
                       ),
                     ),
@@ -2688,199 +2625,159 @@ class _homeUIState extends State<homeUI> {
                                   height: MediaQuery.of(context).size.height *
                                       0.0001,
                                 ),
-                                Card(
-                                  color: Color.fromARGB(0, 123, 213, 229),
-                                  shape: RoundedRectangleBorder(
-                                    side: BorderSide(
-                                      style: BorderStyle.solid,
-                                      color: Color(0x53FFFFFF),
-                                      width: MediaQuery.of(context).size.width *
-                                          0.005, //<-- SEE HERE
-                                    ),
-                                    borderRadius: BorderRadius.circular(3),
-                                  ),
-                                  child: SingleChildScrollView(
-                                    child: Container(
-                                      height:
-                                          MediaQuery.of(context).size.height *
-                                              0.735,
-                                      width: MediaQuery.of(context).size.width *
-                                          0.9,
-                                      child: Center(
-                                        child: Column(
-                                          children: [
-                                            Container(
-                                              padding: EdgeInsets.only(
-                                                  left: MediaQuery.of(context)
-                                                          .size
-                                                          .width *
-                                                      0.01,
-                                                  right: MediaQuery.of(context)
-                                                          .size
-                                                          .width *
-                                                      0.01,
-                                                  top: MediaQuery.of(context)
-                                                          .size
-                                                          .width *
-                                                      0.01,
-                                                  bottom: MediaQuery.of(context)
-                                                          .size
-                                                          .width *
-                                                      0.005),
-                                            ),
-                                            Card(
-                                              color: Color(0x3C7BD5E5),
-                                              shape: RoundedRectangleBorder(
-                                                side: BorderSide(
-                                                    color: Color(0x3C7BD5E5),
-                                                    style: BorderStyle.solid),
-                                                borderRadius: BorderRadius.all(
-                                                  Radius.circular(5),
-                                                ),
-                                              ),
-                                              child: Padding(
-                                                padding: EdgeInsets.only(
-                                                  top: MediaQuery.of(context)
-                                                          .size
-                                                          .height *
-                                                      0.01,
-                                                  bottom: MediaQuery.of(context)
-                                                          .size
-                                                          .height *
-                                                      0.01,
-                                                  left: MediaQuery.of(context)
-                                                          .size
-                                                          .width *
-                                                      0.25,
-                                                  right: MediaQuery.of(context)
-                                                          .size
-                                                          .width *
-                                                      0.2,
-                                                ),
-                                                child: Text(
-                                                  'สรุปข้อมูลการใช้น้ำ',
-                                                  style: GoogleFonts.kanit(
-                                                    color: Colors.white,
-                                                    fontWeight: FontWeight.bold,
-                                                    fontSize:
-                                                        MediaQuery.of(context)
-                                                                .size
-                                                                .width *
-                                                            0.05,
-                                                  ),
-                                                ),
-                                              ),
-                                            ),
-                                            Padding(
-                                              padding: EdgeInsets.only(
+                                SingleChildScrollView(
+                                  child: Container(
+                                    height: MediaQuery.of(context).size.height *
+                                        0.8,
+                                    width:
+                                        MediaQuery.of(context).size.width * 0.9,
+                                    child: Center(
+                                      child: Column(
+                                        children: [
+                                          Container(
+                                            padding: EdgeInsets.only(
                                                 left: MediaQuery.of(context)
                                                         .size
                                                         .width *
-                                                    0.018,
+                                                    0.01,
                                                 right: MediaQuery.of(context)
                                                         .size
                                                         .width *
-                                                    0.018,
+                                                    0.01,
+                                                top: MediaQuery.of(context)
+                                                        .size
+                                                        .width *
+                                                    0.01,
+                                                bottom: MediaQuery.of(context)
+                                                        .size
+                                                        .width *
+                                                    0.005),
+                                          ),
+                                          Card(
+                                            color: Color(0x3C7BD5E5),
+                                            shape: RoundedRectangleBorder(
+                                              side: BorderSide(
+                                                  color: Color(0x3C7BD5E5),
+                                                  style: BorderStyle.solid),
+                                              borderRadius: BorderRadius.all(
+                                                Radius.circular(5),
                                               ),
-                                              child: Card(
-                                                shape: RoundedRectangleBorder(
-                                                  side: BorderSide(
-                                                    color: Color(0x53FFFFFF),
-                                                    width:
-                                                        MediaQuery.of(context)
-                                                                .size
-                                                                .width *
-                                                            0.9,
-                                                  ),
-                                                  borderRadius:
-                                                      BorderRadiusDirectional
-                                                          .all(
-                                                    Radius.circular(5),
-                                                  ),
+                                            ),
+                                            child: Padding(
+                                              padding: EdgeInsets.only(
+                                                top: MediaQuery.of(context)
+                                                        .size
+                                                        .height *
+                                                    0.01,
+                                                bottom: MediaQuery.of(context)
+                                                        .size
+                                                        .height *
+                                                    0.01,
+                                                left: MediaQuery.of(context)
+                                                        .size
+                                                        .width *
+                                                    0.25,
+                                                right: MediaQuery.of(context)
+                                                        .size
+                                                        .width *
+                                                    0.2,
+                                              ),
+                                              child: Text(
+                                                'สรุปข้อมูลการใช้น้ำ',
+                                                style: GoogleFonts.kanit(
+                                                  color: Colors.white,
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize:
+                                                      MediaQuery.of(context)
+                                                              .size
+                                                              .width *
+                                                          0.05,
                                                 ),
+                                              ),
+                                            ),
+                                          ),
+                                          SizedBox(
+                                            height: MediaQuery.of(context)
+                                                    .size
+                                                    .height *
+                                                0.005,
+                                          ),
+                                          Padding(
+                                            padding: EdgeInsets.only(
+                                              left: MediaQuery.of(context)
+                                                      .size
+                                                      .width *
+                                                  0.018,
+                                              right: MediaQuery.of(context)
+                                                      .size
+                                                      .width *
+                                                  0.018,
+                                            ),
+                                            child: Container(
+                                              width: MediaQuery.of(context)
+                                                      .size
+                                                      .width *
+                                                  0.95,
+                                              height: MediaQuery.of(context)
+                                                      .size
+                                                      .width *
+                                                  0.2,
+                                              child: Card(
                                                 color: Color(0x3C7BD5E5),
-                                                child: Container(
-                                                  width: MediaQuery.of(context)
-                                                          .size
-                                                          .width *
-                                                      0.9,
-                                                  height: MediaQuery.of(context)
-                                                          .size
-                                                          .width *
-                                                      0.139,
-                                                  child: Padding(
-                                                    padding:
-                                                        const EdgeInsets.all(
-                                                            6.0),
-                                                    child: Card(
-                                                      color: Color.fromARGB(
-                                                          0, 123, 213, 229),
-                                                      shape:
-                                                          RoundedRectangleBorder(
-                                                              side: BorderSide(
-                                                                style:
-                                                                    BorderStyle
-                                                                        .none,
-                                                                color: Color
-                                                                    .fromARGB(
-                                                                        0,
-                                                                        123,
-                                                                        213,
-                                                                        229),
-                                                                width: MediaQuery.of(
-                                                                            context)
-                                                                        .size
-                                                                        .width *
-                                                                    0.002,
-                                                              ),
-                                                              borderRadius: BorderRadius
-                                                                  .all(Radius
-                                                                      .circular(
-                                                                          5))),
-                                                      child: ListView.builder(
-                                                        itemCount:
-                                                            _realtimeDataList
-                                                                .length,
-                                                        itemBuilder:
-                                                            (context, index) {
-                                                          RealtimeData
-                                                              realtimeData =
-                                                              _realtimeDataList[
-                                                                  index];
-                                                          if (realtimeData
-                                                                  .Product_Details_Day_Water_Use !=
-                                                              null) {
-                                                            return Column(
-                                                              children: [
-                                                                SizedBox(
-                                                                  height: MediaQuery.of(
-                                                                              context)
-                                                                          .size
-                                                                          .height *
-                                                                      0.01,
-                                                                ),
-                                                                Center(
-                                                                  child: Text(
-                                                                    NumberFormat("การใช้น้ำวันนี้ = " +
-                                                                            "#,##0.00 " +
-                                                                            'ลิตร')
-                                                                        .format(
-                                                                            realtimeData.Product_Details_Day_Water_Use),
-                                                                    style: GoogleFonts.kanit(
-                                                                        color: Colors
-                                                                            .white,
-                                                                        fontSize:
-                                                                            MediaQuery.of(context).size.width *
-                                                                                0.05,
-                                                                        fontWeight:
-                                                                            FontWeight.bold),
-                                                                  ),
-                                                                ),
-                                                              ],
-                                                            );
-                                                          } else {
-                                                            Text(
-                                                              "การใช้น้ำวันนี้ = ยังไม่มีข้อมูล",
+                                                shape: RoundedRectangleBorder(
+                                                    side: BorderSide(
+                                                      style: BorderStyle.none,
+                                                      color: Color(0x53FFFFFF),
+                                                      width:
+                                                          MediaQuery.of(context)
+                                                                  .size
+                                                                  .width *
+                                                              0.002,
+                                                    ),
+                                                    borderRadius:
+                                                        BorderRadius.all(
+                                                            Radius.circular(
+                                                                5))),
+                                                child: ListView.builder(
+                                                  itemCount:
+                                                      _realtimeDataList.length,
+                                                  itemBuilder:
+                                                      (context, index) {
+                                                    RealtimeData realtimeData =
+                                                        _realtimeDataList[
+                                                            index];
+                                                    if (realtimeData
+                                                            .Product_Details_Day_Water_Use !=
+                                                        null) {
+                                                      return Column(
+                                                        children: [
+                                                          SizedBox(
+                                                            height: MediaQuery.of(
+                                                                        context)
+                                                                    .size
+                                                                    .height *
+                                                                0.03,
+                                                          ),
+                                                          Padding(
+                                                            padding:
+                                                                EdgeInsets.only(
+                                                              left: MediaQuery.of(
+                                                                          context)
+                                                                      .size
+                                                                      .width *
+                                                                  0.0,
+                                                              right: MediaQuery.of(
+                                                                          context)
+                                                                      .size
+                                                                      .width *
+                                                                  0.2,
+                                                            ),
+                                                            child: Text(
+                                                              NumberFormat("การใช้น้ำวันนี้ = " +
+                                                                      "#,##0.00 " +
+                                                                      'ลิตร')
+                                                                  .format(realtimeData
+                                                                      .Product_Details_Day_Water_Use),
                                                               style: GoogleFonts.kanit(
                                                                   color: Colors
                                                                       .white,
@@ -2892,652 +2789,657 @@ class _homeUIState extends State<homeUI> {
                                                                   fontWeight:
                                                                       FontWeight
                                                                           .bold),
-                                                            );
-                                                          }
-                                                        },
-                                                      ),
-                                                    ),
-                                                  ),
-                                                ),
-                                              ),
-                                            ),
-                                            Padding(
-                                              padding: EdgeInsets.only(
-                                                left: MediaQuery.of(context)
-                                                        .size
-                                                        .width *
-                                                    0.018,
-                                                right: MediaQuery.of(context)
-                                                        .size
-                                                        .width *
-                                                    0.018,
-                                              ),
-                                              child: Card(
-                                                shape: RoundedRectangleBorder(
-                                                  side: BorderSide(
-                                                    color: Color(0x53FFFFFF),
-                                                    width:
-                                                        MediaQuery.of(context)
-                                                                .size
-                                                                .width *
-                                                            0.9,
-                                                  ),
-                                                  borderRadius:
-                                                      BorderRadiusDirectional
-                                                          .all(
-                                                    Radius.circular(5),
-                                                  ),
-                                                ),
-                                                color: Color(0x3C7BD5E5),
-                                                child: Container(
-                                                  width: MediaQuery.of(context)
-                                                          .size
-                                                          .width *
-                                                      0.9,
-                                                  height: MediaQuery.of(context)
-                                                          .size
-                                                          .width *
-                                                      0.139,
-                                                  child: Padding(
-                                                    padding:
-                                                        const EdgeInsets.all(
-                                                            6.0),
-                                                    child: Card(
-                                                      color: Color.fromARGB(
-                                                          0, 123, 213, 229),
-                                                      shape:
-                                                          RoundedRectangleBorder(
-                                                              side: BorderSide(
-                                                                style:
-                                                                    BorderStyle
-                                                                        .none,
-                                                                color: Color
-                                                                    .fromARGB(
-                                                                        0,
-                                                                        123,
-                                                                        213,
-                                                                        229),
-                                                                width: MediaQuery.of(
-                                                                            context)
-                                                                        .size
-                                                                        .width *
-                                                                    0.002,
-                                                              ),
-                                                              borderRadius: BorderRadius
-                                                                  .all(Radius
-                                                                      .circular(
-                                                                          5))),
-                                                      child: ListView.builder(
-                                                        itemCount:
-                                                            _realtimeDataList
-                                                                .length,
-                                                        itemBuilder:
-                                                            (context, index) {
-                                                          RealtimeData
-                                                              realtimeData =
-                                                              _realtimeDataList[
-                                                                  index];
-                                                          if (realtimeData
-                                                                  .Product_Details_Day_Water_Use !=
-                                                              null) {
-                                                            return Column(
-                                                              children: [
-                                                                SizedBox(
-                                                                  height: MediaQuery.of(
-                                                                              context)
-                                                                          .size
-                                                                          .height *
-                                                                      0.01,
-                                                                ),
-                                                                Center(
-                                                                  child: Text(
-                                                                    NumberFormat("การใช้น้ำเดือนนี้ = " +
-                                                                            "#,##0.00 " +
-                                                                            'ลิตร')
-                                                                        .format(
-                                                                            realtimeData.Product_Details_Month_Water_Use),
-                                                                    style: GoogleFonts.kanit(
-                                                                        color: Colors
-                                                                            .white,
-                                                                        fontSize:
-                                                                            MediaQuery.of(context).size.width *
-                                                                                0.05,
-                                                                        fontWeight:
-                                                                            FontWeight.bold),
-                                                                  ),
-                                                                ),
-                                                              ],
-                                                            );
-                                                          } else {
-                                                            Text(
-                                                              "การใช้น้ำเดือนนี้ = ยังไม่มีข้อมูล",
-                                                              style: GoogleFonts.kanit(
-                                                                  color: Colors
-                                                                      .white,
-                                                                  fontSize: MediaQuery.of(
-                                                                              context)
-                                                                          .size
-                                                                          .width *
-                                                                      0.05,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .bold),
-                                                            );
-                                                          }
-                                                        },
-                                                      ),
-                                                    ),
-                                                  ),
-                                                ),
-                                              ),
-                                            ),
-                                            Padding(
-                                              padding: EdgeInsets.only(
-                                                left: MediaQuery.of(context)
-                                                        .size
-                                                        .width *
-                                                    0.018,
-                                                right: MediaQuery.of(context)
-                                                        .size
-                                                        .width *
-                                                    0.018,
-                                              ),
-                                              child: Card(
-                                                shape: RoundedRectangleBorder(
-                                                  side: BorderSide(
-                                                    color: Color(0x53FFFFFF),
-                                                    width:
-                                                        MediaQuery.of(context)
-                                                                .size
-                                                                .width *
-                                                            0.9,
-                                                  ),
-                                                  borderRadius:
-                                                      BorderRadiusDirectional
-                                                          .all(
-                                                    Radius.circular(5),
-                                                  ),
-                                                ),
-                                                color: Color(0x3C7BD5E5),
-                                                child: Container(
-                                                  width: MediaQuery.of(context)
-                                                          .size
-                                                          .width *
-                                                      0.9,
-                                                  height: MediaQuery.of(context)
-                                                          .size
-                                                          .width *
-                                                      0.139,
-                                                  child: Padding(
-                                                    padding:
-                                                        const EdgeInsets.all(
-                                                            6.0),
-                                                    child: Card(
-                                                      color: Color.fromARGB(
-                                                          0, 123, 213, 229),
-                                                      shape:
-                                                          RoundedRectangleBorder(
-                                                              side: BorderSide(
-                                                                style:
-                                                                    BorderStyle
-                                                                        .none,
-                                                                color: Color
-                                                                    .fromARGB(
-                                                                        0,
-                                                                        123,
-                                                                        213,
-                                                                        229),
-                                                                width: MediaQuery.of(
-                                                                            context)
-                                                                        .size
-                                                                        .width *
-                                                                    0.002,
-                                                              ),
-                                                              borderRadius: BorderRadius
-                                                                  .all(Radius
-                                                                      .circular(
-                                                                          5))),
-                                                      child: ListView.builder(
-                                                        itemCount:
-                                                            _realtimeDataList
-                                                                .length,
-                                                        itemBuilder:
-                                                            (context, index) {
-                                                          RealtimeData
-                                                              realtimeData =
-                                                              _realtimeDataList[
-                                                                  index];
-                                                          double unit = realtimeData
-                                                                  .Product_Details_Day_Water_Use /
-                                                              1000;
-                                                          if (realtimeData
-                                                                  .Product_Details_Month_Water_Use !=
-                                                              null) {
-                                                            if (unit <= 30) {
-                                                              return Column(
-                                                                children: [
-                                                                  SizedBox(
-                                                                    height: MediaQuery.of(context)
-                                                                            .size
-                                                                            .height *
-                                                                        0.01,
-                                                                  ),
-                                                                  Center(
-                                                                    child: Text(
-                                                                      NumberFormat("ค่าน้ำเดือนนี้ ≈ " +
-                                                                              "#,##0.00 " +
-                                                                              'บาท')
-                                                                          .format(realtimeData.Product_Details_Month_Water_Use *
-                                                                              8.50),
-                                                                      style: GoogleFonts.kanit(
-                                                                          color: Colors
-                                                                              .white,
-                                                                          fontSize: MediaQuery.of(context).size.width *
-                                                                              0.05,
-                                                                          fontWeight:
-                                                                              FontWeight.bold),
-                                                                    ),
-                                                                  ),
-                                                                ],
-                                                              );
-                                                            } else if (unit >=
-                                                                    31 &&
-                                                                unit <= 41) {
-                                                              return Column(
-                                                                children: [
-                                                                  SizedBox(
-                                                                    height: MediaQuery.of(context)
-                                                                            .size
-                                                                            .height *
-                                                                        0.01,
-                                                                  ),
-                                                                  Center(
-                                                                    child: Text(
-                                                                      NumberFormat("ค่าน้ำเดือนนี้ ≈ " +
-                                                                              "#,##0.00 " +
-                                                                              'บาท')
-                                                                          .format(realtimeData.Product_Details_Month_Water_Use *
-                                                                              10.03),
-                                                                      style: GoogleFonts.kanit(
-                                                                          color: Colors
-                                                                              .white,
-                                                                          fontSize: MediaQuery.of(context).size.width *
-                                                                              0.05,
-                                                                          fontWeight:
-                                                                              FontWeight.bold),
-                                                                    ),
-                                                                  ),
-                                                                ],
-                                                              );
-                                                            } else if (unit >=
-                                                                    41 &&
-                                                                unit <= 50) {
-                                                              return Column(
-                                                                children: [
-                                                                  SizedBox(
-                                                                    height: MediaQuery.of(context)
-                                                                            .size
-                                                                            .height *
-                                                                        0.01,
-                                                                  ),
-                                                                  Center(
-                                                                    child: Text(
-                                                                      NumberFormat("ค่าน้ำเดือนนี้ ≈ " +
-                                                                              "#,##0.00 " +
-                                                                              'บาท')
-                                                                          .format(realtimeData.Product_Details_Month_Water_Use *
-                                                                              10.35),
-                                                                      style: GoogleFonts.kanit(
-                                                                          color: Colors
-                                                                              .white,
-                                                                          fontSize: MediaQuery.of(context).size.width *
-                                                                              0.05,
-                                                                          fontWeight:
-                                                                              FontWeight.bold),
-                                                                    ),
-                                                                  ),
-                                                                ],
-                                                              );
-                                                            } else if (unit >=
-                                                                    51 &&
-                                                                unit <= 60) {
-                                                              return Column(
-                                                                children: [
-                                                                  SizedBox(
-                                                                    height: MediaQuery.of(context)
-                                                                            .size
-                                                                            .height *
-                                                                        0.01,
-                                                                  ),
-                                                                  Center(
-                                                                    child: Text(
-                                                                      NumberFormat("ค่าน้ำเดือนนี้ ≈ " +
-                                                                              "#,##0.00 " +
-                                                                              'บาท')
-                                                                          .format(realtimeData.Product_Details_Month_Water_Use *
-                                                                              10.68),
-                                                                      style: GoogleFonts.kanit(
-                                                                          color: Colors
-                                                                              .white,
-                                                                          fontSize: MediaQuery.of(context).size.width *
-                                                                              0.05,
-                                                                          fontWeight:
-                                                                              FontWeight.bold),
-                                                                    ),
-                                                                  ),
-                                                                ],
-                                                              );
-                                                            } else if (unit >=
-                                                                    61 &&
-                                                                unit <= 70) {
-                                                              return Column(
-                                                                children: [
-                                                                  SizedBox(
-                                                                    height: MediaQuery.of(context)
-                                                                            .size
-                                                                            .height *
-                                                                        0.01,
-                                                                  ),
-                                                                  Center(
-                                                                    child: Text(
-                                                                      NumberFormat("ค่าน้ำเดือนนี้ ≈ " +
-                                                                              "#,##0.00 " +
-                                                                              'บาท')
-                                                                          .format(realtimeData.Product_Details_Month_Water_Use *
-                                                                              11.00),
-                                                                      style: GoogleFonts.kanit(
-                                                                          color: Colors
-                                                                              .white,
-                                                                          fontSize: MediaQuery.of(context).size.width *
-                                                                              0.05,
-                                                                          fontWeight:
-                                                                              FontWeight.bold),
-                                                                    ),
-                                                                  ),
-                                                                ],
-                                                              );
-                                                            } else if (unit >=
-                                                                    71 &&
-                                                                unit <= 80) {
-                                                              return Column(
-                                                                children: [
-                                                                  SizedBox(
-                                                                    height: MediaQuery.of(context)
-                                                                            .size
-                                                                            .height *
-                                                                        0.01,
-                                                                  ),
-                                                                  Center(
-                                                                    child: Text(
-                                                                      NumberFormat("ค่าน้ำเดือนนี้ ≈ " +
-                                                                              "#,##0.00 " +
-                                                                              'บาท')
-                                                                          .format(realtimeData.Product_Details_Month_Water_Use *
-                                                                              11.33),
-                                                                      style: GoogleFonts.kanit(
-                                                                          color: Colors
-                                                                              .white,
-                                                                          fontSize: MediaQuery.of(context).size.width *
-                                                                              0.05,
-                                                                          fontWeight:
-                                                                              FontWeight.bold),
-                                                                    ),
-                                                                  ),
-                                                                ],
-                                                              );
-                                                            } else if (unit >=
-                                                                    81 &&
-                                                                unit <= 90) {
-                                                              return Column(
-                                                                children: [
-                                                                  SizedBox(
-                                                                    height: MediaQuery.of(context)
-                                                                            .size
-                                                                            .height *
-                                                                        0.01,
-                                                                  ),
-                                                                  Center(
-                                                                    child: Text(
-                                                                      NumberFormat("ค่าน้ำเดือนนี้ ≈ " +
-                                                                              "#,##0.00 " +
-                                                                              'บาท')
-                                                                          .format(realtimeData.Product_Details_Month_Water_Use *
-                                                                              12.50),
-                                                                      style: GoogleFonts.kanit(
-                                                                          color: Colors
-                                                                              .white,
-                                                                          fontSize: MediaQuery.of(context).size.width *
-                                                                              0.05,
-                                                                          fontWeight:
-                                                                              FontWeight.bold),
-                                                                    ),
-                                                                  ),
-                                                                ],
-                                                              );
-                                                            } else if (unit >=
-                                                                    91 &&
-                                                                unit <= 100) {
-                                                              return Column(
-                                                                children: [
-                                                                  SizedBox(
-                                                                    height: MediaQuery.of(context)
-                                                                            .size
-                                                                            .height *
-                                                                        0.01,
-                                                                  ),
-                                                                  Center(
-                                                                    child: Text(
-                                                                      NumberFormat("ค่าน้ำเดือนนี้ ≈ " +
-                                                                              "#,##0.00 " +
-                                                                              'บาท')
-                                                                          .format(realtimeData.Product_Details_Month_Water_Use *
-                                                                              12.82),
-                                                                      style: GoogleFonts.kanit(
-                                                                          color: Colors
-                                                                              .white,
-                                                                          fontSize: MediaQuery.of(context).size.width *
-                                                                              0.05,
-                                                                          fontWeight:
-                                                                              FontWeight.bold),
-                                                                    ),
-                                                                  ),
-                                                                ],
-                                                              );
-                                                            } else if (unit >=
-                                                                    101 &&
-                                                                unit <= 120) {
-                                                              return Column(
-                                                                children: [
-                                                                  SizedBox(
-                                                                    height: MediaQuery.of(context)
-                                                                            .size
-                                                                            .height *
-                                                                        0.01,
-                                                                  ),
-                                                                  Center(
-                                                                    child: Text(
-                                                                      NumberFormat("ค่าน้ำเดือนนี้ ≈ " +
-                                                                              "#,##0.00 " +
-                                                                              'บาท')
-                                                                          .format(realtimeData.Product_Details_Month_Water_Use *
-                                                                              13.15),
-                                                                      style: GoogleFonts.kanit(
-                                                                          color: Colors
-                                                                              .white,
-                                                                          fontSize: MediaQuery.of(context).size.width *
-                                                                              0.05,
-                                                                          fontWeight:
-                                                                              FontWeight.bold),
-                                                                    ),
-                                                                  ),
-                                                                ],
-                                                              );
-                                                            } else if (unit >=
-                                                                    121 &&
-                                                                unit <= 160) {
-                                                              return Column(
-                                                                children: [
-                                                                  SizedBox(
-                                                                    height: MediaQuery.of(context)
-                                                                            .size
-                                                                            .height *
-                                                                        0.01,
-                                                                  ),
-                                                                  Center(
-                                                                    child: Text(
-                                                                      NumberFormat("ค่าน้ำเดือนนี้ ≈ " +
-                                                                              "#,##0.00 " +
-                                                                              'บาท')
-                                                                          .format(realtimeData.Product_Details_Month_Water_Use *
-                                                                              13.47),
-                                                                      style: GoogleFonts.kanit(
-                                                                          color: Colors
-                                                                              .white,
-                                                                          fontSize: MediaQuery.of(context).size.width *
-                                                                              0.05,
-                                                                          fontWeight:
-                                                                              FontWeight.bold),
-                                                                    ),
-                                                                  ),
-                                                                ],
-                                                              );
-                                                            } else if (unit >=
-                                                                    161 &&
-                                                                unit <= 200) {
-                                                              return Column(
-                                                                children: [
-                                                                  SizedBox(
-                                                                    height: MediaQuery.of(context)
-                                                                            .size
-                                                                            .height *
-                                                                        0.01,
-                                                                  ),
-                                                                  Center(
-                                                                    child: Text(
-                                                                      NumberFormat("ค่าน้ำเดือนนี้ ≈ " +
-                                                                              "#,##0.00 " +
-                                                                              'บาท')
-                                                                          .format(realtimeData.Product_Details_Month_Water_Use *
-                                                                              13.80),
-                                                                      style: GoogleFonts.kanit(
-                                                                          color: Colors
-                                                                              .white,
-                                                                          fontSize: MediaQuery.of(context).size.width *
-                                                                              0.05,
-                                                                          fontWeight:
-                                                                              FontWeight.bold),
-                                                                    ),
-                                                                  ),
-                                                                ],
-                                                              );
-                                                            } else {
-                                                              return Column(
-                                                                children: [
-                                                                  SizedBox(
-                                                                    height: MediaQuery.of(context)
-                                                                            .size
-                                                                            .height *
-                                                                        0.01,
-                                                                  ),
-                                                                  Center(
-                                                                    child: Text(
-                                                                      NumberFormat("ค่าน้ำเดือนนี้ ≈ " +
-                                                                              "#,##0.00 " +
-                                                                              'บาท')
-                                                                          .format(realtimeData.Product_Details_Month_Water_Use *
-                                                                              14.45),
-                                                                      style: GoogleFonts.kanit(
-                                                                          color: Colors
-                                                                              .white,
-                                                                          fontSize: MediaQuery.of(context).size.width *
-                                                                              0.05,
-                                                                          fontWeight:
-                                                                              FontWeight.bold),
-                                                                    ),
-                                                                  ),
-                                                                ],
-                                                              );
-                                                            }
-                                                          } else {
-                                                            Text(
-                                                              "ค่าน้ำเดือนนี้ ≈  ยังไม่มีข้อมูล",
-                                                              style: GoogleFonts.kanit(
-                                                                  color: Colors
-                                                                      .white,
-                                                                  fontSize: MediaQuery.of(
-                                                                              context)
-                                                                          .size
-                                                                          .width *
-                                                                      0.05,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .bold),
-                                                            );
-                                                          }
-                                                        },
-                                                      ),
-                                                    ),
-                                                  ),
-                                                ),
-                                              ),
-                                            ),
-                                            SingleChildScrollView(
-                                              child: Padding(
-                                                padding: EdgeInsets.only(
-                                                  left: MediaQuery.of(context)
-                                                          .size
-                                                          .width *
-                                                      0.02,
-                                                  right: MediaQuery.of(context)
-                                                          .size
-                                                          .width *
-                                                      0.02,
-                                                ),
-                                                child: Container(
-                                                  height: MediaQuery.of(context)
-                                                          .size
-                                                          .width *
-                                                      0.6,
-                                                  child: Card(
-                                                    shape: RoundedRectangleBorder(
-                                                        side: BorderSide(
-                                                            color: const Color
-                                                                .fromARGB(
-                                                                255, 255, 255, 255),
-                                                            style: BorderStyle
-                                                                .solid,
-                                                            width: MediaQuery.of(
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      );
+                                                    } else {
+                                                      Text(
+                                                        "การใช้น้ำวันนี้ = ยังไม่มีข้อมูล",
+                                                        style: GoogleFonts.kanit(
+                                                            color: Colors.white,
+                                                            fontSize: MediaQuery.of(
                                                                         context)
                                                                     .size
                                                                     .width *
-                                                                0.005),
-                                                        borderRadius:
-                                                            BorderRadius.all(
-                                                                Radius.circular(
-                                                                    5))),
-                                                    color: const Color.fromARGB(
-                                                        255, 255, 255, 255),
-                                                    child: SfDataGrid(
-                                                      source:
-                                                          _datadetailsDataSourcePage3,
-                                                      columnWidthMode:
-                                                          ColumnWidthMode.fill,
-                                                      columns: _columns3,
+                                                                0.05,
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .bold),
+                                                      );
+                                                    }
+                                                  },
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding: EdgeInsets.only(
+                                              left: MediaQuery.of(context)
+                                                      .size
+                                                      .width *
+                                                  0.018,
+                                              right: MediaQuery.of(context)
+                                                      .size
+                                                      .width *
+                                                  0.018,
+                                            ),
+                                            child: Card(
+                                              shape: RoundedRectangleBorder(
+                                                side: BorderSide(
+                                                  color: Color(0x53FFFFFF),
+                                                  width: MediaQuery.of(context)
+                                                          .size
+                                                          .width *
+                                                      0.9,
+                                                ),
+                                                borderRadius:
+                                                    BorderRadiusDirectional.all(
+                                                  Radius.circular(5),
+                                                ),
+                                              ),
+                                              color: Color(0x3C7BD5E5),
+                                              child: Container(
+                                                width: MediaQuery.of(context)
+                                                        .size
+                                                        .width *
+                                                    0.94,
+                                                height: MediaQuery.of(context)
+                                                        .size
+                                                        .width *
+                                                    0.18,
+                                                child: ListView.builder(
+                                                  itemCount:
+                                                      _realtimeDataList.length,
+                                                  itemBuilder:
+                                                      (context, index) {
+                                                    RealtimeData realtimeData =
+                                                        _realtimeDataList[
+                                                            index];
+                                                    if (realtimeData
+                                                            .Product_Details_Day_Water_Use !=
+                                                        null) {
+                                                      return Column(
+                                                        children: [
+                                                          SizedBox(
+                                                            height: MediaQuery.of(
+                                                                        context)
+                                                                    .size
+                                                                    .height *
+                                                                0.03,
+                                                          ),
+                                                          Text(
+                                                            NumberFormat(
+                                                                    "การใช้น้ำเดือนนี้ = " +
+                                                                        "#,##0.00 " +
+                                                                        'ลิตร')
+                                                                .format(realtimeData
+                                                                    .Product_Details_Month_Water_Use),
+                                                            style: GoogleFonts.kanit(
+                                                                color: Colors
+                                                                    .white,
+                                                                fontSize: MediaQuery.of(
+                                                                            context)
+                                                                        .size
+                                                                        .width *
+                                                                    0.05,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .bold),
+                                                          ),
+                                                        ],
+                                                      );
+                                                    } else {
+                                                      Text(
+                                                        "การใช้น้ำเดือนนี้ = ยังไม่มีข้อมูล",
+                                                        style: GoogleFonts.kanit(
+                                                            color: Colors.white,
+                                                            fontSize: MediaQuery.of(
+                                                                        context)
+                                                                    .size
+                                                                    .width *
+                                                                0.05,
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .bold),
+                                                      );
+                                                    }
+                                                  },
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding: EdgeInsets.only(
+                                              left: MediaQuery.of(context)
+                                                      .size
+                                                      .width *
+                                                  0.018,
+                                              right: MediaQuery.of(context)
+                                                      .size
+                                                      .width *
+                                                  0.018,
+                                            ),
+                                            child: Card(
+                                              shape: RoundedRectangleBorder(
+                                                side: BorderSide(
+                                                  color: Color(0x53FFFFFF),
+                                                  width: MediaQuery.of(context)
+                                                          .size
+                                                          .width *
+                                                      0.9,
+                                                ),
+                                                borderRadius:
+                                                    BorderRadiusDirectional.all(
+                                                  Radius.circular(5),
+                                                ),
+                                              ),
+                                              color: Color(0x3C7BD5E5),
+                                              child: Container(
+                                                width: MediaQuery.of(context)
+                                                        .size
+                                                        .width *
+                                                    0.9,
+                                                height: MediaQuery.of(context)
+                                                        .size
+                                                        .width *
+                                                    0.139,
+                                                child: Padding(
+                                                  padding:
+                                                      const EdgeInsets.all(6.0),
+                                                  child: Card(
+                                                    color: Color.fromARGB(
+                                                        0, 123, 213, 229),
+                                                    shape:
+                                                        RoundedRectangleBorder(
+                                                            side: BorderSide(
+                                                              style: BorderStyle
+                                                                  .none,
+                                                              color: Color
+                                                                  .fromARGB(
+                                                                      0,
+                                                                      123,
+                                                                      213,
+                                                                      229),
+                                                              width: MediaQuery.of(
+                                                                          context)
+                                                                      .size
+                                                                      .width *
+                                                                  0.002,
+                                                            ),
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .all(Radius
+                                                                        .circular(
+                                                                            5))),
+                                                    child: ListView.builder(
+                                                      itemCount:
+                                                          _realtimeDataList
+                                                              .length,
+                                                      itemBuilder:
+                                                          (context, index) {
+                                                        RealtimeData
+                                                            realtimeData =
+                                                            _realtimeDataList[
+                                                                index];
+                                                        double unit = realtimeData
+                                                                .Product_Details_Day_Water_Use /
+                                                            1000;
+                                                        if (realtimeData
+                                                                .Product_Details_Month_Water_Use !=
+                                                            null) {
+                                                          if (unit <= 30) {
+                                                            return Column(
+                                                              children: [
+                                                                SizedBox(
+                                                                  height: MediaQuery.of(
+                                                                              context)
+                                                                          .size
+                                                                          .height *
+                                                                      0.01,
+                                                                ),
+                                                                Center(
+                                                                  child: Text(
+                                                                    NumberFormat("ค่าน้ำเดือนนี้ ≈ " +
+                                                                            "#,##0.00 " +
+                                                                            'บาท')
+                                                                        .format(realtimeData.Product_Details_Month_Water_Use *
+                                                                            8.50),
+                                                                    style: GoogleFonts.kanit(
+                                                                        color: Colors
+                                                                            .white,
+                                                                        fontSize:
+                                                                            MediaQuery.of(context).size.width *
+                                                                                0.05,
+                                                                        fontWeight:
+                                                                            FontWeight.bold),
+                                                                  ),
+                                                                ),
+                                                              ],
+                                                            );
+                                                          } else if (unit >=
+                                                                  31 &&
+                                                              unit <= 41) {
+                                                            return Column(
+                                                              children: [
+                                                                SizedBox(
+                                                                  height: MediaQuery.of(
+                                                                              context)
+                                                                          .size
+                                                                          .height *
+                                                                      0.01,
+                                                                ),
+                                                                Center(
+                                                                  child: Text(
+                                                                    NumberFormat("ค่าน้ำเดือนนี้ ≈ " +
+                                                                            "#,##0.00 " +
+                                                                            'บาท')
+                                                                        .format(realtimeData.Product_Details_Month_Water_Use *
+                                                                            10.03),
+                                                                    style: GoogleFonts.kanit(
+                                                                        color: Colors
+                                                                            .white,
+                                                                        fontSize:
+                                                                            MediaQuery.of(context).size.width *
+                                                                                0.05,
+                                                                        fontWeight:
+                                                                            FontWeight.bold),
+                                                                  ),
+                                                                ),
+                                                              ],
+                                                            );
+                                                          } else if (unit >=
+                                                                  41 &&
+                                                              unit <= 50) {
+                                                            return Column(
+                                                              children: [
+                                                                SizedBox(
+                                                                  height: MediaQuery.of(
+                                                                              context)
+                                                                          .size
+                                                                          .height *
+                                                                      0.01,
+                                                                ),
+                                                                Center(
+                                                                  child: Text(
+                                                                    NumberFormat("ค่าน้ำเดือนนี้ ≈ " +
+                                                                            "#,##0.00 " +
+                                                                            'บาท')
+                                                                        .format(realtimeData.Product_Details_Month_Water_Use *
+                                                                            10.35),
+                                                                    style: GoogleFonts.kanit(
+                                                                        color: Colors
+                                                                            .white,
+                                                                        fontSize:
+                                                                            MediaQuery.of(context).size.width *
+                                                                                0.05,
+                                                                        fontWeight:
+                                                                            FontWeight.bold),
+                                                                  ),
+                                                                ),
+                                                              ],
+                                                            );
+                                                          } else if (unit >=
+                                                                  51 &&
+                                                              unit <= 60) {
+                                                            return Column(
+                                                              children: [
+                                                                SizedBox(
+                                                                  height: MediaQuery.of(
+                                                                              context)
+                                                                          .size
+                                                                          .height *
+                                                                      0.01,
+                                                                ),
+                                                                Center(
+                                                                  child: Text(
+                                                                    NumberFormat("ค่าน้ำเดือนนี้ ≈ " +
+                                                                            "#,##0.00 " +
+                                                                            'บาท')
+                                                                        .format(realtimeData.Product_Details_Month_Water_Use *
+                                                                            10.68),
+                                                                    style: GoogleFonts.kanit(
+                                                                        color: Colors
+                                                                            .white,
+                                                                        fontSize:
+                                                                            MediaQuery.of(context).size.width *
+                                                                                0.05,
+                                                                        fontWeight:
+                                                                            FontWeight.bold),
+                                                                  ),
+                                                                ),
+                                                              ],
+                                                            );
+                                                          } else if (unit >=
+                                                                  61 &&
+                                                              unit <= 70) {
+                                                            return Column(
+                                                              children: [
+                                                                SizedBox(
+                                                                  height: MediaQuery.of(
+                                                                              context)
+                                                                          .size
+                                                                          .height *
+                                                                      0.01,
+                                                                ),
+                                                                Center(
+                                                                  child: Text(
+                                                                    NumberFormat("ค่าน้ำเดือนนี้ ≈ " +
+                                                                            "#,##0.00 " +
+                                                                            'บาท')
+                                                                        .format(realtimeData.Product_Details_Month_Water_Use *
+                                                                            11.00),
+                                                                    style: GoogleFonts.kanit(
+                                                                        color: Colors
+                                                                            .white,
+                                                                        fontSize:
+                                                                            MediaQuery.of(context).size.width *
+                                                                                0.05,
+                                                                        fontWeight:
+                                                                            FontWeight.bold),
+                                                                  ),
+                                                                ),
+                                                              ],
+                                                            );
+                                                          } else if (unit >=
+                                                                  71 &&
+                                                              unit <= 80) {
+                                                            return Column(
+                                                              children: [
+                                                                SizedBox(
+                                                                  height: MediaQuery.of(
+                                                                              context)
+                                                                          .size
+                                                                          .height *
+                                                                      0.01,
+                                                                ),
+                                                                Center(
+                                                                  child: Text(
+                                                                    NumberFormat("ค่าน้ำเดือนนี้ ≈ " +
+                                                                            "#,##0.00 " +
+                                                                            'บาท')
+                                                                        .format(realtimeData.Product_Details_Month_Water_Use *
+                                                                            11.33),
+                                                                    style: GoogleFonts.kanit(
+                                                                        color: Colors
+                                                                            .white,
+                                                                        fontSize:
+                                                                            MediaQuery.of(context).size.width *
+                                                                                0.05,
+                                                                        fontWeight:
+                                                                            FontWeight.bold),
+                                                                  ),
+                                                                ),
+                                                              ],
+                                                            );
+                                                          } else if (unit >=
+                                                                  81 &&
+                                                              unit <= 90) {
+                                                            return Column(
+                                                              children: [
+                                                                SizedBox(
+                                                                  height: MediaQuery.of(
+                                                                              context)
+                                                                          .size
+                                                                          .height *
+                                                                      0.01,
+                                                                ),
+                                                                Center(
+                                                                  child: Text(
+                                                                    NumberFormat("ค่าน้ำเดือนนี้ ≈ " +
+                                                                            "#,##0.00 " +
+                                                                            'บาท')
+                                                                        .format(realtimeData.Product_Details_Month_Water_Use *
+                                                                            12.50),
+                                                                    style: GoogleFonts.kanit(
+                                                                        color: Colors
+                                                                            .white,
+                                                                        fontSize:
+                                                                            MediaQuery.of(context).size.width *
+                                                                                0.05,
+                                                                        fontWeight:
+                                                                            FontWeight.bold),
+                                                                  ),
+                                                                ),
+                                                              ],
+                                                            );
+                                                          } else if (unit >=
+                                                                  91 &&
+                                                              unit <= 100) {
+                                                            return Column(
+                                                              children: [
+                                                                SizedBox(
+                                                                  height: MediaQuery.of(
+                                                                              context)
+                                                                          .size
+                                                                          .height *
+                                                                      0.01,
+                                                                ),
+                                                                Center(
+                                                                  child: Text(
+                                                                    NumberFormat("ค่าน้ำเดือนนี้ ≈ " +
+                                                                            "#,##0.00 " +
+                                                                            'บาท')
+                                                                        .format(realtimeData.Product_Details_Month_Water_Use *
+                                                                            12.82),
+                                                                    style: GoogleFonts.kanit(
+                                                                        color: Colors
+                                                                            .white,
+                                                                        fontSize:
+                                                                            MediaQuery.of(context).size.width *
+                                                                                0.05,
+                                                                        fontWeight:
+                                                                            FontWeight.bold),
+                                                                  ),
+                                                                ),
+                                                              ],
+                                                            );
+                                                          } else if (unit >=
+                                                                  101 &&
+                                                              unit <= 120) {
+                                                            return Column(
+                                                              children: [
+                                                                SizedBox(
+                                                                  height: MediaQuery.of(
+                                                                              context)
+                                                                          .size
+                                                                          .height *
+                                                                      0.01,
+                                                                ),
+                                                                Center(
+                                                                  child: Text(
+                                                                    NumberFormat("ค่าน้ำเดือนนี้ ≈ " +
+                                                                            "#,##0.00 " +
+                                                                            'บาท')
+                                                                        .format(realtimeData.Product_Details_Month_Water_Use *
+                                                                            13.15),
+                                                                    style: GoogleFonts.kanit(
+                                                                        color: Colors
+                                                                            .white,
+                                                                        fontSize:
+                                                                            MediaQuery.of(context).size.width *
+                                                                                0.05,
+                                                                        fontWeight:
+                                                                            FontWeight.bold),
+                                                                  ),
+                                                                ),
+                                                              ],
+                                                            );
+                                                          } else if (unit >=
+                                                                  121 &&
+                                                              unit <= 160) {
+                                                            return Column(
+                                                              children: [
+                                                                SizedBox(
+                                                                  height: MediaQuery.of(
+                                                                              context)
+                                                                          .size
+                                                                          .height *
+                                                                      0.01,
+                                                                ),
+                                                                Center(
+                                                                  child: Text(
+                                                                    NumberFormat("ค่าน้ำเดือนนี้ ≈ " +
+                                                                            "#,##0.00 " +
+                                                                            'บาท')
+                                                                        .format(realtimeData.Product_Details_Month_Water_Use *
+                                                                            13.47),
+                                                                    style: GoogleFonts.kanit(
+                                                                        color: Colors
+                                                                            .white,
+                                                                        fontSize:
+                                                                            MediaQuery.of(context).size.width *
+                                                                                0.05,
+                                                                        fontWeight:
+                                                                            FontWeight.bold),
+                                                                  ),
+                                                                ),
+                                                              ],
+                                                            );
+                                                          } else if (unit >=
+                                                                  161 &&
+                                                              unit <= 200) {
+                                                            return Column(
+                                                              children: [
+                                                                SizedBox(
+                                                                  height: MediaQuery.of(
+                                                                              context)
+                                                                          .size
+                                                                          .height *
+                                                                      0.01,
+                                                                ),
+                                                                Center(
+                                                                  child: Text(
+                                                                    NumberFormat("ค่าน้ำเดือนนี้ ≈ " +
+                                                                            "#,##0.00 " +
+                                                                            'บาท')
+                                                                        .format(realtimeData.Product_Details_Month_Water_Use *
+                                                                            13.80),
+                                                                    style: GoogleFonts.kanit(
+                                                                        color: Colors
+                                                                            .white,
+                                                                        fontSize:
+                                                                            MediaQuery.of(context).size.width *
+                                                                                0.05,
+                                                                        fontWeight:
+                                                                            FontWeight.bold),
+                                                                  ),
+                                                                ),
+                                                              ],
+                                                            );
+                                                          } else {
+                                                            return Column(
+                                                              children: [
+                                                                SizedBox(
+                                                                  height: MediaQuery.of(
+                                                                              context)
+                                                                          .size
+                                                                          .height *
+                                                                      0.01,
+                                                                ),
+                                                                Center(
+                                                                  child: Text(
+                                                                    NumberFormat("ค่าน้ำเดือนนี้ ≈ " +
+                                                                            "#,##0.00 " +
+                                                                            'บาท')
+                                                                        .format(realtimeData.Product_Details_Month_Water_Use *
+                                                                            14.45),
+                                                                    style: GoogleFonts.kanit(
+                                                                        color: Colors
+                                                                            .white,
+                                                                        fontSize:
+                                                                            MediaQuery.of(context).size.width *
+                                                                                0.05,
+                                                                        fontWeight:
+                                                                            FontWeight.bold),
+                                                                  ),
+                                                                ),
+                                                              ],
+                                                            );
+                                                          }
+                                                        } else {
+                                                          Text(
+                                                            "ค่าน้ำเดือนนี้ ≈  ยังไม่มีข้อมูล",
+                                                            style: GoogleFonts.kanit(
+                                                                color: Colors
+                                                                    .white,
+                                                                fontSize: MediaQuery.of(
+                                                                            context)
+                                                                        .size
+                                                                        .width *
+                                                                    0.05,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .bold),
+                                                          );
+                                                        }
+                                                      },
                                                     ),
                                                   ),
                                                 ),
                                               ),
                                             ),
-                                            SizedBox(
-                                              height: MediaQuery.of(context)
-                                                      .size
-                                                      .height *
-                                                  0.003,
+                                          ),
+                                          SizedBox(
+                                            height: MediaQuery.of(context)
+                                                    .size
+                                                    .height *
+                                                0.005,
+                                          ),
+                                          SingleChildScrollView(
+                                            child: Padding(
+                                              padding: EdgeInsets.only(
+                                                left: MediaQuery.of(context)
+                                                        .size
+                                                        .width *
+                                                    0.02,
+                                                right: MediaQuery.of(context)
+                                                        .size
+                                                        .width *
+                                                    0.02,
+                                              ),
+                                              child: Container(
+                                                height: MediaQuery.of(context)
+                                                        .size
+                                                        .width *
+                                                    0.6,
+                                                child: Card(
+                                                  shape: RoundedRectangleBorder(
+                                                      side: BorderSide(
+                                                          color:
+                                                              Color(0x53FFFFFF),
+                                                          style:
+                                                              BorderStyle.solid,
+                                                          width: MediaQuery.of(
+                                                                      context)
+                                                                  .size
+                                                                  .width *
+                                                              0.005),
+                                                      borderRadius:
+                                                          BorderRadius.all(
+                                                              Radius.circular(
+                                                                  5))),
+                                                  color: Color(0x53FFFFFF),
+                                                  child: SfDataGrid(
+                                                    source:
+                                                        _datadetailsDataSourcePage3,
+                                                    columnWidthMode:
+                                                        ColumnWidthMode.fill,
+                                                    columns: _columns3,
+                                                  ),
+                                                ),
+                                              ),
                                             ),
-                                          ],
-                                        ),
-                                      ), ///////////////
-                                    ),
+                                          ),
+                                          SizedBox(
+                                            height: MediaQuery.of(context)
+                                                    .size
+                                                    .height *
+                                                0.003,
+                                          ),
+                                        ],
+                                      ),
+                                    ), ///////////////
                                   ),
                                 ),
                                 SizedBox(
