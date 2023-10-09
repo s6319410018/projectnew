@@ -34,26 +34,58 @@ class _splashUIState extends State<splashUI> {
     }
   }
 
-  Future sign_in() async {
-    String url = "http://smartwater.atwebpages.com/public/login.php";
+  Future<void> sign_in() async {
+    final String url = "http://192.168.32.1/project/api/loginApi.php";
 
-    final respone = await http.post(Uri.parse(url), body: {
-      'email': _email1,
-      'password': _password1,
-    });
-    var data = json.decode(respone.body);
-    if (data == "Error") {
+    Map<String, dynamic> postData = {
+      "userPassword": _password1,
+      "userEmail": _email1
+    };
+
+    try {
+      final response = await http.post(
+        Uri.parse(url),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: jsonEncode(postData),
+      );
+
+      if (response.statusCode == 200) {
+        var data = json.decode(response.body);
+        print(data);
+
+        if (data == "1") {
+          print('Successfully posted data');
+
+          Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                builder: (context) => homeUI(email: _email1),
+              ));
+        } else {
+          print('Failed to post data. Server response: $data');
+          Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                builder: (context) => login_UI(),
+              ));
+        }
+      } else {
+        print('HTTP Error: ${response.statusCode}');
+        Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(
+              builder: (context) => login_UI(),
+            ));
+      }
+    } catch (e) {
+      print('An error occurred: $e');
       Navigator.pushReplacement(
           context,
           MaterialPageRoute(
             builder: (context) => login_UI(),
           ));
-    } else {
-      Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(
-              builder: (context) => login_UI() //homeUI(email: _email1),
-              ));
     }
   }
 

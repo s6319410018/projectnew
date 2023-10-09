@@ -8,6 +8,6 @@ import 'package:smartwatermeter/views/test.dart';
 void main() {
   runApp(MaterialApp(
     debugShowCheckedModeBanner: false,
-    home: login_UI(),
+    home: splashUI(),
   ));
 }
