@@ -34,13 +34,13 @@ class DatadetailsDataSourcePage1 extends DataGridSource {
   @override
   DataGridRowAdapter buildRow(DataGridRow row) {
     return DataGridRowAdapter(
-        color: Color(0x52FFFFFF), //พื้นหลัง
+        color: Color.fromARGB(255, 255, 255, 255), //พื้นหลัง
         cells: row.getCells().map<Widget>((e) {
           return Card(
               shape: RoundedRectangleBorder(
                   side: BorderSide(color: Color(0x53FFFFFF)),
-                  borderRadius: BorderRadius.all(Radius.circular(1))),
-              color: Color.fromARGB(141, 255, 255, 255),
+                  borderRadius: BorderRadius.all(Radius.circular(5))),
+              color: Color(0xFF7BD5E5),
               child: Center(
                   child: Padding(
                       padding: const EdgeInsets.all(3.5),
@@ -95,13 +95,13 @@ class DatadetailsDataSourcePage2 extends DataGridSource {
   @override
   DataGridRowAdapter buildRow(DataGridRow row) {
     return DataGridRowAdapter(
-        color: Color(0x52FFFFFF), //พื้นหลัง
+        color: Color.fromARGB(255, 255, 255, 255), //พื้นหลัง
         cells: row.getCells().map<Widget>((e) {
           return Card(
               shape: RoundedRectangleBorder(
-                  side: BorderSide(color: Color(0x52000000)),
-                  borderRadius: BorderRadius.all(Radius.circular(1))),
-              color: Color.fromARGB(141, 255, 255, 255),
+                  side: BorderSide(color: Color(0x53FFFFFF)),
+                  borderRadius: BorderRadius.all(Radius.circular(5))),
+              color: Color(0xFF7BD5E5),
               child: Center(
                   child: Padding(
                       padding: const EdgeInsets.all(3.5),
@@ -152,13 +152,13 @@ class DatadetailsDataSourcePage3 extends DataGridSource {
   @override
   DataGridRowAdapter buildRow(DataGridRow row) {
     return DataGridRowAdapter(
-        color: Color(0x52FFFFFF), //พื้นหลัง
+        color: Color.fromARGB(255, 255, 255, 255), //พื้นหลัง
         cells: row.getCells().map<Widget>((e) {
           return Card(
               shape: RoundedRectangleBorder(
-                  side: BorderSide(color: Color(0x52000000)),
-                  borderRadius: BorderRadius.all(Radius.circular(1))),
-              color: Color.fromARGB(141, 255, 255, 255),
+                  side: BorderSide(color: Color(0x53FFFFFF)),
+                  borderRadius: BorderRadius.all(Radius.circular(5))),
+              color: Color(0xFF7BD5E5),
               child: Center(
                   child: Padding(
                       padding: const EdgeInsets.all(3.5),

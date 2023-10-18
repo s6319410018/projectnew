@@ -35,7 +35,8 @@ class _splashUIState extends State<splashUI> {
   }
 
   Future<void> sign_in() async {
-    final String url = "http://192.168.32.1/project/api/loginApi.php";
+    final String url =
+        "http://smartwater.atwebpages.com/appdata/TESTAPI/project/api/loginApi.php";
 
     Map<String, dynamic> postData = {
       "userPassword": _password1,

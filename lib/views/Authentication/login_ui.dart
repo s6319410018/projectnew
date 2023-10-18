@@ -116,7 +116,8 @@ class _login_UIState extends State<login_UI> {
 ///////////////ส่วนสำหรับดึงข้อมูลผู้ใช้ที่ทำการจำรหัสผ่าน
   ///
   Future<void> sign_in() async {
-    final String url = "http://192.168.32.1/project/api/loginApi.php";
+    final String url =
+        "http://smartwater.atwebpages.com/appdata/TESTAPI/project/api/loginApi.php";
 
     Map<String, dynamic> postData = {
       "userPassword": pass.text,
@@ -173,10 +174,9 @@ class _login_UIState extends State<login_UI> {
           constraints: BoxConstraints.expand(),
           decoration: BoxDecoration(
             image: DecorationImage(
-              image: AssetImage("assets/images/water.png"), /////
+              image: AssetImage("assets/images/login_register_bg.jpg"), /////
               fit: BoxFit.cover,
 
-              colorFilter: ColorFilter.linearToSrgbGamma(),
               filterQuality: FilterQuality.high,
             ),
           ),
@@ -191,7 +191,8 @@ class _login_UIState extends State<login_UI> {
                   Text('มาตรวัดน้ำอัจฉริยะ',
                       style: GoogleFonts.kanit(
                           fontWeight: FontWeight.bold,
-                          fontSize: MediaQuery.of(context).size.width * 0.09)),
+                          fontSize: MediaQuery.of(context).size.width * 0.09,
+                          color: const Color.fromARGB(255, 0, 0, 0))),
                   Center(
                     child: Form(
                       key: fromKey,
@@ -249,7 +250,8 @@ class _login_UIState extends State<login_UI> {
                                               Text(
                                                 '   กรุณาป้อนอีเมล',
                                                 style: GoogleFonts.kanit(
-                                                    color: Colors.black),
+                                                    color: Color.fromARGB(
+                                                        255, 0, 0, 0)),
                                               )
                                             ],
                                           ),

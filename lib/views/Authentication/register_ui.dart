@@ -181,7 +181,8 @@ class _registerUIState extends State<registerUI> {
   bool isShowpasswordre = false;
 
   Future<void> sign_up() async {
-    final String url = "http://192.168.32.1/project/api/registerApi.php";
+    final String url =
+        "http://smartwater.atwebpages.com/appdata/TESTAPI/project/api/registerApi.php";
     Map<String, dynamic> postData = {
       "userName": name.text,
       "userAddress": address.text,
