@@ -110,6 +110,8 @@ class _homeUIState extends State<homeUI> {
   Future<List<RealtimeData>> Control_time_ON() async {
     final String url =
         "http://smartwater.atwebpages.com/appdata/TESTAPI/project/api/updateControlTime.php";
+    final String url_setsolenoid =
+        "http://smartwater.atwebpages.com/appdata/TESTAPI/project/api/updateControlSolenoid.php";
 
     DateFormat dateFormat = DateFormat('yyyy-MM-dd');
     DateFormat timeFormat = DateFormat('HH:mm:ss');
@@ -127,6 +129,11 @@ class _homeUIState extends State<homeUI> {
             timeFormat.format(dateTimeList?[1] ?? DateTime.now())
       };
 
+      Map<String, dynamic> postData_setsolenoid = {
+        "userEmail": widget.email,
+        "control_Solenoid": "3",
+      };
+
       try {
         final response = await http.post(
           Uri.parse(url),
@@ -138,6 +145,30 @@ class _homeUIState extends State<homeUI> {
 
         if (response.statusCode == 200) {
           var data = json.decode(response.body);
+          try {
+            final response = await http.post(
+              Uri.parse(url_setsolenoid),
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: jsonEncode(postData_setsolenoid),
+            );
+            while (response.statusCode != 200) {
+              try {
+                final response = await http.post(
+                  Uri.parse(url_setsolenoid),
+                  headers: {
+                    'Content-Type': 'application/json',
+                  },
+                  body: jsonEncode(postData_setsolenoid),
+                );
+              } catch (e) {
+                print('An error occurred: $e');
+              }
+            }
+          } catch (e) {
+            print('An error occurred: $e');
+          }
 
           if (data == "1") {
             showWarningDialogSuccess(context, '           ทำรายการสำเร็จ');
@@ -163,44 +194,41 @@ class _homeUIState extends State<homeUI> {
     final String url =
         "http://smartwater.atwebpages.com/appdata/TESTAPI/project/api/updateControlTime.php";
 
-    if (dateTimeList?[0] != null && dateTimeList?[1] != null) {
-      Map<String, dynamic> postData = {
-        "userEmail": widget.email,
-        "control_Date_On": "0000-00-00",
-        "control_Time_On": "00:00:00",
-        "control_Date_OFF": "0000-00-00",
-        "control_Time_OFF": "00:00:00",
-      };
+    Map<String, dynamic> postData = {
+      "userEmail": widget.email,
+      "control_Date_On": "0000-00-00",
+      "control_Time_On": "00:00:00",
+      "control_Date_OFF": "0000-00-00",
+      "control_Time_OFF": "00:00:00",
+    };
 
-      try {
-        final response = await http.post(
-          Uri.parse(url),
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: jsonEncode(postData),
-        );
+    try {
+      final response = await http.post(
+        Uri.parse(url),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: jsonEncode(postData),
+      );
 
-        if (response.statusCode == 200) {
-          var data = json.decode(response.body);
+      if (response.statusCode == 200) {
+        var data = json.decode(response.body);
 
-          if (data == "1") {
-            showWarningDialogSuccess(context, '           ทำรายการสำเร็จ');
-          } else {
-            print('Empty data received');
-          }
+        if (data == "1") {
+          showWarningDialogSuccess(context, '           ทำรายการสำเร็จ');
         } else {
-          print('HTTP Error: ${response.statusCode}');
-          showWarningDialog(
-              context, '          ทำรายการไม่สำเร็จ: ${response.statusCode}');
+          print('Empty data received');
         }
-      } catch (e) {
-        print('An error occurred: $e');
-        showWarningDialog(context, '          ทำรายการไม่สำเร็จ: $e');
+      } else {
+        print('HTTP Error: ${response.statusCode}');
+        showWarningDialog(
+            context, '          ทำรายการไม่สำเร็จ: ${response.statusCode}');
       }
-    } else {
-      showWarningDialog(context, "ทำรายการไม่สำเร็จโปรดทำรายการอีกครั้ง");
+    } catch (e) {
+      print('An error occurred: $e');
+      showWarningDialog(context, '          ทำรายการไม่สำเร็จ: $e');
     }
+
     return [];
   }
 
@@ -248,38 +276,78 @@ class _homeUIState extends State<homeUI> {
   Future<List<RealtimeData>> Controlai_solenoid() async {
     final String url =
         "http://smartwater.atwebpages.com/appdata/TESTAPI/project/api/updateControlSolenoid.php";
+    final String url1 =
+        "http://smartwater.atwebpages.com/appdata/TESTAPI/project/api/getRealtime.php";
 
     Map<String, dynamic> postData = {
       "userEmail": widget.email,
       "control_Solenoid": ControlSolenoid.toString(),
     };
 
+    Map<String, dynamic> postData1 = {"userEmail": widget.email};
+
     try {
       final response = await http.post(
-        Uri.parse(url),
+        Uri.parse(url1),
         headers: {
           'Content-Type': 'application/json',
         },
-        body: jsonEncode(postData),
+        body: jsonEncode(postData1),
       );
 
       if (response.statusCode == 200) {
         var data = json.decode(response.body);
 
-        if (data == "1") {
-          showWarningDialogSuccess(context, '           ทำรายการสำเร็จ');
+        if (data.isNotEmpty && data[0].isNotEmpty) {
+          List<RealtimeData> realtimeDataList = List.from(
+            data[0].map((json) => RealtimeData.fromJson(json)),
+          );
+
+          if (realtimeDataList.isNotEmpty &&
+              realtimeDataList[0].realtimeTime == 1) {
+            print('realtime_Time is 1');
+            showWarningDialog(context, "กรุณาปิดการตั้งเวลาก่อนทำรายการ");
+          } else {
+            try {
+              final response = await http.post(
+                Uri.parse(url),
+                headers: {
+                  'Content-Type': 'application/json',
+                },
+                body: jsonEncode(postData),
+              );
+
+              if (response.statusCode == 200) {
+                var data = json.decode(response.body);
+
+                if (data == "1") {
+                  showWarningDialogSuccess(
+                      context, '           ทำรายการสำเร็จ');
+                } else {
+                  print('Empty data received');
+                  showWarningDialog(context, '           ทำรายการไม่สำเร็จ');
+                }
+              } else {
+                print('HTTP Error: ${response.statusCode}');
+                showWarningDialog(context,
+                    '         ทำรายการไม่สำเร็จ : ${response.statusCode}');
+              }
+            } catch (e) {
+              print('An error occurred: $e');
+              showWarningDialog(context, '         ทำรายการไม่สำเร็จ : $e');
+            }
+          }
         } else {
           print('Empty data received');
-          showWarningDialog(context, '           ทำรายการไม่สำเร็จ');
+          showWarningDialog(context, "มีบางอย่างผิดพลาด");
         }
       } else {
         print('HTTP Error: ${response.statusCode}');
-        showWarningDialog(
-            context, '         ทำรายการไม่สำเร็จ : ${response.statusCode}');
+        showWarningDialog(context, "มีบางอย่างผิดพลาด: ${response.statusCode}");
       }
     } catch (e) {
       print('An error occurred: $e');
-      showWarningDialog(context, '         ทำรายการไม่สำเร็จ : $e');
+      showWarningDialog(context, "มีบางอย่างผิดพลาด: $e");
     }
 
     return [];

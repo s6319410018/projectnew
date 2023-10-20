@@ -423,7 +423,7 @@ void loop() {
     Serial.print(thour);
     Serial.print("(hour) ");
 
-    int tminute = p_tm->tm_min;
+    int tminute =  p_tm->tm_min ;
     Serial.print(tminute < 10 ? "0" : "");
     Serial.print(tminute);
     Serial.print("(minute) ");
@@ -675,7 +675,7 @@ void loop() {
 
 }else{
     ai_control = 0 ;
-       for(int n ;(GET_control_Date_ON == formatted_date) && (GET_control_Time_ON == formatted_time)&&(!exitLoop);n++){
+       for(int n ;(GET_control_Date_ON == formatted_date) && (GET_control_Time_ON == formatted_time);n++){
               Display();
               digitalWrite(solenoid_control, LOW);
               Serial.println("ตั้งเวลาเปิดน้ำสำเร็จขณะโหมดเอไอไม่ทำงาน");
@@ -697,6 +697,76 @@ void loop() {
                         String webpageE = httpESPKEY.getString();
                         payload = webpageE;
                         classify_data();
+
+                          time_t now = time(nullptr);
+                          struct tm* p_tm = localtime(&now);
+
+                          int thour = p_tm->tm_hour;
+                          Serial.print(thour < 10 ? "0" : "");
+                          Serial.print(thour);
+                          Serial.print("(hour) ");
+
+                          int tminute =  p_tm->tm_min ;
+                          Serial.print(tminute < 10 ? "0" : "");
+                          Serial.print(tminute);
+                          Serial.print("(minute) ");
+
+                          int tsec = p_tm->tm_sec;
+                          Serial.print(tsec < 10 ? "0" : "");
+                          Serial.print(tsec);
+                          Serial.print("(sec) ");
+
+                          int tdate = p_tm->tm_mday;
+                          Serial.print(tdate);
+                          Serial.print("(date) ");
+
+                          int tmonth = p_tm->tm_mon + 1;
+                          Serial.print(tmonth);
+                          Serial.print("(month) ");
+
+                          int tyear = p_tm->tm_year + 1900;
+                          Serial.print(tyear);
+                          Serial.print("(year) ");
+
+                          int tday_of_week = p_tm->tm_wday + 1;
+                          Serial.print(tday_of_week);
+                          Serial.print("(day of week) ");
+
+                          // 0,1,2,3,4,5,6 วันจันทร์ถึงเสาร์ตามลำดับ
+                          int tday_of_year = p_tm->tm_yday;
+                          Serial.print(tday_of_year);
+                          Serial.print("(day of year) ");
+
+                          int tdst = p_tm->tm_isdst;
+                          Serial.print(tdst);
+                          Serial.println("(daylight saving time - DST)");
+
+                          // Format date as "YYYY-MM-DD"
+                          formatted_date = String(tyear) + "-" + String(tmonth) + "-" + String(tdate);
+                          Serial.print(formatted_date);
+                          Serial.println("(formatted date)");
+
+                          // Format time as "HH:MM:SS"
+                          formatted_time = (thour < 10 ? "0" : "") + String(thour) + ":" + (tminute < 10 ? "0" : "") + String(tminute);
+                          Serial.print(formatted_time);
+                          Serial.println("(formatted time)");
+
+
+                        Serial.print("Conditions: ");
+                        Serial.println("Condition 1: " + String(GET_control_Date_OFF == formatted_date));
+                        Serial.println(GET_control_Date_OFF);
+                        Serial.println(GET_control_Time_OFF);
+                        Serial.println("Condition 2: " + String(GET_control_Time_OFF == formatted_time));
+
+                        // ... (print other conditions as needed)
+
+                        Serial.println((GET_control_Date_OFF == formatted_date) && (GET_control_Time_OFF == formatted_time));
+                      Serial.print("Length of GET_control_Time_OFF: ");
+                        Serial.println(GET_control_Time_OFF.length());
+                        Serial.print("Length of formatted_Time: ");  // Corrected the function name
+                        Serial.println(formatted_time.length());  // Assuming formatted_Time is a variable in your code
+                       
+
                         if(((GET_control_Date_OFF == formatted_date) &&
                                   (GET_control_Time_OFF == formatted_time)) ||
                                   ((GET_control_Date_ON == "0000-00-00") &&
@@ -726,6 +796,13 @@ void loop() {
 
    
 
+    
+     
+     
+     
+     
+     
+     
      if(GET_control_Solenoid=="1"){
           digitalWrite(solenoid_control,LOW );
           Serial.println("กำลังเปิดน้ำขณะโหมดเอไอไม่ทำงาน");
@@ -734,6 +811,7 @@ void loop() {
           digitalWrite(solenoid_control,HIGH );
           Serial.println("กำลังปิดน้ำขณะโหมดเอไอไม่ทำงาน");
           Solenoid = 0;
+
 }
 
 /////////////////////////////////////////////////////////////////////////////
