@@ -8,6 +8,7 @@ String urlESPKEY = "http://" + String(HOSTESPKEY);
 HTTPClient httpWRITE, httpREAD, httpESPKEY;
 WiFiClient client;
 
+bool exitLoop = false;
 //#define HOSTREAD "smartwater.atwebpages.com/DataEsp/dbread.php"  // Enter HOST URL without "http://" and "/" at the end of URL
 /////////////////////////////////////////
 
@@ -511,11 +512,12 @@ void loop() {
 
     if (GET_control_AI == "1") {
       ai_control = 1;
-      if((GET_control_Date_ON == formatted_date) && (GET_control_Time_ON == formatted_time)){
-        while(GET_control_Date_OFF != formatted_date || GET_control_Time_OFF != formatted_time){
-         Display();
+      if ((GET_control_Date_ON == formatted_date) && (GET_control_Time_ON == formatted_time)) {
+        while (GET_control_Date_OFF != formatted_date || GET_control_Time_OFF != formatted_time) {
+
+          Display();
           digitalWrite(solenoid_control, LOW);
-          Serial.println("ตั้งเวลาเปิดน้ำสำเร็จขณะโหมดเอไอไม่ทำงาน");
+          Serial.println("ตั้งเวลาเปิดน้ำสำเร็จขณะโหมดเอไอทำงาน");
           timecontrolstop = 1;
           time_control = 1;
           Solenoid = 1;
@@ -534,116 +536,61 @@ void loop() {
             String webpageE = httpESPKEY.getString();
             payload = webpageE;
             classify_data();
-            time_t now = time(nullptr);
-            struct tm* p_tm = localtime(&now);
-
-            int thour = p_tm->tm_hour;
-            Serial.print(thour < 10 ? "0" : "");
-            Serial.print(thour);
-            Serial.print("(hour) ");
-
-            int tminute = p_tm->tm_min;
-            Serial.print(tminute < 10 ? "0" : "");
-            Serial.print(tminute);
-            Serial.print("(minute) ");
-
-            int tsec = p_tm->tm_sec;
-            Serial.print(tsec < 10 ? "0" : "");
-            Serial.print(tsec);
-            Serial.print("(sec) ");
-
-            int tdate = p_tm->tm_mday;
-            Serial.print(tdate);
-            Serial.print("(date) ");
-
-            int tmonth = p_tm->tm_mon + 1;
-            Serial.print(tmonth);
-            Serial.print("(month) ");
-
-            int tyear = p_tm->tm_year + 1900;
-            Serial.print(tyear);
-            Serial.print("(year) ");
-
-            int tday_of_week = p_tm->tm_wday + 1;
-            Serial.print(tday_of_week);
-            Serial.print("(day of week) ");
-
-            // 0,1,2,3,4,5,6 วันจันทร์ถึงเสาร์ตามลำดับ
-            int tday_of_year = p_tm->tm_yday;
-            Serial.print(tday_of_year);
-            Serial.print("(day of year) ");
-
-            int tdst = p_tm->tm_isdst;
-            Serial.print(tdst);
-            Serial.println("(daylight saving time - DST)");
-
-            // Format date as "YYYY-MM-DD"
-            formatted_date = String(tyear) + "-" + String(tmonth) + "-" + String(tdate);
-            Serial.print(formatted_date);
-            Serial.println("(formatted date)");
-
-            // Format time as "HH:MM:SS"
-            formatted_time = (thour < 10 ? "0" : "") + String(thour) + ":" + (tminute < 10 ? "0" : "") + String(tminute);
-            Serial.print(formatted_time);
-            Serial.println("(formatted time)");
-
-          if ((pressuretostring < GET_result_SD)) {
-            digitalWrite(solenoid_control, HIGH);
-            Serial.println("Ai กำลังปิดน้ำอัตโนมัติขณะตั้งเวลาเปิดน้ำโหมดเอไอ");
-            timecontrolstop = 0;
-            time_control = 0;
-            Solenoid = 0;
+            if ((pressuretostring < GET_result_SD)) {
+              digitalWrite(solenoid_control, HIGH);
+              Serial.println("Ai กำลังปิดน้ำอัตโนมัติขณะตั้งเวลาเปิดน้ำโหมดเอไอ");
+              timecontrolstop = 0;
+              time_control = 0;
+              Solenoid = 0;
               int httpCodeWRITE = httpWRITE.POST(postData);
               Serial.print(postData);
-
               if (httpCodeWRITE == 200) {  //อัปข้อมูลสำเร็จ
                 Serial.println();
                 Serial.println("อัปโหลดข้อมูลสุดท้ายก่อนหยุดการตั้งเวลา");
                 Serial.print(httpCodeWRITE);
                 String webpageW = httpWRITE.getString();
                 Serial.println(webpageW + "\n");
-                break;
               } else {
                 Serial.println("ไม่สามารถอัปโหลดข้อมูลสุดท้ายก่อนหยุดการตั้งเวลา");
                 httpWRITE.end();
               }
-
-
-          } else if (((GET_control_Date_OFF == formatted_date) && (GET_control_Time_OFF == formatted_time)) || ((GET_control_Date_ON == "0000-00-00") && (GET_control_Date_OFF == "0000-00-00") && (GET_control_Time_ON == "00:00:00") && (GET_control_Time_OFF == "00:00:00"))) {
-            digitalWrite(solenoid_control, HIGH);
-            Serial.println("กำลังปิดน้ำอัตโนมัติขณะตั้งเวลาเปิดน้ำโหมดเอไอ");
-            timecontrolstop = 0;
-            time_control = 0;
-            Solenoid = 0;
-            int httpCodeWRITE = httpWRITE.POST(postData);
+              break;
+            } else if (((GET_control_Date_OFF == formatted_date) && (GET_control_Time_OFF == formatted_time)) || ((GET_control_Date_ON == "0000-00-00") && (GET_control_Date_OFF == "0000-00-00") && (GET_control_Time_ON == "00:00:00") && (GET_control_Time_OFF == "00:00:00"))) {
+              digitalWrite(solenoid_control, HIGH);
+              Serial.println("กำลังปิดน้ำอัตโนมัติขณะตั้งเวลาเปิดน้ำโหมดเอไอ");
+              timecontrolstop = 0;
+              time_control = 0;
+              Solenoid = 0;
+              int httpCodeWRITE = httpWRITE.POST(postData);
               Serial.print(postData);
-           
               if (httpCodeWRITE == 200) {  //อัปข้อมูลสำเร็จ
                 Serial.println();
                 Serial.println("อัปโหลดข้อมูลสุดท้ายก่อนหยุดการตั้งเวลา");
                 Serial.print(httpCodeWRITE);
                 String webpageW = httpWRITE.getString();
                 Serial.println(webpageW + "\n");
-                break;
               } else {
                 Serial.println("ไม่สามารถอัปโหลดข้อมูลสุดท้ายก่อนหยุดการตั้งเวลา");
                 httpWRITE.end();
               }
+              break;
+            }
+          }
+          int httpCodeWRITE = httpWRITE.POST(postData);
+          Serial.print(postData);
+          if (httpCodeWRITE == 200) {  //อัปข้อมูลสำเร็จ
+            Serial.println();
+            Serial.println("Values uploaded successfully.");
+            Serial.print(httpCodeWRITE);
+            String webpageW = httpWRITE.getString();
+            Serial.println(webpageW + "\n");
+          } else {
+            Serial.println("Failed to upload values.\n");
+            httpWRITE.end();
           }
         }
-        int httpCodeWRITE = httpWRITE.POST(postData);
-        Serial.print(postData);
-        if (httpCodeWRITE == 200) {  //อัปข้อมูลสำเร็จ
-          Serial.println();
-          Serial.println("Values uploaded successfully.");
-          Serial.print(httpCodeWRITE);
-          String webpageW = httpWRITE.getString();
-          Serial.println(webpageW + "\n");
-        } else {
-          Serial.println("Failed to upload values.\n");
-          httpWRITE.end();
-        }
       }
+
 
       if (GET_control_Solenoid == "1") {
         digitalWrite(solenoid_control, LOW);
@@ -669,24 +616,10 @@ void loop() {
             String webpageE = httpESPKEY.getString();
             payload = webpageE;
             classify_data();
-            if((pressuretostring > GET_result_SD)){
-                digitalWrite(solenoid_control, LOW);
-                Serial.println("กำลังเปิดน้ำขณะโหมดเอไอทำงาน");
-                Solenoid = 1;
-                int httpCodeWRITE = httpWRITE.POST(postData);
-                Serial.print(postData);
-
-              if (httpCodeWRITE == 200) {  //อัปข้อมูลสำเร็จ
-                Serial.println();
-                Serial.println("อัปโหลดข้อมูลสุดท้าย");
-                Serial.print(httpCodeWRITE);
-                String webpageW = httpWRITE.getString();
-                Serial.println(webpageW + "\n");
-                break;
-              } else {
-                Serial.println("ไม่สามารถอัปโหลดข้อมูลสุดท้าย");
-                httpWRITE.end();
-              }
+            if ((pressuretostring > GET_result_SD)) {
+              digitalWrite(solenoid_control, LOW);
+              Serial.println("Ai กำลังเปิดน้ำอัตโนมัติ");
+              Solenoid = 1;
             }
           }
           int httpCodeWRITE = httpWRITE.POST(postData);
@@ -703,15 +636,17 @@ void loop() {
           }
         }
 
+
+
       } else if (GET_control_Solenoid == "0") {
         digitalWrite(solenoid_control, HIGH);
         Serial.println("กำลังปิดน้ำขณะโหมดเอไอทำงาน");
         Solenoid = 0;
-        while ((pressuretostring > GET_result_SD)) {  //เอไอทำงาน
+        while ((pressuretostring < GET_result_SD) && (!exitLoop)) {  //เอไอทำงาน
           Display();
           digitalWrite(solenoid_control, HIGH);
-          Serial.println("Ai กำลังเปิดน้ำอัตโนมัติ");
-          Solenoid = 1;
+          Serial.println("Ai กำลังปิดน้ำอัตโนมัติ");
+          Solenoid = 0;
           project();
           httpWRITE.begin(client, urlWRITE);
           httpESPKEY.begin(client, urlESPKEY);
@@ -720,10 +655,6 @@ void loop() {
 
           int httpCodeESPKEY = httpESPKEY.POST(postESPKEY);
           Serial.print(postESPKEY);
-          while(httpCodeESPKEY != 200){
-          int httpCodeESPKEY = httpESPKEY.POST(postESPKEY);
-          Serial.print(postESPKEY);  
-          }
           if (httpCodeESPKEY == 200) {  //ดึงข้อมูลสำเร็จ
             Serial.println();
             Serial.println("Values uploaded ESPKEY.");
@@ -731,25 +662,11 @@ void loop() {
             String webpageE = httpESPKEY.getString();
             payload = webpageE;
             classify_data();
-            if ((pressuretostring < GET_result_SD)) {
+            if ((pressuretostring > GET_result_SD)) {
               digitalWrite(solenoid_control, LOW);
-              Serial.println("Ai กำลังปิดน้ำอัตโนมัติ");
+              Serial.println("Ai กำลังเปิดน้ำอัตโนมัติ");
               Solenoid = 1;
-               int httpCodeWRITE = httpWRITE.POST(postData);
-              Serial.print(postData);
-
-              if (httpCodeWRITE == 200) {  //อัปข้อมูลสำเร็จ
-                Serial.println();
-                Serial.println("อัปโหลดข้อมูลสุดท้าย");
-                Serial.print(httpCodeWRITE);
-                String webpageW = httpWRITE.getString();
-                Serial.println(webpageW + "\n");
-                break;
-              } else {
-                Serial.println("ไม่สามารถอัปโหลดข้อมูลสุดท้าย");
-                httpWRITE.end();
-              }
-
+              exitLoop = true;
             }
           }
           int httpCodeWRITE = httpWRITE.POST(postData);
@@ -765,8 +682,7 @@ void loop() {
             httpWRITE.end();
           }
         }
-        }
-      } 
+      }
     } else {
       ai_control = 0;
       if ((GET_control_Date_ON == formatted_date) && (GET_control_Time_ON == formatted_time)) {
@@ -778,17 +694,10 @@ void loop() {
           time_control = 1;
           Solenoid = 1;
           project();
-          Flowrate = String(RateWater);
-          TotalLite = String(TotalWater);
-          postData = "Flowrate=" + Flowrate + "&Pressure=" + pressure + "&Solenoid=" + Solenoid + "&Ai_Status=" + ai_control + "&Time_Status=" + time_control + "&espkey=" + espkey + "&D_TotalWater=" + D_TotalWater + "&M_TotalWater=" + M_TotalWater + "&timecontrolstop=" + timecontrolstop;
-
-
           httpWRITE.begin(client, urlWRITE);
           httpESPKEY.begin(client, urlESPKEY);
           httpWRITE.addHeader("Content-Type", "application/x-www-form-urlencoded");
           httpESPKEY.addHeader("Content-Type", "application/x-www-form-urlencoded");
-
-  
 
           int httpCodeESPKEY = httpESPKEY.POST(postESPKEY);
           Serial.print(postESPKEY);
@@ -856,7 +765,7 @@ void loop() {
 
             if (((GET_control_Date_OFF == formatted_date) && (GET_control_Time_OFF == formatted_time)) || ((GET_control_Date_ON == "0000-00-00") && (GET_control_Date_OFF == "0000-00-00") && (GET_control_Time_ON == "00:00:00") && (GET_control_Time_OFF == "00:00:00"))) {
               digitalWrite(solenoid_control, HIGH);
-              Serial.println("กำลังปิดน้ำอัตโนมัติขณะตั้งเวลาขณะปิดน้ำโหมดเอไอ");
+              Serial.println("กำลังปิดน้ำอัตโนมัติขณะตั้งเวลาเปิดน้ำโหมดเอไอ");
               timecontrolstop = 0;
               time_control = 0;
               Solenoid = 0;
@@ -864,12 +773,12 @@ void loop() {
               Serial.print(postData);
               if (httpCodeWRITE == 200) {  //อัปข้อมูลสำเร็จ
                 Serial.println();
-                Serial.println("อัปโหลดข้อมูลสุดท้าย");
+                Serial.println("อัปโหลดข้อมูลสุดท้ายก่อนหยุดการตั้งเวลา");
                 Serial.print(httpCodeWRITE);
                 String webpageW = httpWRITE.getString();
                 Serial.println(webpageW + "\n");
               } else {
-                Serial.println("ไม่สามารถอัปโหลดข้อมูลสุดท้าย");
+                Serial.println("ไม่สามารถอัปโหลดข้อมูลสุดท้ายก่อนหยุดการตั้งเวลา");
                 httpWRITE.end();
               }
               break;
