@@ -30,13 +30,13 @@ if (!$con) {
         $Time_Back_70 = date("H:i:s", strtotime("-70 minutes"));
         $Time_Back_80 = date("H:i:s", strtotime("-80 minutes"));
 
-        $Date_Back_7 = (string)$Date_Back;
+        $Date_Back_7 = (string)$Date_Back_7;
 
-        $Date_Back_14 = (string)$Date_Back;
+        $Date_Back_14 = (string)$Date_Back_14;
 
-        $Date_Back_21 = (string)$Date_Back;
+        $Date_Back_21 = (string)$Date_Back_21;
 
-        $Date_Back_28 = (string)$Date_Back;
+        $Date_Back_28 = (string)$Date_Back_28;
 
         $Time_Back_10 = (string)$Time_Back_10;
         $Time_Back_20 = (string)$Time_Back_20;
@@ -198,9 +198,9 @@ if (!$con) {
             $standardDeviation = sqrt($variance);
 
             //ขอบบน
-            $resultSDPlus =  $x_bar + $standardDeviation;
+            $resultSDPlus =   $x_bar_4_week + $standardDeviation;
             //ขอบล่าง
-            $resultSDMinus =  $x_bar - $standardDeviation;
+            $resultSDMinus =   $x_bar_4_week - $standardDeviation;
 
             $result_sqlRealTimeControl = $con->query($sqlRealtimeControl);
             $result_sqlLasttimedata = $con->query($sqlLasttimeData);
@@ -240,45 +240,45 @@ if (!$con) {
 
 
                 //ดึงข้อมูลย้อนหลัง 1 สัปดาห์
-                $result_sql_time_back_10_1_week_january  = $con->query("SELECT Product_Details_Month_Pressure FROM product_details_tb WHERE date='$Date_january_back_7day' AND time='$Time_Back_10_format' ORDER BY Product_Details_Month_Water_Use DESC LIMIT 1");
-                $result_sql_time_back_20_1_week_january  = $con->query("SELECT Product_Details_Month_Pressure FROM product_details_tb WHERE date='$Date_january_back_7day' AND time='$Time_Back_20_format' ORDER BY Product_Details_Month_Water_Use DESC LIMIT 1");
-                $result_sql_time_back_30_1_week_january  = $con->query("SELECT Product_Details_Month_Pressure FROM product_details_tb WHERE date='$Date_january_back_7day' AND time='$Time_Back_30_format' ORDER BY Product_Details_Month_Water_Use DESC LIMIT 1");
-                $result_sql_time_back_40_1_week_january  = $con->query("SELECT Product_Details_Month_Pressure FROM product_details_tb WHERE date='$Date_january_back_7day' AND time='$Time_Back_40_format' ORDER BY Product_Details_Month_Water_Use DESC LIMIT 1");
-                $result_sql_time_back_50_1_week_january  = $con->query("SELECT Product_Details_Month_Pressure FROM product_details_tb WHERE date='$Date_january_back_7day' AND time='$Time_Back_50_format' ORDER BY Product_Details_Month_Water_Use DESC LIMIT 1");
-                $result_sql_time_back_60_1_week_january  = $con->query("SELECT Product_Details_Month_Pressure FROM product_details_tb WHERE date='$Date_january_back_7day' AND time='$Time_Back_60_format' ORDER BY Product_Details_Month_Water_Use DESC LIMIT 1");
-                $result_sql_time_back_70_1_week_january  = $con->query("SELECT Product_Details_Month_Pressure FROM product_details_tb WHERE date='$Date_january_back_7day' AND time='$Time_Back_70_format' ORDER BY Product_Details_Month_Water_Use DESC LIMIT 1");
-                $result_sql_time_back_80_1_week_january  = $con->query("SELECT Product_Details_Month_Pressure FROM product_details_tb WHERE date='$Date_january_back_7day' AND time='$Time_Back_80_format' ORDER BY Product_Details_Month_Water_Use DESC LIMIT 1");
+                $result_sql_time_back_10_1_week_january  = $con->query("SELECT Product_Details_Month_Pressure FROM product_details_tb WHERE date='$Date_january_back_7day' AND time='$Time_Back_10_format' ORDER BY  Product_Details_Month_Id  DESC LIMIT 1");
+                $result_sql_time_back_20_1_week_january  = $con->query("SELECT Product_Details_Month_Pressure FROM product_details_tb WHERE date='$Date_january_back_7day' AND time='$Time_Back_20_format' ORDER BY Product_Details_Month_Id DESC LIMIT 1");
+                $result_sql_time_back_30_1_week_january  = $con->query("SELECT Product_Details_Month_Pressure FROM product_details_tb WHERE date='$Date_january_back_7day' AND time='$Time_Back_30_format' ORDER BY Product_Details_Month_Id DESC LIMIT 1");
+                $result_sql_time_back_40_1_week_january  = $con->query("SELECT Product_Details_Month_Pressure FROM product_details_tb WHERE date='$Date_january_back_7day' AND time='$Time_Back_40_format' ORDER BY Product_Details_Month_Id DESC LIMIT 1");
+                $result_sql_time_back_50_1_week_january  = $con->query("SELECT Product_Details_Month_Pressure FROM product_details_tb WHERE date='$Date_january_back_7day' AND time='$Time_Back_50_format' ORDER BY Product_Details_Month_Id DESC LIMIT 1");
+                $result_sql_time_back_60_1_week_january  = $con->query("SELECT Product_Details_Month_Pressure FROM product_details_tb WHERE date='$Date_january_back_7day' AND time='$Time_Back_60_format' ORDER BY Product_Details_Month_Id DESC LIMIT 1");
+                $result_sql_time_back_70_1_week_january  = $con->query("SELECT Product_Details_Month_Pressure FROM product_details_tb WHERE date='$Date_january_back_7day' AND time='$Time_Back_70_format' ORDER BY Product_Details_Month_Id DESC LIMIT 1");
+                $result_sql_time_back_80_1_week_january  = $con->query("SELECT Product_Details_Month_Pressure FROM product_details_tb WHERE date='$Date_january_back_7day' AND time='$Time_Back_80_format' ORDER BY Product_Details_Month_Id DESC LIMIT 1");
 
 
                 //ดึงข้อมูลย้อนหลัง 2 สัปดาห์
-                $result_sql_time_back_10_2_week_january  = $con->query("SELECT Product_Details_Month_Pressure FROM product_details_tb WHERE date='$Date_january_back_14day' AND time='$Time_Back_10_format' ORDER BY Product_Details_Month_Water_Use DESC LIMIT 1");
-                $result_sql_time_back_20_2_week_january  = $con->query("SELECT Product_Details_Month_Pressure FROM product_details_tb WHERE date='$Date_january_back_14day' AND time='$Time_Back_20_format' ORDER BY Product_Details_Month_Water_Use DESC LIMIT 1");
-                $result_sql_time_back_30_2_week_january  = $con->query("SELECT Product_Details_Month_Pressure FROM product_details_tb WHERE date='$Date_january_back_14day' AND time='$Time_Back_30_format' ORDER BY Product_Details_Month_Water_Use DESC LIMIT 1");
-                $result_sql_time_back_40_2_week_january  = $con->query("SELECT Product_Details_Month_Pressure FROM product_details_tb WHERE date='$Date_january_back_14day' AND time='$Time_Back_40_format' ORDER BY Product_Details_Month_Water_Use DESC LIMIT 1");
-                $result_sql_time_back_50_2_week_january  = $con->query("SELECT Product_Details_Month_Pressure FROM product_details_tb WHERE date='$Date_january_back_14day' AND time='$Time_Back_50_format' ORDER BY Product_Details_Month_Water_Use DESC LIMIT 1");
-                $result_sql_time_back_60_2_week_january  = $con->query("SELECT Product_Details_Month_Pressure FROM product_details_tb WHERE date='$Date_january_back_14day' AND time='$Time_Back_60_format' ORDER BY Product_Details_Month_Water_Use DESC LIMIT 1");
-                $result_sql_time_back_70_2_week_january  = $con->query("SELECT Product_Details_Month_Pressure FROM product_details_tb WHERE date='$Date_january_back_14day' AND time='$Time_Back_70_format' ORDER BY Product_Details_Month_Water_Use DESC LIMIT 1");
-                $result_sql_time_back_80_2_week_january  = $con->query("SELECT Product_Details_Month_Pressure FROM product_details_tb WHERE date='$Date_january_back_14day' AND time='$Time_Back_80_format' ORDER BY Product_Details_Month_Water_Use DESC LIMIT 1");
+                $result_sql_time_back_10_2_week_january  = $con->query("SELECT Product_Details_Month_Pressure FROM product_details_tb WHERE date='$Date_january_back_14day' AND time='$Time_Back_10_format' ORDER BY Product_Details_Month_Id DESC LIMIT 1");
+                $result_sql_time_back_20_2_week_january  = $con->query("SELECT Product_Details_Month_Pressure FROM product_details_tb WHERE date='$Date_january_back_14day' AND time='$Time_Back_20_format' ORDER BY Product_Details_Month_Id DESC LIMIT 1");
+                $result_sql_time_back_30_2_week_january  = $con->query("SELECT Product_Details_Month_Pressure FROM product_details_tb WHERE date='$Date_january_back_14day' AND time='$Time_Back_30_format' ORDER BY Product_Details_Month_Id DESC LIMIT 1");
+                $result_sql_time_back_40_2_week_january  = $con->query("SELECT Product_Details_Month_Pressure FROM product_details_tb WHERE date='$Date_january_back_14day' AND time='$Time_Back_40_format' ORDER BY Product_Details_Month_Id DESC LIMIT 1");
+                $result_sql_time_back_50_2_week_january  = $con->query("SELECT Product_Details_Month_Pressure FROM product_details_tb WHERE date='$Date_january_back_14day' AND time='$Time_Back_50_format' ORDER BY Product_Details_Month_Id DESC LIMIT 1");
+                $result_sql_time_back_60_2_week_january  = $con->query("SELECT Product_Details_Month_Pressure FROM product_details_tb WHERE date='$Date_january_back_14day' AND time='$Time_Back_60_format' ORDER BY Product_Details_Month_Id DESC LIMIT 1");
+                $result_sql_time_back_70_2_week_january  = $con->query("SELECT Product_Details_Month_Pressure FROM product_details_tb WHERE date='$Date_january_back_14day' AND time='$Time_Back_70_format' ORDER BY Product_Details_Month_Id DESC LIMIT 1");
+                $result_sql_time_back_80_2_week_january  = $con->query("SELECT Product_Details_Month_Pressure FROM product_details_tb WHERE date='$Date_january_back_14day' AND time='$Time_Back_80_format' ORDER BY Product_Details_Month_Id DESC LIMIT 1");
 
                 //ดึงข้อมูลย้อนหลัง 3 สัปดาห์
-                $result_sql_time_back_10_3_week_january  = $con->query("SELECT Product_Details_Month_Pressure FROM product_details_tb WHERE date='$Date_january_back_21day' AND time='$Time_Back_10_format' ORDER BY Product_Details_Month_Water_Use DESC LIMIT 1");
-                $result_sql_time_back_20_3_week_january  = $con->query("SELECT Product_Details_Month_Pressure FROM product_details_tb WHERE date='$Date_january_back_21day' AND time='$Time_Back_20_format' ORDER BY Product_Details_Month_Water_Use DESC LIMIT 1");
-                $result_sql_time_back_30_3_week_january  = $con->query("SELECT Product_Details_Month_Pressure FROM product_details_tb WHERE date='$Date_january_back_21day' AND time='$Time_Back_30_format' ORDER BY Product_Details_Month_Water_Use DESC LIMIT 1");
-                $result_sql_time_back_40_3_week_january  = $con->query("SELECT Product_Details_Month_Pressure FROM product_details_tb WHERE date='$Date_january_back_21day' AND time='$Time_Back_40_format' ORDER BY Product_Details_Month_Water_Use DESC LIMIT 1");
-                $result_sql_time_back_50_3_week_january  = $con->query("SELECT Product_Details_Month_Pressure FROM product_details_tb WHERE date='$Date_january_back_21day' AND time='$Time_Back_50_format' ORDER BY Product_Details_Month_Water_Use DESC LIMIT 1");
-                $result_sql_time_back_60_3_week_january  = $con->query("SELECT Product_Details_Month_Pressure FROM product_details_tb WHERE date='$Date_january_back_21day' AND time='$Time_Back_60_format' ORDER BY Product_Details_Month_Water_Use DESC LIMIT 1");
-                $result_sql_time_back_70_3_week_january  = $con->query("SELECT Product_Details_Month_Pressure FROM product_details_tb WHERE date='$Date_january_back_21day' AND time='$Time_Back_70_format' ORDER BY Product_Details_Month_Water_Use DESC LIMIT 1");
-                $result_sql_time_back_80_3_week_january  = $con->query("SELECT Product_Details_Month_Pressure FROM product_details_tb WHERE date='$Date_january_back_21day' AND time='$Time_Back_80_format' ORDER BY Product_Details_Month_Water_Use DESC LIMIT 1");
+                $result_sql_time_back_10_3_week_january  = $con->query("SELECT Product_Details_Month_Pressure FROM product_details_tb WHERE date='$Date_january_back_21day' AND time='$Time_Back_10_format' ORDER BY Product_Details_Month_Id DESC LIMIT 1");
+                $result_sql_time_back_20_3_week_january  = $con->query("SELECT Product_Details_Month_Pressure FROM product_details_tb WHERE date='$Date_january_back_21day' AND time='$Time_Back_20_format' ORDER BY Product_Details_Month_Id DESC LIMIT 1");
+                $result_sql_time_back_30_3_week_january  = $con->query("SELECT Product_Details_Month_Pressure FROM product_details_tb WHERE date='$Date_january_back_21day' AND time='$Time_Back_30_format' ORDER BY Product_Details_Month_Id DESC LIMIT 1");
+                $result_sql_time_back_40_3_week_january  = $con->query("SELECT Product_Details_Month_Pressure FROM product_details_tb WHERE date='$Date_january_back_21day' AND time='$Time_Back_40_format' ORDER BY Product_Details_Month_Id DESC LIMIT 1");
+                $result_sql_time_back_50_3_week_january  = $con->query("SELECT Product_Details_Month_Pressure FROM product_details_tb WHERE date='$Date_january_back_21day' AND time='$Time_Back_50_format' ORDER BY Product_Details_Month_Id DESC LIMIT 1");
+                $result_sql_time_back_60_3_week_january  = $con->query("SELECT Product_Details_Month_Pressure FROM product_details_tb WHERE date='$Date_january_back_21day' AND time='$Time_Back_60_format' ORDER BY Product_Details_Month_Id DESC LIMIT 1");
+                $result_sql_time_back_70_3_week_january  = $con->query("SELECT Product_Details_Month_Pressure FROM product_details_tb WHERE date='$Date_january_back_21day' AND time='$Time_Back_70_format' ORDER BY Product_Details_Month_Id DESC LIMIT 1");
+                $result_sql_time_back_80_3_week_january  = $con->query("SELECT Product_Details_Month_Pressure FROM product_details_tb WHERE date='$Date_january_back_21day' AND time='$Time_Back_80_format' ORDER BY Product_Details_Month_Id DESC LIMIT 1");
 
                 //ดึงข้อมูลย้อนหลัง 4 สัปดาห์
-                $result_sql_time_back_10_4_week_january  = $con->query("SELECT Product_Details_Month_Pressure FROM product_details_tb WHERE date='$Date_january_back_28day' AND time='$Time_Back_10_format' ORDER BY Product_Details_Month_Water_Use DESC LIMIT 1");
-                $result_sql_time_back_20_4_week_january  = $con->query("SELECT Product_Details_Month_Pressure FROM product_details_tb WHERE date='$Date_january_back_28day' AND time='$Time_Back_20_format' ORDER BY Product_Details_Month_Water_Use DESC LIMIT 1");
-                $result_sql_time_back_30_4_week_january  = $con->query("SELECT Product_Details_Month_Pressure FROM product_details_tb WHERE date='$Date_january_back_28day' AND time='$Time_Back_30_format' ORDER BY Product_Details_Month_Water_Use DESC LIMIT 1");
-                $result_sql_time_back_40_4_week_january  = $con->query("SELECT Product_Details_Month_Pressure FROM product_details_tb WHERE date='$Date_january_back_28day' AND time='$Time_Back_40_format' ORDER BY Product_Details_Month_Water_Use DESC LIMIT 1");
-                $result_sql_time_back_50_4_week_january  = $con->query("SELECT Product_Details_Month_Pressure FROM product_details_tb WHERE date='$Date_january_back_28day' AND time='$Time_Back_50_format' ORDER BY Product_Details_Month_Water_Use DESC LIMIT 1");
-                $result_sql_time_back_60_4_week_january  = $con->query("SELECT Product_Details_Month_Pressure FROM product_details_tb WHERE date='$Date_january_back_28day' AND time='$Time_Back_60_format' ORDER BY Product_Details_Month_Water_Use DESC LIMIT 1");
-                $result_sql_time_back_70_4_week_january  = $con->query("SELECT Product_Details_Month_Pressure FROM product_details_tb WHERE date='$Date_january_back_28day' AND time='$Time_Back_70_format' ORDER BY Product_Details_Month_Water_Use DESC LIMIT 1");
-                $result_sql_time_back_80_4_week_january  = $con->query("SELECT Product_Details_Month_Pressure FROM product_details_tb WHERE date='$Date_january_back_28day' AND time='$Time_Back_80_format' ORDER BY Product_Details_Month_Water_Use DESC LIMIT 1");
+                $result_sql_time_back_10_4_week_january  = $con->query("SELECT Product_Details_Month_Pressure FROM product_details_tb WHERE date='$Date_january_back_28day' AND time='$Time_Back_10_format' ORDER BY Product_Details_Month_Id DESC LIMIT 1");
+                $result_sql_time_back_20_4_week_january  = $con->query("SELECT Product_Details_Month_Pressure FROM product_details_tb WHERE date='$Date_january_back_28day' AND time='$Time_Back_20_format' ORDER BY Product_Details_Month_Id DESC LIMIT 1");
+                $result_sql_time_back_30_4_week_january  = $con->query("SELECT Product_Details_Month_Pressure FROM product_details_tb WHERE date='$Date_january_back_28day' AND time='$Time_Back_30_format' ORDER BY Product_Details_Month_Id DESC LIMIT 1");
+                $result_sql_time_back_40_4_week_january  = $con->query("SELECT Product_Details_Month_Pressure FROM product_details_tb WHERE date='$Date_january_back_28day' AND time='$Time_Back_40_format' ORDER BY Product_Details_Month_Id DESC LIMIT 1");
+                $result_sql_time_back_50_4_week_january  = $con->query("SELECT Product_Details_Month_Pressure FROM product_details_tb WHERE date='$Date_january_back_28day' AND time='$Time_Back_50_format' ORDER BY Product_Details_Month_Id DESC LIMIT 1");
+                $result_sql_time_back_60_4_week_january  = $con->query("SELECT Product_Details_Month_Pressure FROM product_details_tb WHERE date='$Date_january_back_28day' AND time='$Time_Back_60_format' ORDER BY Product_Details_Month_Id DESC LIMIT 1");
+                $result_sql_time_back_70_4_week_january  = $con->query("SELECT Product_Details_Month_Pressure FROM product_details_tb WHERE date='$Date_january_back_28day' AND time='$Time_Back_70_format' ORDER BY Product_Details_Month_Id DESC LIMIT 1");
+                $result_sql_time_back_80_4_week_january  = $con->query("SELECT Product_Details_Month_Pressure FROM product_details_tb WHERE date='$Date_january_back_28day' AND time='$Time_Back_80_format' ORDER BY Product_Details_Month_Id DESC LIMIT 1");
 
 
 
@@ -368,9 +368,10 @@ if (!$con) {
                 $standardDeviation_january = sqrt($variance_january);
 
                 //ขอบบน
-                $resultSDPlus_january =  $x_bar + $standardDeviation_january;
+                $resultSDPlus_january =  $x_bar_4_week_january + $standardDeviation_january;
                 //ขอบล่าง
-                $resultSDMinus_january =  $x_bar - $standardDeviation_january;
+                $resultSDMinus_january =  $x_bar_4_week_january - $standardDeviation_january;
+                $resultSDMinus_january = round($resultSDMinus_january, 2);
 
                 $result_sqlRealTimeControl = $con->query($sqlRealtimeControl);
                 $result_sqlLasttimedata = $con->query($sqlLasttimeData);
@@ -384,7 +385,7 @@ if (!$con) {
                     $control_Time_OFF,
                     $control_Solenoid,
                     $control_Ai,
-                    $resultSDPlus,
+                    $resultSDMinus_january,
                     $DataLastDAY,
                     $DataLastMONTH
                 ) {
@@ -393,7 +394,7 @@ if (!$con) {
                     $formatted_control_Time_Off = date("H:i", strtotime($control_Time_OFF));
 
                     $formattedData = "$control_Date_On,$formatted_control_Time_On,$control_Date_OFF,$formatted_control_Time_Off," .
-                        "$control_Solenoid,$control_Ai,$resultSDPlus,$DataLastDAY,$DataLastMONTH";
+                        "$control_Solenoid,$control_Ai,$resultSDMinus_january,$DataLastDAY,$DataLastMONTH";
                     return $formattedData;
                 }
 
@@ -406,7 +407,7 @@ if (!$con) {
                     $row["control_Time_OFF"],
                     $row["control_Solenoid"],
                     $row["control_Ai"],
-                    $resultSDPlus,
+                    $resultSDMinus_january,
                     $row1["Product_Details_Day_Water_Use"],
                     $row1["Product_Details_Month_Water_Use"],
 
@@ -426,7 +427,7 @@ if (!$con) {
                     $control_Time_OFF,
                     $control_Solenoid,
                     $control_Ai,
-                    $resultSDPlus,
+                    $resultSDMinus,
                     $DataLastDAY,
                     $DataLastMONTH
                 ) {
@@ -435,7 +436,7 @@ if (!$con) {
                     $formatted_control_Time_Off = date("H:i", strtotime($control_Time_OFF));
 
                     $formattedData = "$control_Date_On,$formatted_control_Time_On,$control_Date_OFF,$formatted_control_Time_Off," .
-                        "$control_Solenoid,$control_Ai,$resultSDPlus,$DataLastDAY,$DataLastMONTH";
+                        "$control_Solenoid,$control_Ai,$resultSDMinus,$DataLastDAY,$DataLastMONTH";
                     return $formattedData;
                 }
                 $formattedData = formatData(
@@ -445,7 +446,7 @@ if (!$con) {
                     $row["control_Time_OFF"],
                     $row["control_Solenoid"],
                     $row["control_Ai"],
-                    $resultSDPlus,
+                    $resultSDMinus,
                     $row1["Product_Details_Day_Water_Use"],
                     $row1["Product_Details_Month_Water_Use"],
 
